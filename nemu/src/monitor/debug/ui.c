@@ -38,9 +38,12 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
-static int cmd_x(){
+static int cmd_x(char *args){
 	printf("running.\n");
+	char* arg1 = strtok(args," ");
+	char* arg2 = strtok(NULL," ");
 	printf("0x%08x\n",paddr_read(0x100000,8));
+	printf("%s %s\n",arg1,arg2);
 	return 0;
 }
 
