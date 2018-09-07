@@ -61,10 +61,11 @@ static int cmd_x(char *args){
 
 static int cmd_info(char *args){
 	char* arg1 = strtok(args," ");
-	if(arg1 && arg1[0] == 'r'){
+ 	if(arg1 && arg1[0] == 'r'){
 		char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
-		for(int i = 0;i < 8; ++i){
-			printf("%s : %08x\n",list[i],cpu.gpr[i]._32);
+	 	for(int i = 0;i < 8; ++i){
+			printf("%s : %08x",list[i],cpu.gpr[i]._32);
+			if((i+1) % 4 == 0) printf("\n");
 		}
 		printf("eip : %08x\n",cpu.eip); 
 	} 
