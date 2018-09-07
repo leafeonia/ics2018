@@ -38,12 +38,21 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+
 static int cmd_x(char *args){
 	printf("running.\n");
 	char* arg1 = strtok(args," ");
 	char* arg2 = strtok(NULL," ");
+	/*if(arg2){
+		int length = atoi(arg1);
+		int address = atoi(arg2);
+		for(int i = 0;i < length;++i){
+			printf("0x%08x:0x%08x\n",)
+		}
+	}*/
 	printf("0x%08x\n",paddr_read(0x100000,8));
-	printf("%s %s\n",arg1,arg2);
+	int temp = atoi(arg2);
+	printf("%s %d\n",arg1,temp);
 	return 0;
 }
 
