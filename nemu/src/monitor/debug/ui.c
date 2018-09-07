@@ -39,7 +39,8 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_x(){
-	printf("running.");
+	printf("running.\n");
+	printf("0x%08x\n",paddr_read(0x100000,8));
 	return 0;
 }
 
