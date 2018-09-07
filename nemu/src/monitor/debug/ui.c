@@ -47,14 +47,14 @@ static int cmd_x(char *args){
 		int address;
 		sscanf(arg2,"%x",&address);
 		for(int i = 0;i < length;++i){
-			printf("0x%06x:0x%04x\n",address,vaddr_read(address,4));
+			printf("0x%06x:0x%08x\n",address,vaddr_read(address,4));
 			address+= 4;
 	 	}
 	 }
 	else if(arg1){
 		int address; 
 		sscanf(arg1,"%x",&address);  
-		printf("0x%06x:0x%04x\n",address,vaddr_read(address,4));  
+		printf("0x%06x:0x%08x\n",address,vaddr_read(address,4));  
 	}
 	return 0;
 }
