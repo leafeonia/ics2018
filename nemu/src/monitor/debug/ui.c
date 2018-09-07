@@ -13,7 +13,7 @@ void cpu_exec(uint64_t);
 char* rl_gets() {
   static char *line_read = NULL;
 
-  if (line_read) {
+  if  (line_read) {
     free(line_read);
     line_read = NULL;
   }
@@ -22,7 +22,7 @@ char* rl_gets() {
 
   if (line_read && *line_read) {
     add_history(line_read);
-  }
+  } 
 
   return line_read;
 }
@@ -38,6 +38,11 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_x(){
+	printf("running.");
+	return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -46,7 +51,7 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  { "x", "Memory scan",cmd_x},
   /* TODO: Add more commands */
 
 };
