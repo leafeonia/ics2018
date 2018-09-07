@@ -42,7 +42,7 @@ static int cmd_help(char *args);
 static int cmd_x(char *args){
 	char* arg1 = strtok(args," ");
 	char* arg2 = strtok(NULL," ");
-	if(arg2){
+	if(arg2) {
 		int length = atoi(arg1);
 		int address;
 		sscanf(arg2,"%x",&address);
@@ -67,7 +67,15 @@ static int cmd_info(char *args){
 			printf("%s : %08x\n",list[i],cpu.gpr[i]._32);
 		}
 		printf("eip : %08x\n",cpu.eip); 
-	}
+	} 
+	return 0;
+}
+
+static int cmd_s(char *args){
+	char* arg1 = strtok(args," ");
+	int length = 1;
+	if(arg1) length = atoi(arg1);
+	cpu_exec(length);
 	return 0;
 }
 
@@ -81,6 +89,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "x", "Memory scan",cmd_x},
   { "info", "Register/Watchpoint information",cmd_info},
+  { "s", "execute N instructions",cmd_s},
   /* TODO: Add more commands */
 
 };
