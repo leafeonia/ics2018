@@ -40,7 +40,6 @@ static int cmd_help(char *args);
 
 
 static int cmd_x(char *args){
-	printf("running.\n");
 	char* arg1 = strtok(args," ");
 	char* arg2 = strtok(NULL," ");
 	if(arg2){
@@ -48,14 +47,26 @@ static int cmd_x(char *args){
 		int address;
 		sscanf(arg2,"%x",&address);
 		for(int i = 0;i < length;++i){
-			printf("0x%06x:0x%08x\n",address,vaddr_read(address,4));
+			printf("0x%06x:0x%04x\n",address,vaddr_read(address,4));
 			address+= 4;
-		}
-	}
+	 	}
+	 }
 	else if(arg1){
 		int address; 
 		sscanf(arg1,"%x",&address);  
-		printf("0x%06x:0x%08x\n",address,vaddr_read(address,4));  
+		printf("0x%06x:0x%04x\n",address,vaddr_read(address,4));  
+	}
+	return 0;
+}
+
+static int cmd_info(char *args){
+	char* arg1 = strtok(args," ");
+	if(arg1 && arg1[0] == 'r'){
+		char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
+		for(int i = 0;i < 8; ++i){
+			printf("%s : %08x\n",list[i],cpu.gpr[i]._32);
+		}
+		printf("eip : %08x\n",cpu.eip); 
 	}
 	return 0;
 }
@@ -69,6 +80,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "x", "Memory scan",cmd_x},
+  { "info", "Register/Watchpoint information",cmd_info},
   /* TODO: Add more commands */
 
 };
