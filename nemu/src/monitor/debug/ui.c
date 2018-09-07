@@ -51,7 +51,7 @@ static int cmd_x(char *args){
 		}
 	}*/
 	printf("0x%08x\n",paddr_read(0x100000,8));
-	int temp = atoi(arg2);
+	int temp = atoi(arg2+2);
 	printf("%s %d\n",arg1,temp);
 	return 0;
 }
