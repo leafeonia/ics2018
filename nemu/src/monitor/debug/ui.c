@@ -45,7 +45,8 @@ static int cmd_x(char *args){
 	char* arg2 = strtok(NULL," ");
 	if(arg2){
 		int length = atoi(arg1);
-		int address = atoi(arg2+2);
+		int address;
+		sscanf(arg2,"%x",&address);
 		for(int i = 0;i < length;++i){
 			printf("0x%08x:0x%08x\n",address,vaddr_read(address,4));
 			address+= 4;
