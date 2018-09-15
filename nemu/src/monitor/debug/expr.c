@@ -107,10 +107,10 @@ static bool make_token(char *e) {
     		for(int j = 0;j < min(substr_len,32);++j){
     			tokens[cnt].str[j] = substr_start[j];
     		}
-    		/*for(int j = 0;j < 32;++j){
+    		for(int j = 0;j < 4;++j){
     		   printf("tokens[%d].str[%d] = %d  ",cnt,j,tokens[cnt].str[j]);
   				if(!(j % 4)) printf("\n");
-    		}*/
+    		}
     		break; 
     	  case 1:
     		tokens[cnt++].type = 1;
@@ -220,12 +220,13 @@ uint32_t expr(char *e, bool *success) {
   }
   int length = 0;
   while(tokens[length].type) length++;
-  return eval(0,length-1);
-  /*for(int i = 0;i < 32;++i){
+  
+  for(int i = 0;i < 4;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
-  }*/
+  }
  // printf("length = %d\n",length);
+  return eval(0,length-1);
     /* TODO: Insert codes to evaluate the expression. */
   
 
