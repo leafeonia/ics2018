@@ -141,6 +141,10 @@ uint32_t expr(char *e, bool *success) {
   }
   int length = 0;
   while(tokens[length].type) length++;
+  for(int i = 0;i < 32;++i){
+  	printf("tokens[%d].type = %d",i,tokens[i].type);
+  	if(!(i % 4)) printf("\n");
+  }
   printf("length = %d\n",length);
     /* TODO: Insert codes to evaluate the expression. */
   
