@@ -28,7 +28,7 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-  {"\\d+",TK_NUM},
+  {"[0,9]+",TK_NUM},
   {" +", TK_NOTYPE},    // spaces
   {"\\+", PLUS},         // plus
   {"-",MINUS},
@@ -137,7 +137,6 @@ static bool make_token(char *e) {
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
-    printf("%p\n",(int*)tokens);
     return 0;
   }
   
