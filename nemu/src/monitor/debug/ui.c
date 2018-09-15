@@ -84,7 +84,7 @@ static int cmd_p(char *args){
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
 	uint32_t ans = expr(args,success);
-	if(*success) printf("%d\n",ans);
+	if(*success) printf("%u\n",ans);
 	else printf("Invalid expression\n");
 	free(success);
 	return 0;
