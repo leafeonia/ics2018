@@ -168,7 +168,7 @@ uint32_t main_op(int p,int q){
 	int cur_priority = 3;
 	int ans = 0;
 	int bracket_cnt = 0;
-	for(int i = p+1;i <= q - 1;i++){
+	for(int i = p;i <= q;i++){
 		if(tokens[i].type == LEFT_BRACKET) bracket_cnt++;
 		else if(tokens[i].type == RIGHT_BRACKET) bracket_cnt--;
 		if(bracket_cnt) continue;
