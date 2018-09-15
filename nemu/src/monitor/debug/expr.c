@@ -100,13 +100,14 @@ static bool make_token(char *e) {
 		//printf("cnt = %d     rules[%d].token_type = %d\n",cnt,i,rules[i].token_type);
         switch (rules[i].token_type) {
           case 100:
-    		tokens[cnt++].type = 100;
+    		tokens[cnt].type = 100;
     		if(substr_len > 32){
     			Log("Warning : the number is too long to restore. Only 32 nums in the front are saved.");
     			}
     		for(int j = 0;j < min(substr_len,32);++j){
     			tokens[cnt].str[j] = substr_start[j];
     		}
+    		cnt++;
     		for(int j = 0;j < 4;++j){
     		   printf("tokens[%d].str[%d] = %d  ",cnt,j,tokens[cnt].str[j]);
   				if(!(j % 4)) printf("\n");
