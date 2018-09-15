@@ -70,7 +70,7 @@ Token tokens[32];
 int nr_token;
 
 static bool make_token(char *e) {
-	printf("Start make_token(). e = %s\n",e);
+//	printf("Start make_token(). e = %s\n",e);
   int position = 0;
   int i;
   regmatch_t pmatch;
@@ -154,6 +154,7 @@ bool checkparentheses(int p,int q){
 		if(cnt < 0) return false;
 	}
 	if(cnt > 0)return false;
+	printf("true\n");
 	return true;
 }
 
