@@ -5,6 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#define min(a,b) (a < b ? a : b)
 
 enum {
   TK_NOTYPE = 256, 
@@ -97,8 +98,15 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case 100:
     		tokens[cnt++].type = 100;
-    		for(int j = 0;j < substr_len;++j){
+    		if(substr_len > 32){
+    			Log("Warning : the number is too long to restore. Only 32 nums in the front are saved.");
+    			}
+    		for(int j = 0;j < min(substr_len,32);++j){
     			tokens[cnt].str[j] = substr_start[j];
+    		}
+    		for(int j = 0;j < 32;++j){
+    		   printf("tokens[%d].str[j] = %d  ",i,tokens[i].str[j]);
+  				if(!(i % 4)) printf("\n");
     		}
     		break; 
     	  case 1:
