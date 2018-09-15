@@ -86,7 +86,7 @@ static int cmd_p(char *args){
 	*success = true;
 	uint32_t ans = expr(arg1,success);
 	if(*success) printf("%d\n",ans);
-	else printf("Invalid expression");
+	else printf("Invalid expression\n");
 	free(success);
 	return 0;
 }

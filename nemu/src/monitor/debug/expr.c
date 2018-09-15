@@ -139,9 +139,9 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-
+  printf("%p\n",(int*)tokens);
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  
 
   return 0;
 }
