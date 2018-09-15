@@ -181,10 +181,12 @@ uint32_t main_op(int p,int q){
 			}
 		}
 	}
+	printf("main_op(%d,%d) = %d\n",p,q,ans);
 	return ans;
 }
 
 uint32_t eval(int p,int q){
+	printf("eval(%d,%d)\n",p,q);
 	if(p > q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
@@ -226,5 +228,6 @@ uint32_t expr(char *e, bool *success) {
     /* TODO: Insert codes to evaluate the expression. */
   
 
-  ;
+  
 }
+
