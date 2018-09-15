@@ -139,7 +139,9 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("success\n");
+  int length = 0;
+  while(e[length]) length++;
+  printf("length = %d\n",length);
     /* TODO: Insert codes to evaluate the expression. */
   
 
