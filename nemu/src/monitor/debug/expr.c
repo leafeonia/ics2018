@@ -96,6 +96,7 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case 100:
             printf("enter case100\n");
+            cnt = cnt + 1;
     		tokens[cnt++].type = 100;
     		for(int j = 0;j < substr_len;++j){
     			tokens[i].str[j] = substr_start[j];
