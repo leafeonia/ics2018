@@ -80,6 +80,17 @@ static int cmd_s(char *args){
 	return 0;
 }
 
+static int cmd_p(char *args){
+	char* arg1 = strtok(args," ");
+	bool* success = (bool*)malloc(sizeof(bool));
+	*success = true;
+	uint32_t ans = expr(arg1,success);
+	if(*success) printf("%d\n",ans);
+	else printf("Invalid expression");
+	free(success);
+	return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -91,6 +102,7 @@ static struct {
   { "x", "Memory scan",cmd_x},
   { "info", "Register/Watchpoint information",cmd_info},
   { "s", "execute N instructions",cmd_s},
+  { "p", "calculate the value of the given expression", cmd_p},
   /* TODO: Add more commands */
 
 };
