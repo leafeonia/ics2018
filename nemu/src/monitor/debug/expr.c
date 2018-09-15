@@ -28,7 +28,7 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-  {"[0,9]+",TK_NUM},
+  {"[0-9]+",TK_NUM},
   {" +", TK_NOTYPE},    // spaces
   {"\\+", PLUS},         // plus
   {"-",MINUS},
