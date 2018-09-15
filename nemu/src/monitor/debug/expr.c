@@ -192,6 +192,7 @@ uint32_t eval(int p,int q){
 	}
 	else if(p == q){
 		assert(tokens[p].type == TK_NUM);
+		printf("return : %d",atoi(tokens[p].str));
 		return atoi(tokens[p].str);
 	}
 	else if(checkparentheses(p,q)){
