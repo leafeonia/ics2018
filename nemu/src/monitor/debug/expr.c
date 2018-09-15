@@ -137,10 +137,11 @@ static bool make_token(char *e) {
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
+    printf("%p\n",(int*)tokens);
     return 0;
   }
-  printf("%p\n",(int*)tokens);
-  /* TODO: Insert codes to evaluate the expression. */
+  
+    /* TODO: Insert codes to evaluate the expression. */
   
 
   return 0;
