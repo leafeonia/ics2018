@@ -9,7 +9,7 @@
 enum {
   TK_NOTYPE = 256, 
   TK_EQ,
-  TK_NUM = 0,
+  TK_NUM = 100,
   PLUS = 1,
   MINUS = 2,
   MULTIPLY = 3,
@@ -92,8 +92,8 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          case 0:
-    		tokens[i].type = 0;
+          case 100:
+    		tokens[i].type = 100;
     		for(int j = 0;j < substr_len;++j){
     			tokens[i].str[j] = substr_start[j];
     		}
@@ -140,7 +140,7 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
   int length = 0;
-  while(e[length]) length++;
+  while(tokens[length].type) length++;
   printf("length = %d\n",length);
     /* TODO: Insert codes to evaluate the expression. */
   
