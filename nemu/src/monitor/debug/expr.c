@@ -69,6 +69,7 @@ Token tokens[32];
 int nr_token;
 
 static bool make_token(char *e) {
+	printf("Start make_token(). e = %s\n",e);
   int position = 0;
   int i;
   regmatch_t pmatch;
@@ -76,6 +77,7 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {
+    int cnt = 0;
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
@@ -93,28 +95,28 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case 100:
-    		tokens[i].type = 100;
+    		tokens[cnt++].type = 100;
     		for(int j = 0;j < substr_len;++j){
     			tokens[i].str[j] = substr_start[j];
     		}
     		break; 
     	  case 1:
-    		tokens[i].type = 1;
+    		tokens[cnt++].type = 1;
     		break; 
     	  case 2:
-    		tokens[i].type = 2;
+    		tokens[cnt++].type = 2;
     		break; 
     	  case 3:
-    		tokens[i].type = 3;
+    		tokens[cnt++].type = 3;
     		break; 
     	  case 4:
-    		tokens[i].type = 4;
+    		tokens[cnt++].type = 4;
     		break; 
     	  case 5:
-    		tokens[i].type = 5;
+    		tokens[cnt++].type = 5;
     		break; 	
     	  case 6:
-    		tokens[i].type = 6;
+    		tokens[cnt++].type = 6;
     		break; 	
           default: 
           	break;
