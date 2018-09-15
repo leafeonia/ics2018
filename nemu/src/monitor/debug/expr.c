@@ -101,7 +101,6 @@ static bool make_token(char *e) {
     		if(substr_len > 32){
     			Log("Warning : the number is too long to restore. Only 32 nums in the front are saved.");
     			}
-    		printf("%d\n",min(substr_len,32));
     		for(int j = 0;j < min(substr_len,32);++j){
     			tokens[cnt].str[j] = substr_start[j];
     		}
@@ -146,6 +145,20 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool checkparentheses(int p,int q){
+	if(tokens[p].type != LEFT_BRACKET && tokens[q].type != RIGHT_BRACKET) return false;
+	int cnt = 0;
+	for(int i = p + 1;i < q;i++){
+		if(tokens[i].type == LEFT_BRACKET) cnt++;
+		else if(tokens[i].type == RIGHT_BRACKET) cnt--;
+		if(cnt < 0) return false;
+	}
+	if(cnt > 0)return false;
+	return true;
+}
+
+
+
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -153,11 +166,12 @@ uint32_t expr(char *e, bool *success) {
   }
   int length = 0;
   while(tokens[length].type) length++;
+  printf("%d\n",checkparentheses(0,length-1));
   /*for(int i = 0;i < 32;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
-  }*/
-  printf("length = %d\n",length);
+  }
+  printf("length = %d\n",length);*/
     /* TODO: Insert codes to evaluate the expression. */
   
 
