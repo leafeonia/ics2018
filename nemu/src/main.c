@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   int is_batch_mode = init_monitor(argc, argv);
 
   bool *success = (bool *)malloc(sizeof(bool));
-  printf("%u\n",expr("1+2",success));
+  printf("%u\n",expr("FAQ1+2",success));
   free(success);
 
   /* Receive commands from user. */
