@@ -146,6 +146,7 @@ static bool make_token(char *e) {
 }
 
 bool checkparentheses(int p,int q){
+	printf("p = %d  q = %d",p,q);
 	if(tokens[p].type != LEFT_BRACKET || tokens[q].type != RIGHT_BRACKET) return false;
 	int cnt = 0;
 	for(int i = p + 1;i < q;i++){
@@ -171,8 +172,8 @@ uint32_t expr(char *e, bool *success) {
   /*for(int i = 0;i < 32;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
-  }
-  printf("length = %d\n",length);*/
+  }*/
+  printf("length = %d\n",length);
     /* TODO: Insert codes to evaluate the expression. */
   
 
