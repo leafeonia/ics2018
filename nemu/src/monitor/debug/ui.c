@@ -82,6 +82,7 @@ static int cmd_s(char *args){
 
 static int cmd_p(char *args){
 	char* arg1 = strtok(args," ");
+	printf("arg1=%s\n",arg1);
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
 	uint32_t ans = expr(arg1,success);
