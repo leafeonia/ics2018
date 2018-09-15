@@ -105,8 +105,8 @@ static bool make_token(char *e) {
     			tokens[cnt].str[j] = substr_start[j];
     		}
     		for(int j = 0;j < 32;++j){
-    		   printf("tokens[%d].str[j] = %d  ",i,tokens[i].str[j]);
-  				if(!(i % 4)) printf("\n");
+    		   printf("tokens[%d].str[%d] = %d  ",cnt,j,tokens[cnt].str[j]);
+  				if(!(j % 4)) printf("\n");
     		}
     		break; 
     	  case 1:
