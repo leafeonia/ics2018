@@ -148,7 +148,7 @@ static bool make_token(char *e) {
 }
 
 bool checkparentheses(int p,int q){
-	printf("p = %d  q = %d",p,q);
+	printf("p = %d  q = %d\n",p,q);
 	if(tokens[p].type != LEFT_BRACKET || tokens[q].type != RIGHT_BRACKET) return false;
 	int cnt = 0;
 	for(int i = p + 1;i < q;i++){
