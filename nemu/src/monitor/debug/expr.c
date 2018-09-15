@@ -92,7 +92,7 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          case 0:
+        /*  case 0:
     		tokens[i].type = 0;
     		for(int j = 0;j < substr_len;++j){
     			tokens[i].str[j] = substr_start[j];
@@ -115,7 +115,7 @@ static bool make_token(char *e) {
     		break; 	
     	  case 6:
     		tokens[i].type = 6;
-    		break; 	
+    		break; 	*/
           default: 
           	break;
           	//TODO();
