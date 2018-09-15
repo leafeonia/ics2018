@@ -81,7 +81,7 @@ static int cmd_s(char *args){
 }
 
 static int cmd_p(char *args){
-	char* arg1 = strtok(args," ");
+	char* arg1 = args+2;
 	printf("arg1=%s\n",arg1);
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
