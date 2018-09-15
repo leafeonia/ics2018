@@ -154,7 +154,7 @@ bool checkparentheses(int p,int q){
 		if(cnt < 0) return false;
 	}
 	if(cnt > 0)return false;
-	printf("true\n");
+	printf("cnt=%d true\n",cnt);
 	return true;
 }
 
