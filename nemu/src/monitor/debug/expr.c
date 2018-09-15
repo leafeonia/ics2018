@@ -7,8 +7,15 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ
-
+  TK_NOTYPE = 256, 
+  TK_EQ,
+  TK_NUM = 0,
+  PLUS = 1,
+  MINUS = 2,
+  MULTIPLY = 3,
+  DIVIDE = 4,
+  LEFT_BRACKET = 5,
+  RIGHT_BRACKET = 6
   /* TODO: Add more token types */
 
 };
@@ -21,9 +28,14 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-
+  {"\\d+",TK_NUM},
   {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
+  {"\\+", PLUS},         // plus
+  {"-",MINUS},
+  {"\\*",MULTIPLY},
+  {"/",DIVIDE},
+  {"\\(",LEFT_BRACKET},
+  {"\\)",RIGHT_BRACKET},
   {"==", TK_EQ}         // equal
 };
 
@@ -80,7 +92,33 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
+          case 0:
+    		tokens[i].type = 0;
+    		for(int j = 0;j < substr_len;++j){
+    			tokens[i].str[j] = substr_start[j];
+    		}
+    		break; 
+    	  case 1:
+    		tokens[i].type = 1;
+    		break; 
+    	  case 2:
+    		tokens[i].type = 2;
+    		break; 
+    	  case 3:
+    		tokens[i].type = 3;
+    		break; 
+    	  case 4:
+    		tokens[i].type = 4;
+    		break; 
+    	  case 5:
+    		tokens[i].type = 5;
+    		break; 	
+    	  case 6:
+    		tokens[i].type = 6;
+    		break; 	
+          default: 
+          	break;
+          	//TODO();
         }
 
         break;
