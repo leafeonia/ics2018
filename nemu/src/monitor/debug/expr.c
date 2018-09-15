@@ -99,7 +99,7 @@ static bool make_token(char *e) {
             cnt++;
     		tokens[cnt].type = 100;
     		for(int j = 0;j < substr_len;++j){
-    			tokens[i].str[j] = substr_start[j];
+    			tokens[cnt].str[j] = substr_start[j];
     		}
     		break; 
     	  case 1:
