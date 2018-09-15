@@ -43,6 +43,7 @@ static struct rule {
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
+#define tokens_size 2560
 
 static regex_t re[NR_REGEX];
 
@@ -68,7 +69,7 @@ typedef struct token {
   char str[32];
 } Token;
 
-Token tokens[32];
+Token tokens[tokens_size];
 int nr_token;
 
 static bool make_token(char *e) {
@@ -101,10 +102,10 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case 100:
     		tokens[cnt].type = 100;
-    		if(substr_len > 32){
+    		if(substr_len > tokens_size){
     			Log("Warning : the number is too long to restore. Only 32 nums in the front are saved.");
     			}
-    		for(int j = 0;j < min(substr_len,32);++j){
+    		for(int j = 0;j < min(substr_len,tokens_size);++j){
     			tokens[cnt].str[j] = substr_start[j];
     		}
     		cnt++;
@@ -200,14 +201,17 @@ uint32_t eval(int p,int q){
 		return eval(p+1,q-1); 
 	}
 	else{
-		int op = main_op(p,q);
-		int val1 = eval(p,op-1);
-		int val2 = eval(op+1,q);
+		uint32_t op = main_op(p,q);
+		uint32_t val1 = eval(p,op-1);
+		uint32_t val2 = eval(op+1,q);
 		switch(tokens[op].type){
 			case PLUS:return val1 + val2;
 			case MINUS:return val1 - val2;
 			case MULTIPLY:return val1 * val2;
-			case DIVIDE:return val1 / val2;
+			case DIVIDE:{
+				if(!val2) panic("error: div0");
+				return val1 / val2;
+			}
 			default: assert(0);
 		}
 	}
