@@ -5,6 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <string.h>
 #define min(a,b) (a < b ? a : b)
 
 enum {
@@ -71,6 +72,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 //	printf("Start make_token(). e = %s\n",e);
+  memset(tokens,0,sizeof(tokens));
   int position = 0;
   int i;
   regmatch_t pmatch;
