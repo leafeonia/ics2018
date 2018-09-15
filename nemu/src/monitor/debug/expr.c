@@ -101,13 +101,14 @@ static bool make_token(char *e) {
     		if(substr_len > 32){
     			Log("Warning : the number is too long to restore. Only 32 nums in the front are saved.");
     			}
+    		printf("%d\n",min(substr_len,32));
     		for(int j = 0;j < min(substr_len,32);++j){
     			tokens[cnt].str[j] = substr_start[j];
     		}
-    		for(int j = 0;j < 32;++j){
+    		/*for(int j = 0;j < 32;++j){
     		   printf("tokens[%d].str[%d] = %d  ",cnt,j,tokens[cnt].str[j]);
   				if(!(j % 4)) printf("\n");
-    		}
+    		}*/
     		break; 
     	  case 1:
     		tokens[cnt++].type = 1;
@@ -152,10 +153,10 @@ uint32_t expr(char *e, bool *success) {
   }
   int length = 0;
   while(tokens[length].type) length++;
-  for(int i = 0;i < 32;++i){
+  /*for(int i = 0;i < 32;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
-  }
+  }*/
   printf("length = %d\n",length);
     /* TODO: Insert codes to evaluate the expression. */
   
