@@ -4,6 +4,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <sys/types.h>
+#include <stdlib.h>
 #include <regex.h>
 #include <string.h>
 #define min(a,b) (a < b ? a : b)
@@ -148,7 +149,6 @@ static bool make_token(char *e) {
 }
 
 bool checkparentheses(int p,int q){
-	printf("p = %d  q = %d\n",p,q);
 	if(tokens[p].type != LEFT_BRACKET || tokens[q].type != RIGHT_BRACKET) return false;
 	int cnt = 0;
 	for(int i = p + 1;i < q;i++){
@@ -157,10 +157,57 @@ bool checkparentheses(int p,int q){
 		if(cnt < 0) return false;
 	}
 	if(cnt > 0)return false;
-	printf("cnt=%d true\n",cnt);
 	return true;
 }
 
+uint32_t main_op(int p,int q){
+	int priority[10];
+	priority[PLUS] = priority[MINUS] = 1;
+	priority[MULTIPLY] = priority[DIVIDE] = 2;
+	int cur_priority = 3;
+	int ans = 0;
+	int bracket_cnt = 0;
+	for(int i = p+1;i <= q - 1;i++){
+		if(tokens[i].type == LEFT_BRACKET) bracket_cnt++;
+		else if(tokens[i].type == RIGHT_BRACKET) bracket_cnt--;
+		if(bracket_cnt) continue;
+		else if(bracket_cnt < 0){
+			panic("Invalid input (bracket unmatched)");
+		}
+		if(PLUS <= tokens[i].type && tokens[i].type <= DIVIDE){
+			if(priority[tokens[i].type] <= cur_priority){
+				cur_priority = priority[tokens[i].type];
+				ans = i;
+			}
+		}
+	}
+	return ans;
+}
+
+uint32_t eval(int p,int q){
+	if(p > q){
+		panic("Something goes wrong here... in eval (%d,%d)",p,q);
+	}
+	else if(p == q){
+		assert(tokens[p].type == TK_NUM);
+		return atoi(tokens[p].str);
+	}
+	else if(checkparentheses(p,q)){
+		return eval(p+1,q-1); 
+	}
+	else{
+		int op = main_op(p,q);
+		int val1 = eval(p,op-1);
+		int val2 = eval(op+1,q);
+		switch(tokens[op].type){
+			case PLUS:return val1 + val2;
+			case MINUS:return val1 - val2;
+			case MULTIPLY:return val1 * val2;
+			case DIVIDE:return val1 / val2;
+			default: assert(0);
+		}
+	}
+}
 
 
 uint32_t expr(char *e, bool *success) {
@@ -170,14 +217,14 @@ uint32_t expr(char *e, bool *success) {
   }
   int length = 0;
   while(tokens[length].type) length++;
-  printf("%d\n",checkparentheses(0,length-1));
+  return eval(0,length-1);
   /*for(int i = 0;i < 32;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
   }*/
-  printf("length = %d\n",length);
+ // printf("length = %d\n",length);
     /* TODO: Insert codes to evaluate the expression. */
   
 
-  return 0;
+  ;
 }
