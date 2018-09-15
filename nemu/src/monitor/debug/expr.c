@@ -28,7 +28,7 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-  {"\\d+",TK_NUM},
+  /*{"\\d+",TK_NUM},
   {" +", TK_NOTYPE},    // spaces
   {"\\+", PLUS},         // plus
   {"-",MINUS},
@@ -36,7 +36,7 @@ static struct rule {
   {"/",DIVIDE},
   {"\\(",LEFT_BRACKET},
   {"\\)",RIGHT_BRACKET},
-  {"==", TK_EQ}         // equal
+  {"==", TK_EQ}         // equal*/
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
