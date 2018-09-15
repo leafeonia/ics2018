@@ -96,21 +96,21 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case 100:
             printf("enter case100\n");
-            cnt++;
+            cnt = cnt + 1;
     		tokens[cnt].type = 100;
     		for(int j = 0;j < substr_len;++j){
     			tokens[cnt].str[j] = substr_start[j];
     		}
     		break; 
     	  case 1:
-    	  	cnt++;
+    	  	cnt = cnt+1;
     		tokens[cnt].type = 1;
     		break; 
     	  case 2:
     		tokens[cnt++].type = 2;
     		break; 
     	  case 3:
-    	    cnt++;
+    	    cnt = cnt + 1;
     		tokens[cnt++].type = 3;
     		break; 
     	  case 4:
