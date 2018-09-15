@@ -81,11 +81,10 @@ static int cmd_s(char *args){
 }
 
 static int cmd_p(char *args){
-	char* arg1 = args+2;
-	printf("arg1=%s\n",arg1);
+	printf("args=%s\n",args);
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
-	uint32_t ans = expr(arg1,success);
+	uint32_t ans = expr(args,success);
 	if(*success) printf("%d\n",ans);
 	else printf("Invalid expression\n");
 	free(success);
