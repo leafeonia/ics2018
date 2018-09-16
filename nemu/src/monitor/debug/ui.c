@@ -105,10 +105,10 @@ static int cmd_p(char *args){
 	char exp[500];
 	while(test){
 		sscanf(test,"%s",correct);
-		test += strlen(correct);
+		test += strlen(correct)+1;
 		sscanf(test,"%s",exp);
 		printf("exp = %s\n",exp);
-		test += strlen(correct);
+		test += strlen(correct)+1;
 		printf("correct= %s\n",correct);
 		printf("My ans = %u\n",expr(exp,success));
 	}
@@ -212,13 +212,3 @@ void ui_mainloop(int is_batch_mode) {
   }
 }
 
-/*int main(int argc,char* argv[]){
-  char* arg = strtok(argv," ");
-  while(arg){
-    printf("arg=%s\n",arg);
-  	printf("test = %u\n",cmd_p(arg));
-  	arg = strtok(NULL," ");
-  	arg = strtok(NULL," ");
-  }
-  return 0;
-}*/
