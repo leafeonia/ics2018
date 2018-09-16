@@ -101,18 +101,19 @@ static int cmd_s(char *args){
 static int cmd_p(char *args){
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
-	char* arg = strtok(test," ");
+	/*char* arg = strtok(test," ");
 	printf("first arg = %s\n",arg);
 	int i = 0;
 	  while(arg){
 		printf("arg=%s\n",arg);
 	  	printf("test%d = %u\n",i++,cmd_p(strtok(NULL," ")));
 	  	arg = strtok(NULL," ");
-	  }
+	  }*/
 	//uint32_t ans = expr(args,success);
 	//if(*success) printf("%u\n",ans);
 	//else printf("Invalid expression\n");
 	free(success);
+	printf("success\n");
 	return 0;
 }
 
