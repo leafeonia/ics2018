@@ -105,9 +105,11 @@ static int cmd_p(char *args){
 	char* exp = (char*)malloc(sizeof(char));
 	sscanf(test,"%d",&correct);
 	sscanf(test,"%s",exp);
+	sscanf(test,"%d",&correct);
+	sscanf(test,"%s",exp);
 	//char* arg = strtok(test," ");
 	
-	printf("first arg = %s\n",exp);
+	printf("second arg = %s\n",exp);
 	/*int i = 0;
 	  while(arg){
 		printf("arg=%s\n",arg);
