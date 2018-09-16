@@ -105,10 +105,10 @@ static int cmd_p(char *args){
 	char exp[500];
 	while(test){
 		sscanf(test,"%s",correct);
-		test += strlen(correct);
+		test += strlen(correct)+1;
 		sscanf(test,"%s",exp);
 		printf("exp = %s\n",exp);
-		test += strlen(exp);
+		test += strlen(exp)+1;
 		printf("correct= %s\n",correct);
 		printf("My ans = %u\n",expr(exp,success));
 	}
