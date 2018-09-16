@@ -110,7 +110,7 @@ static bool make_token(char *e) {
     		}
     		cnt++;
     		for(int j = 0;j < 4;++j){
-    		   printf("tokens[%d].str[%d] = %d  ",cnt,j,tokens[cnt].str[j]);
+    		  // printf("tokens[%d].str[%d] = %d  ",cnt,j,tokens[cnt].str[j]);
   				if(!(j % 4)) printf("\n");
     		}
     		break; 
@@ -183,18 +183,18 @@ uint32_t main_op(int p,int q){
 			}
 		}
 	}
-	printf("main_op(%d,%d) = %d\n",p,q,ans);
+//	printf("main_op(%d,%d) = %d\n",p,q,ans);
 	return ans;
 }
 
 uint32_t eval(int p,int q){
-	printf("eval(%d,%d)\n",p,q);
+	//printf("eval(%d,%d)\n",p,q);
 	if(p > q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
 	else if(p == q){
 		assert(tokens[p].type == TK_NUM);
-		printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
+	//	printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
 		return atoi(tokens[p].str);
 	}
 	else if(checkparentheses(p,q)){
@@ -226,10 +226,10 @@ uint32_t expr(char *e, bool *success) {
   int length = 0;
   while(tokens[length].type) length++;
   
-  for(int i = 0;i < 4;++i){
+ /* for(int i = 0;i < 4;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
-  }
+  }*/
  // printf("length = %d\n",length);
   return eval(0,length-1);
     /* TODO: Insert codes to evaluate the expression. */
