@@ -101,11 +101,14 @@ static int cmd_s(char *args){
 static int cmd_p(char *args){
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
-	printf("test = %s\n",test);
-	char* arg = strtok(test," ");
-	arg++;
-	/*printf("first arg = %s\n",arg);
-	int i = 0;
+	int correct;
+	char* exp = (char*)malloc(sizeof(char));
+	sscanf(test,"%d",&correct);
+	sscanf(test,"%s",exp);
+	//char* arg = strtok(test," ");
+	
+	printf("first arg = %s\n",exp);
+	/*int i = 0;
 	  while(arg){
 		printf("arg=%s\n",arg);
 	  	printf("test%d = %u\n",i++,cmd_p(strtok(NULL," ")));
