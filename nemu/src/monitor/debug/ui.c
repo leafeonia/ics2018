@@ -103,12 +103,16 @@ static int cmd_p(char *args){
 	*success = true;
 	char correct[12]; 
 	char exp[500];
-	sscanf(test,"%s",correct);
-	printf("correct= %s\n",correct);
-	test += strlen(correct);
-	sscanf(test,"%s",exp);
-	printf("exp = %s\n",exp);
-	test += strlen(correct);
+	while(test){
+		sscanf(test,"%s",correct);
+		test += strlen(correct);
+		sscanf(test,"%s",exp);
+		printf("exp = %s\n",exp);
+		test += strlen(correct);
+		printf("correct= %s\n",correct);
+		printf("My ans = %u\n",expr(exp,success));
+	}
+	
 	//sscanf(test,"%d",correct);
 	//sscanf(test,"%s",exp);
 	//char* arg = strtok(test," ");
