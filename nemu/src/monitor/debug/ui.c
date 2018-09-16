@@ -19,7 +19,7 @@ static int cmd_p(char *args){
 	char exp[500];
 	while(1){
 		sscanf(test,"%s",correct);
-		if(! ('0' <= correct[0] && correct[0] < '9')) break;
+		if(! ('0' <= correct[0] && correct[0] <= '9')) break;
 		test += strlen(correct)+1;
 		sscanf(test,"%s",exp);
 		printf("exp = %s\n",exp);
