@@ -102,6 +102,7 @@ static int cmd_p(char *args){
 	bool* success = (bool*)malloc(sizeof(bool));
 	*success = true;
 	char* arg = strtok(test," ");
+	printf("first arg = %s\n",arg);
 	int i = 0;
 	  while(arg){
 		printf("arg=%s\n",arg);
