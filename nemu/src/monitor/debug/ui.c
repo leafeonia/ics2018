@@ -103,7 +103,7 @@ static int cmd_p(char *args){
 	*success = true;
 	char correct[12]; 
 	char exp[500];
-	while(test){
+	while(correct[0]){
 		sscanf(test,"%s",correct);
 		test += strlen(correct)+1;
 		sscanf(test,"%s",exp);
