@@ -188,7 +188,7 @@ uint32_t main_op(int p,int q){
 	return ans;
 }
 
-uint32_t eval(int p,int q){
+int eval(int p,int q){
 	//printf("eval(%d,%d)\n",p,q);
 	if(p > q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
@@ -232,7 +232,7 @@ uint32_t expr(char *e, bool *success) {
   	if(!(i % 4)) printf("\n");
   }*/
  // printf("length = %d\n",length);
-  return eval(0,length-1);
+  return (uint32_t)eval(0,length-1);
     /* TODO: Insert codes to evaluate the expression. */
   
 
