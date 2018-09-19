@@ -18,7 +18,8 @@ enum {
   MULTIPLY = 3,
   DIVIDE = 4,
   LEFT_BRACKET = 5,
-  RIGHT_BRACKET = 6
+  RIGHT_BRACKET = 6,
+  DEREF = 7
   /* TODO: Add more token types */
 
 };
