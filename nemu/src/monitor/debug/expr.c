@@ -203,8 +203,8 @@ int eval(int p,int q){
 	}
 	else{
 		uint32_t op = main_op(p,q);
-		uint32_t val1 = eval(p,op-1);
-		uint32_t val2 = eval(op+1,q);
+		int val1 = eval(p,op-1);
+		int val2 = eval(op+1,q);
 		switch(tokens[op].type){
 			case PLUS:return val1 + val2;
 			case MINUS:return val1 - val2;
