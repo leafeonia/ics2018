@@ -1,4 +1,4 @@
-
+#include "monitor/expr.h"
 int init_monitor(int, char *[]);
 void ui_mainloop(int);
 
