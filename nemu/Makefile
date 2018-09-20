@@ -30,7 +30,7 @@ OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 $(OBJ_DIR)/%.o: src/%.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(SO_CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(SO_CFLAGS) -c -o $@ $<
 
 
 # Depencies
