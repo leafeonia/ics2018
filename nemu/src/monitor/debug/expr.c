@@ -48,7 +48,7 @@ static struct rule {
   {"==", EQUAL},         // equal
   {"!=",UNEQUAL},
   {"&&",AND},
-  {"^\\$[a-z]{3}$",TK_REG}
+  {"\\$[a-z]{3}",TK_REG}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
