@@ -226,7 +226,7 @@ uint32_t main_op(int p,int q){
 			//printf(" ");
 		}
 	}
-	printf("main_op(%d,%d) = %d\n",p,q,ans);
+	//printf("main_op(%d,%d) = %d\n",p,q,ans);
 	return ans;
 }
 
@@ -240,24 +240,24 @@ int eval(int p,int q){
 		
 		if(tokens[p].type == TK_NUM){
 			return atoi(tokens[p].str);
-			printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
+			//printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
 		}
 		else if(tokens[p].type == TK_HEX){
 			int temp;
 			sscanf(tokens[p].str,"%x",&temp);
-			printf("str = %s, return : %d\n",tokens[p].str,temp);
+			//printf("str = %s, return : %d\n",tokens[p].str,temp);
 			return temp;
 		} 
 		else{
 			char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
 	 		for(int i = 0;i < 8; ++i){
 				if(!strcmp(list[i],tokens[p].str)){
-					printf("str = %s, return : %d\n",tokens[p].str,cpu.gpr[i]._32);
+					//printf("str = %s, return : %d\n",tokens[p].str,cpu.gpr[i]._32);
 					return cpu.gpr[i]._32;
 				}
 			}
 			if(!strcmp("eip",tokens[p].str)) {
-				printf("str = %s, return : %d\n",tokens[p].str,cpu.eip);
+				//printf("str = %s, return : %d\n",tokens[p].str,cpu.eip);
 				return cpu.eip;
 			}
 			else{
@@ -308,11 +308,11 @@ uint32_t expr(char *e, bool *success) {
   int length = 0;
   while(tokens[length].type) length++;
   
-  for(int i = 0;i < 4;++i){
+  /*for(int i = 0;i < 4;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
   }
-  printf("length = %d\n",length);
+  printf("length = %d\n",length);*/
   return (uint32_t)eval(0,length-1);
     /* TODO: Insert codes to evaluate the expression. */
   
