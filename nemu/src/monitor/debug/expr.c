@@ -221,7 +221,7 @@ uint32_t main_op(int p,int q){
 			}
 		}
 	}
-//	printf("main_op(%d,%d) = %d\n",p,q,ans);
+	printf("main_op(%d,%d) = %d\n",p,q,ans);
 	return ans;
 }
 
