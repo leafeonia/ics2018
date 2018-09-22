@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   int is_batch_mode = init_monitor(argc, argv);
 
   bool *success = (bool*)malloc(sizeof(bool));
-  char exp[10000];
+  char exp[100000];
   int correct;
   FILE* f = fopen("./tools/gen-expr/input","r");
   for(int i = 0;i < 100;++i){
