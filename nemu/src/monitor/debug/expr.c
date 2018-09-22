@@ -200,9 +200,9 @@ uint32_t main_op(int p,int q){
 	int priority[10];
 	priority[AND] = 1;
 	priority[EQUAL] = priority[UNEQUAL] = 2;
-	priority[DEREF] = 5;
 	priority[PLUS] = priority[MINUS] = 3;
 	priority[MULTIPLY] = priority[DIVIDE] = 4;
+	priority[DEREF] = 5;
 	int cur_priority = 6;
 	int ans = 0;
 	int bracket_cnt = 0;
@@ -226,13 +226,13 @@ uint32_t main_op(int p,int q){
 }
 
 int eval(int p,int q){
-	//printf("eval(%d,%d)\n",p,q);
+	printf("eval(%d,%d)\n",p,q);
 	if(p > q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
 	else if(p == q){
 		assert(tokens[p].type >= 100);
-	//	printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
+		printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
 		if(tokens[p].type == TK_NUM)return atoi(tokens[p].str);
 		else if(tokens[p].type == TK_HEX){
 			int temp;
