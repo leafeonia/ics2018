@@ -258,7 +258,21 @@ int eval(int p,int q){
 	}
 	else{
 		uint32_t op = main_op(p,q);
-		if(tokens[op].type!=DEREF){
+		if(tokens[op].type==DEREF){
+			int val1 = eval(op+1,q);
+			return vaddr_read(val1,4);
+		}
+		else if(AND <= tokens[op].type && tokens[op].type <= UNEQUAL){
+			int val1 = eval(p,op-1);
+			int val2 = eval(op+2,q);
+			switch(tokens[op].type){
+				case EQUAL:	return val1 == val2;
+				case UNEQUAL:return val1!=val2;
+				case AND:return val1 && val2;
+				default: assert(0);
+			}
+		}
+		else{
 			int val1 = eval(p,op-1);
 			int val2 = eval(op+1,q);
 			switch(tokens[op].type){
@@ -272,16 +286,10 @@ int eval(int p,int q){
 					}
 					return val1 / val2;
 				}
-				case EQUAL:	return val1 == val2;
-				case UNEQUAL:return val1!=val2;
-				case AND:return val1 && val2;
 				default: assert(0);
 			}
 		}
-		else{
-			int val1 = eval(op+1,q);
-			return vaddr_read(val1,4);
-		}
+		
 	}
 	return 0;
 }
