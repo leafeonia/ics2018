@@ -210,7 +210,10 @@ int eval(int p,int q){
 			case MINUS:return val1 - val2;
 			case MULTIPLY:return val1 * val2;
 			case DIVIDE:{
-				if(!val2) panic("error: div0");
+				if(!val2) {
+					Log("error: div0,returned value is incorrect");
+					return 0x7fffffff;
+				}
 				return val1 / val2;
 			}
 			default: assert(0);
