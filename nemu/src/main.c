@@ -1,5 +1,6 @@
 #include "monitor/expr.h"
 #include <stdlib.h>
+#include <string.h>
 #include <sys/types.h>
 int init_monitor(int, char *[]);
 void ui_mainloop(int);
@@ -13,6 +14,7 @@ int main(int argc, char *argv[]) {
   int correct;
   FILE* f = fopen("./tools/gen-expr/input","r");
   for(int i = 0;i < 100;++i){
+  	memset(exp,0,sizeof(exp));
   	fscanf(f,"%d %s",&correct,exp);
   	printf("%d %u\n",correct,expr(exp,success));
   }
