@@ -160,6 +160,12 @@ static bool make_token(char *e) {
     	  case 6:
     		tokens[cnt++].type = 6;
     		break; 	
+    	  case 8:
+    		tokens[cnt++].type = 8;
+    	  case 10:
+    		tokens[cnt++].type = 10;
+    	  case 11:
+    		tokens[cnt++].type = 11;
           default: 
           	break;
           	//TODO();
