@@ -236,21 +236,29 @@ int eval(int p,int q){
 	}
 	else if(p == q){
 		assert(tokens[p].type >= 100);
-		printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
-		if(tokens[p].type == TK_NUM)return atoi(tokens[p].str);
+		
+		if(tokens[p].type == TK_NUM){
+			return atoi(tokens[p].str);
+			printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
+		}
 		else if(tokens[p].type == TK_HEX){
 			int temp;
 			sscanf(tokens[p].str,"%x",&temp);
+			printf("str = %s, return : %d\n",tokens[p].str,temp);
 			return temp;
 		} 
 		else{
 			char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
 	 		for(int i = 0;i < 8; ++i){
 				if(!strcmp(list[i],tokens[p].str)){
+					printf("str = %s, return : %d\n",tokens[p].str,cpu.gpr[i]._32);
 					return cpu.gpr[i]._32;
 				}
 			}
-			if(!strcmp("eip",tokens[p].str)) return cpu.eip;
+			if(!strcmp("eip",tokens[p].str)) {
+				printf("str = %s, return : %d\n",tokens[p].str,cpu.eip);
+				return cpu.eip;
+			}
 			else{
 				Log("No such register.\n");
 				return 0;
