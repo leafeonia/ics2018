@@ -225,7 +225,7 @@ int eval(int p,int q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
 	else if(p == q){
-		assert(tokens[p].type == (TK_NUM || TK_HEX ||TK_REG));
+		assert(tokens[p].type >= 100);
 	//	printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
 		if(tokens[p].type == TK_NUM)return atoi(tokens[p].str);
 		else if(tokens[p].type == TK_HEX){
