@@ -258,21 +258,7 @@ int eval(int p,int q){
 	}
 	else{
 		uint32_t op = main_op(p,q);
-		if(tokens[op].type==DEREF){
-			int val1 = eval(op+1,q);
-			return vaddr_read(val1,4);
-		}
-		else if(AND <= tokens[op].type && tokens[op].type <= UNEQUAL){
-			int val1 = eval(p,op-1);
-			int val2 = eval(op+2,q);
-			switch(tokens[op].type){
-				case EQUAL:	return val1 == val2;
-				case UNEQUAL:return val1!=val2;
-				case AND:return val1 && val2;
-				default: assert(0);
-			}
-		}
-		else{
+		if(tokens[op].type!=DEREF){
 			int val1 = eval(p,op-1);
 			int val2 = eval(op+1,q);
 			switch(tokens[op].type){
@@ -286,10 +272,16 @@ int eval(int p,int q){
 					}
 					return val1 / val2;
 				}
+				case EQUAL:	return val1 == val2;
+				case UNEQUAL:return val1!=val2;
+				case AND:return val1 && val2;
 				default: assert(0);
 			}
 		}
-		
+		else{
+			int val1 = eval(op+1,q);
+			return vaddr_read(val1,4);
+		}
 	}
 	return 0;
 }
@@ -303,11 +295,11 @@ uint32_t expr(char *e, bool *success) {
   int length = 0;
   while(tokens[length].type) length++;
   
- /* for(int i = 0;i < 4;++i){
+  for(int i = 0;i < 4;++i){
   	printf("tokens[%d].type = %d  ",i,tokens[i].type);
   	if(!(i % 4)) printf("\n");
-  }*/
- // printf("length = %d\n",length);
+  }
+  printf("length = %d\n",length);
   return (uint32_t)eval(0,length-1);
     /* TODO: Insert codes to evaluate the expression. */
   
