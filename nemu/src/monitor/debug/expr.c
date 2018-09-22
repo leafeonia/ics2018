@@ -231,7 +231,7 @@ uint32_t main_op(int p,int q){
 }
 
 int eval(int p,int q){
-	printf("eval(%d,%d)\n",p,q);
+	//printf("eval(%d,%d)\n",p,q);
 	if(p > q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
