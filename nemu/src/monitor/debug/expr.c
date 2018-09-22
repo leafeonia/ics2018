@@ -218,7 +218,7 @@ uint32_t main_op(int p,int q){
 		}
 		if((PLUS <= tokens[i].type && tokens[i].type <= DIVIDE) || 
 		(DEREF <= tokens[i].type && tokens[i].type <= UNEQUAL)) {
-			//printf("i = %d,enter.\n",i);
+			printf("\n");
 			if(priority[tokens[i].type] <= cur_priority){
 				cur_priority = priority[tokens[i].type];
 				ans = i;
