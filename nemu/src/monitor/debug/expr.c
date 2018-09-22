@@ -246,6 +246,11 @@ int eval(int p,int q){
 					return cpu.gpr[i]._32;
 				}
 			}
+			if(!strcmp("eip",tokens[p].str)) return cpu.eip;
+			else{
+				Log("No such register.\n");
+				return 0;
+			}
 		}
 	}
 	else if(checkparentheses(p,q)){
