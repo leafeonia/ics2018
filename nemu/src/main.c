@@ -9,7 +9,13 @@ int main(int argc, char *argv[]) {
   int is_batch_mode = init_monitor(argc, argv);
 
   bool *success = (bool*)malloc(sizeof(bool));
-  printf("test:%u\n",expr("1+2",success));
+  char exp[10000];
+  int correct;
+  FILE* f = fopen("./tools/gen-expr/input","r");
+  for(int i = 0;i < 100;++i){
+  	fscanf(f,"%d %s",&correct,exp);
+  	printf("%d %u\n",correct,expr(exp,success));
+  }
   free(success);
   //the code for expression evaluation correctness examination is in ui.c(required by PA1.2)
   
