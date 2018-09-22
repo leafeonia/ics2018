@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   char exp[10000];
   int correct;
   FILE* f = fopen("./tools/gen-expr/input","r");
-  for(int i = 0;i < 100;++i){
+  for(int i = 0;i < 50;++i){
   	exp[0] = '\0';
   	fscanf(f,"%u %s",&correct,exp);
   	printf("%u %u\n",correct,expr(exp,success));
