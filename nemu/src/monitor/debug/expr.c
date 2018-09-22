@@ -216,7 +216,8 @@ uint32_t main_op(int p,int q){
 		else if(bracket_cnt < 0){
 			panic("Invalid input (bracket unmatched)");
 		}
-		//printf("tokens[i].type = %d\n",tokens[i].type);
+		int wtf = 0;
+		wtf++;
 		if((PLUS <= tokens[i].type && tokens[i].type <= DIVIDE) || 
 		(DEREF <= tokens[i].type && tokens[i].type <= UNEQUAL)) {
 			//printf("i = %d,enter.\n",i);
