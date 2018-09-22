@@ -11,15 +11,19 @@
 
 enum {
   TK_NOTYPE = 256, 
-  TK_EQ,
+  EQUAL = 10,
+  UNEQUAL = 11,
   TK_NUM = 100,
+  TK_HEX = 101,
+  TK_REG = 102,
   PLUS = 1,
   MINUS = 2,
   MULTIPLY = 3,
   DIVIDE = 4,
   LEFT_BRACKET = 5,
   RIGHT_BRACKET = 6,
-  DEREF = 7
+  DEREF = 7,
+  AND = 8
   /* TODO: Add more token types */
 
 };
@@ -33,6 +37,7 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
   {"[0-9]+",TK_NUM},
+  {"0x[0-9]+",TK_HEX},
   {" +", TK_NOTYPE},    // spaces
   {"\\+", PLUS},         // plus
   {"-",MINUS},
@@ -40,7 +45,10 @@ static struct rule {
   {"/",DIVIDE},
   {"\\(",LEFT_BRACKET},
   {"\\)",RIGHT_BRACKET},
-  {"==", TK_EQ}         // equal
+  {"==", EQUAL},         // equal
+  {"!=",UNEQUAL},
+  {"&&",AND},
+  {"^\\$[a-z]{3}$",TK_REG}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -115,6 +123,23 @@ static bool make_token(char *e) {
   				if(!(j % 4)) printf("\n");
     		}*/
     		break; 
+    	  case 101:
+    		tokens[cnt].type = 101;
+    		if(substr_len > tokens_size){
+    			Log("Warning : the number is too long to restore. Only 32 nums in the front are saved.");
+    			}
+    		for(int j = 0;j < min(substr_len,tokens_size);++j){
+    			tokens[cnt].str[j] = substr_start[j];
+    		}
+    		cnt++;
+    		break; 	
+    	  case 102:
+    		tokens[cnt].type = 102;
+    		for(int j = 0;j < 3;++j){
+    			tokens[cnt].str[j] = substr_start[j+1];
+    		}
+    		cnt++;
+    		break; 	
     	  case 1:
     		tokens[cnt++].type = 1;
     		break; 
@@ -122,7 +147,9 @@ static bool make_token(char *e) {
     		tokens[cnt++].type = 2;
     		break; 
     	  case 3:
-    		tokens[cnt++].type = 3;
+    	  	if(cnt == 0 || tokens[cnt-1].type <= 5 || (8 <= tokens[cnt-1].type && tokens[cnt-1].type <= 11))  //+ - * / ( == != &&
+    	  	  tokens[cnt++].type = 7;
+    		else tokens[cnt++].type = 3; //10 0x10 $eip
     		break; 
     	  case 4:
     		tokens[cnt++].type = 4;
@@ -165,9 +192,12 @@ bool checkparentheses(int p,int q){
 
 uint32_t main_op(int p,int q){
 	int priority[10];
-	priority[PLUS] = priority[MINUS] = 1;
-	priority[MULTIPLY] = priority[DIVIDE] = 2;
-	int cur_priority = 3;
+	priority[AND] = 1;
+	priority[EQUAL] = priority[UNEQUAL] = 2;
+	priority[DEREF] = 5;
+	priority[PLUS] = priority[MINUS] = 3;
+	priority[MULTIPLY] = priority[DIVIDE] = 4;
+	int cur_priority = 6;
 	int ans = 0;
 	int bracket_cnt = 0;
 	for(int i = p;i <= q;i++){
@@ -177,7 +207,8 @@ uint32_t main_op(int p,int q){
 		else if(bracket_cnt < 0){
 			panic("Invalid input (bracket unmatched)");
 		}
-		if(PLUS <= tokens[i].type && tokens[i].type <= DIVIDE){
+		if((PLUS <= tokens[i].type && tokens[i].type <= DIVIDE) || 
+		(DEREF <= tokens[i].type && tokens[i].type <= UNEQUAL)) {
 			if(priority[tokens[i].type] <= cur_priority){
 				cur_priority = priority[tokens[i].type];
 				ans = i;
@@ -194,31 +225,54 @@ int eval(int p,int q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
 	else if(p == q){
-		assert(tokens[p].type == TK_NUM);
+		assert(tokens[p].type == (TK_NUM || TK_HEX ||TK_REG));
 	//	printf("str = %s, return : %d\n",tokens[p].str,atoi(tokens[p].str));
-		return atoi(tokens[p].str);
+		if(tokens[p].type == TK_NUM)return atoi(tokens[p].str);
+		else if(tokens[p].type == TK_HEX){
+			int temp;
+			sscanf(tokens[p].str,"%x",&temp);
+			return temp;
+		} 
+		else{
+			char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
+	 		for(int i = 0;i < 8; ++i){
+				if(!strcmp(list[i],tokens[p].str)){
+					return cpu.gpr[i]._32;
+				}
+			}
+		}
 	}
 	else if(checkparentheses(p,q)){
 		return eval(p+1,q-1); 
 	}
 	else{
 		uint32_t op = main_op(p,q);
-		int val1 = eval(p,op-1);
-		int val2 = eval(op+1,q);
-		switch(tokens[op].type){
-			case PLUS:return val1 + val2;
-			case MINUS:return val1 - val2;
-			case MULTIPLY:return val1 * val2;
-			case DIVIDE:{
-				if(!val2) {
-					Log("error: div0,returned value is incorrect");
-					return 0x7fffffff;
+		if(tokens[op].type!=DEREF){
+			int val1 = eval(p,op-1);
+			int val2 = eval(op+1,q);
+			switch(tokens[op].type){
+				case PLUS:return val1 + val2;
+				case MINUS:return val1 - val2;
+				case MULTIPLY:return val1 * val2;
+				case DIVIDE:{
+					if(!val2) {
+						Log("error: div0, returned value is incorrect");
+						return 0x7fffffff;
+					}
+					return val1 / val2;
 				}
-				return val1 / val2;
+				case EQUAL:	return val1 == val2;
+				case UNEQUAL:return val1!=val2;
+				case AND:return val1 && val2;
+				default: assert(0);
 			}
-			default: assert(0);
+		}
+		else{
+			int val1 = eval(op+1,q);
+			return vaddr_read(val1,4);
 		}
 	}
+	return 0;
 }
 
 
