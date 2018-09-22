@@ -15,8 +15,8 @@ int main(int argc, char *argv[]) {
   FILE* f = fopen("./tools/gen-expr/input","r");
   for(int i = 0;i < 100;++i){
   	exp[0] = '\0';
-  	fscanf(f,"%d %s",&correct,exp);
-  	printf("%d %u\n",correct,expr(exp,success));
+  	fscanf(f,"%u %s",&correct,exp);
+  	printf("%u %u\n",correct,expr(exp,success));
   }
   free(success);
   //the code for expression evaluation correctness examination is in ui.c(required by PA1.2)
