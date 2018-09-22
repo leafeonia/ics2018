@@ -223,7 +223,7 @@ uint32_t main_op(int p,int q){
 				cur_priority = priority[tokens[i].type];
 				ans = i;
 			}
-			printf(" ");
+			//printf(" ");
 		}
 	}
 	printf("main_op(%d,%d) = %d\n",p,q,ans);
