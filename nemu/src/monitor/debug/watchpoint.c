@@ -3,8 +3,8 @@
 
 #define NR_WP 32
 
-WP wp_pool[NR_WP];
-WP *head, *free_;
+static WP wp_pool[NR_WP];
+static WP *head, *free_;
 
 void init_wp_pool() {
   int i;
@@ -19,12 +19,13 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
-WP* new_wp(){
+void new_wp(char* args){
+	WP* x;
 	if(free_ == NULL){
 		panic("wp_pool is out of space.");
 	}
 	else{
-		WP* x = free_;
+		x = free_;
 		free_ = x->next;
 		x->next = NULL;
 		//printf("x: NO=%d\n",x->NO);
@@ -37,8 +38,11 @@ WP* new_wp(){
 			while(cur->next) cur = cur->next;
 			cur->next = x;
 		}
-		return x;
 	}
+	x->exp = args;
+	bool success = true;
+	x->value = expr(args,&success);
+	printf("wp%d is built. exp = %s, value = %d\n",x->NO,x->exp,x->value);
 }
 
 void free_wp(WP *wp){
