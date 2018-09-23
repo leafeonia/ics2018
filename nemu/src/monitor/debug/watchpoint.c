@@ -20,6 +20,7 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 void new_wp(char* args){
+	printf("args = %s\n",args);
 	WP* x;
 	if(free_ == NULL){
 		panic("wp_pool is out of space.");
@@ -42,7 +43,7 @@ void new_wp(char* args){
 	x->exp = args;
 	bool success = true;
 	x->value = expr(args,&success);
-	printf("wp%d is built. exp = %s, value = %d\n",x->NO,x->exp,x->value);
+	printf("wp%d is built. exp = %s, value = %u\n",x->NO,x->exp,x->value);
 }
 
 void free_wp(WP *wp){
@@ -77,7 +78,6 @@ void wp_info(){
 	printf("NO\texpression\tcurrent value\tnext watchpoint\n");
 	WP* cur = head;
 	while(cur){
-	printf("%s\n\n",cur->exp);
 		printf("%d\t%s\t%d\n",cur->NO,cur->exp,cur->value);
 		cur = cur->next;
 	}
