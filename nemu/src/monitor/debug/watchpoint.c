@@ -93,3 +93,8 @@ void wp_info(){
 	}
 }
 
+bool check(){
+	printf("changed.\n");
+	return true;
+}
+
