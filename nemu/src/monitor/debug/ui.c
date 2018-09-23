@@ -100,14 +100,8 @@ static int cmd_info(char *args){
 		printf("eip : %08x\n",cpu.eip); 
 	} 
 	else if(arg1 && arg1[0] == 'w'){
-		char* arg2 = strtok(NULL," ");
-		if(arg2){
-			WP* wp = new_wp();
-			wp->exp = arg2;
-			bool success = true;
-			wp->value = expr(arg2,&success);
-			printf("wp%d is built. Next: wp%d. exp = %s, value = %d\n",wp->NO,wp->next->NO,wp->exp,wp->value);
-		}
+		
+		
 	} 
 	return 0;
 }
@@ -130,6 +124,14 @@ static int cmd_p(char *args){
 	return 0;
 }
 
+static int cmd_w(char *args){
+	WP* wp = new_wp();
+	wp->exp = args;
+	bool success = true;
+	wp->value = expr(args,&success);
+	printf("wp%d is built. Next: wp%d. exp = %s, value = %d\n",wp->NO,wp->next->NO,wp->exp,wp->value);
+	return 0;
+}
 
 
 static struct {
@@ -144,6 +146,7 @@ static struct {
   { "info", "Register/Watchpoint information",cmd_info},
   { "s", "execute N instructions",cmd_s},
   { "p", "calculate the value of the given expression", cmd_p},
+  { "w", "establish a watchpoint",cmd_w},
   /* TODO: Add more commands */
 
 };
