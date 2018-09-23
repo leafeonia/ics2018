@@ -69,6 +69,7 @@ void wp_info(){
 	WP* cur = head;
 	while(cur){
 		printf("%d\t%s\t%d\n",cur->NO,cur->exp,cur->value);
+		cur = cur->next;
 	}
 }
 
