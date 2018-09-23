@@ -26,6 +26,12 @@ WP* new_wp(){
 	else{
 		WP* x = free_;
 		free_ = x->next;
+		if(head == NULL){
+			head = x;
+		}
+		else{
+			head->next = x;
+		}
 		return x;
 	}
 }
@@ -33,5 +39,26 @@ WP* new_wp(){
 void free_wp(WP *wp){
 	wp->next = free_;
 	free_ = wp;
+}
+
+void del(int num){
+	WP* cur = head;
+	if(cur->NO == num){
+		head = head->next;
+		free_wp(cur);
+	}
+	else{
+		bool found = false;
+		while(cur->next){
+			if(cur->next->NO == num){
+				found = true; 
+				WP* temp = cur->next;
+				cur->next = cur->next->next;
+				printf("wp%d is free now. Previous: wp%d, next: wp%d.\n",cur->NO,temp->NO,cur->next->NO);
+				free_wp(temp);
+			}
+		}
+		if(!found) Log("NO watchpoint %d\n",num);
+	}
 }
 

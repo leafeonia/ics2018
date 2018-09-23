@@ -133,6 +133,14 @@ static int cmd_w(char *args){
 	return 0;
 }
 
+static int cmd_d(char *args){
+	if(args){
+		int num = atoi(args);
+		del(num);
+	}
+	return 0;
+}
+
 
 static struct {
   char *name;
@@ -147,6 +155,7 @@ static struct {
   { "s", "execute N instructions",cmd_s},
   { "p", "calculate the value of the given expression", cmd_p},
   { "w", "establish a watchpoint",cmd_w},
+  { "d", "delete a watchpoint",cmd_d},
   /* TODO: Add more commands */
 
 };
