@@ -219,7 +219,7 @@ uint32_t main_op(int p,int q){
 		else if(tokens[i].type == RIGHT_BRACKET) bracket_cnt--;
 		if(bracket_cnt) continue;
 		else if(bracket_cnt < 0){
-			panic("Invalid input (bracket unmatched)");
+			Log("Error:Invalid input (bracket unmatched)");
 		}
 		if((PLUS <= tokens[i].type && tokens[i].type <= DIVIDE) || 
 		(DEREF <= tokens[i].type && tokens[i].type <= UNEQUAL)) {
