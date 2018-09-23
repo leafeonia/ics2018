@@ -147,7 +147,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "x", "Memory scan",cmd_x},
   { "info", "Register/Watchpoint information",cmd_info},
-  { "s", "execute N instructions",cmd_s},
+  { "si", "execute N instructions",cmd_s},
   { "p", "calculate the value of the given expression", cmd_p},
   { "w", "establish a watchpoint",cmd_w},
   { "d", "delete a watchpoint",cmd_d},
