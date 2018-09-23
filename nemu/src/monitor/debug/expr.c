@@ -195,7 +195,7 @@ bool checkparentheses(int p,int q){
 	for(int i = p;i <= q;i++){
 		if(tokens[i].type == LEFT_BRACKET) cnt++;
 		else if(tokens[i].type == RIGHT_BRACKET) cnt--;
-		if(!cnt)not_complete = true;
+		if(!cnt &&  i != q)not_complete = true;
 		else if(cnt < 0) {
 			panic("Invalid input (bracket unmatched)");
 		}
