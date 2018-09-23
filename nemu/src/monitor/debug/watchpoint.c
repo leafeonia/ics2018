@@ -49,6 +49,7 @@ void new_wp(char* args){
 
 void free_wp(WP *wp){
 	printf("free wp%d\n",wp->NO);
+	wp->next = NULL;
 	WP* cur = free_;
 	if(cur == NULL) free_ = wp;
 	else{
