@@ -197,7 +197,7 @@ bool checkparentheses(int p,int q){
 		else if(tokens[i].type == RIGHT_BRACKET) cnt--;
 		if(!cnt &&  i != q)not_complete = true;
 		else if(cnt < 0) {
-			panic("Invalid input (bracket unmatched)");
+			Log("Error:Invalid input (bracket unmatched)");
 		}
 	}
 	if(cnt > 0 || not_complete)return false;
