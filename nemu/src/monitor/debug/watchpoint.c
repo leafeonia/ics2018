@@ -25,8 +25,8 @@ WP* new_wp(){
 	}
 	else{
 		WP* x = free_;
-		x->next = NULL;
 		free_ = x->next;
+		x->next = NULL;
 		if(head == NULL){
 			head = x;
 		}
