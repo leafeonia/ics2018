@@ -27,10 +27,10 @@ WP* new_wp(){
 		WP* x = free_;
 		free_ = x->next;
 		x->next = NULL;
-		printf("x: NO=%d\n",x->NO);
+		//printf("x: NO=%d\n",x->NO);
 		if(head == NULL){
 			head = x;
-			printf("Head\n");
+			//printf("Head\n");
 		}
 		else{
 			head->next = x;
