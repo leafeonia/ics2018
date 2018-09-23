@@ -95,7 +95,17 @@ void wp_info(){
 }
 
 bool check(){
-	printf("changed.\n");
-	return true;
+	WP* cur = head;
+	bool success = true;
+	while(cur){
+		uint32_t ans = expr(cur->exp,&success); 
+		if(ans != cur->value){
+			printf("Wp%d(expr=\"%s\") is triggered.\nPrevious value:%u\nCurrent value:%u\n",cur->NO,cur->exp,cur->value,ans);
+			cur->value = ans;
+			return true;
+		}
+		cur = cur->next;
+	}
+	return false;
 }
 
