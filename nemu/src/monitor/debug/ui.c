@@ -125,6 +125,7 @@ static int cmd_p(char *args){
 
 static int cmd_w(char *args){
 	WP* wp = new_wp();
+	printf("success new_wp\n");
 	wp->exp = args;
 	bool success = true;
 	wp->value = expr(args,&success);
