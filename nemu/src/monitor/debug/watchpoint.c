@@ -33,7 +33,9 @@ WP* new_wp(){
 			//printf("Head\n");
 		}
 		else{
-			head->next = x;
+			WP* cur = head;
+			while(cur->next) cur = cur->next;
+			cur->next = x;
 		}
 		return x;
 	}
