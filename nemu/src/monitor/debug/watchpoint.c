@@ -48,7 +48,7 @@ void new_wp(char* args){
 }
 
 void free_wp(WP *wp){
-	printf("free wp%d\n",wp->NO);
+	//printf("free wp%d\n",wp->NO);
 	wp->next = NULL;
 	WP* cur = free_;
 	if(cur == NULL) free_ = wp;
@@ -101,7 +101,7 @@ bool check(){
 	while(cur){
 		uint32_t ans = expr(cur->exp,&success); 
 		if(ans != cur->value){
-			printf("Wp%d(expr=\"%s\") is triggered.\nPrevious value:%u\nCurrent value:%u\n",cur->NO,cur->exp,cur->value,ans);
+			printf("Watchpoint %d : %s\nOld value:%u\nNew value:%u\n",cur->NO,cur->exp,cur->value,ans);
 			cur->value = ans;
 			flag = true;
 		}
