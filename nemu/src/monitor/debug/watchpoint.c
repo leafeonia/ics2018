@@ -101,7 +101,7 @@ bool check(){
 	while(cur){
 		uint32_t ans = expr(cur->exp,&success); 
 		if(ans != cur->value){
-			printf("Watchpoint %d : %s\nOld value:%u\nNew value:%u\n",cur->NO,cur->exp,cur->value,ans);
+			printf("Watchpoint %d: %s\nOld value:%u\nNew value:%u\n",cur->NO,cur->exp,cur->value,ans);
 			cur->value = ans;
 			flag = true;
 		}
