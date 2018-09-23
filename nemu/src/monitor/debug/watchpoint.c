@@ -41,6 +41,7 @@ void new_wp(char* args){
 		}
 	}
 	strcpy(args,x->exp);
+	printf("exp = %s\n",x->exp);
 	//x->exp = args;
 	bool success = true;
 	x->value = expr(args,&success);
