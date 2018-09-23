@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   int is_batch_mode = init_monitor(argc, argv);
 
 //-----------------------test expression evaluation--------------------------
-  bool *success = (bool*)malloc(sizeof(bool));
+  /*bool *success = (bool*)malloc(sizeof(bool));
   char exp[10000];
   int correct;
   FILE* f = fopen("./tools/gen-expr/input","r");
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   	fscanf(f,"%u %s",&correct,exp);
   	printf("%u %u\n",correct,expr(exp,success));
   }
-  free(success);
+  free(success);*/
 //----------------------------------------------------------------------------
   
   /* Receive commands from user. */

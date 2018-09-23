@@ -197,7 +197,7 @@ bool checkparentheses(int p,int q){
 		else if(tokens[i].type == RIGHT_BRACKET) cnt--;
 		if(!cnt &&  i != q)not_complete = true;
 		else if(cnt < 0) {
-			Log("Error:Invalid input (bracket unmatched)");
+			panic("Invalid input (bracket unmatched)");
 		}
 	}
 	if(cnt > 0 || not_complete)return false;
@@ -219,7 +219,7 @@ uint32_t main_op(int p,int q){
 		else if(tokens[i].type == RIGHT_BRACKET) bracket_cnt--;
 		if(bracket_cnt) continue;
 		else if(bracket_cnt < 0){
-			Log("Error:Invalid input (bracket unmatched)");
+			panic("Invalid input (bracket unmatched)");
 		}
 		if((PLUS <= tokens[i].type && tokens[i].type <= DIVIDE) || 
 		(DEREF <= tokens[i].type && tokens[i].type <= UNEQUAL)) {
