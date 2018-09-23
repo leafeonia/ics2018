@@ -30,6 +30,7 @@ WP* new_wp(){
 		printf("x: NO=%d\n",x->NO);
 		if(head == NULL){
 			head = x;
+			printf("Head\n");
 		}
 		else{
 			head->next = x;
