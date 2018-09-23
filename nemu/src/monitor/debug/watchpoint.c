@@ -80,6 +80,7 @@ void del(int num){
 				cur->next = temp->next;
 				printf("wp%d is free now. Previous: wp%d\n",temp->NO,cur->NO);
 				free_wp(temp);
+				break;
 			}
 			cur = cur->next;
 		}
