@@ -54,6 +54,7 @@ void free_wp(WP *wp){
 }
 
 void del(int num){
+printf("num = %d\n",num);
 	WP* cur = head;
 	if(cur->NO == num){
 		printf("head->NO = num\n");
