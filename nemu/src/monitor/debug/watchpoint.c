@@ -68,8 +68,8 @@ printf("num = %d\n",num);
 				printf("wp%d->next->NO == num\n",cur->NO);
 				found = true; 
 				WP* temp = cur->next;
-				cur->next = cur->next->next;
-				printf("wp%d is free now. Previous: wp%d, next: wp%d.\n",cur->NO,temp->NO,cur->next->NO);
+				cur->next = temp->next;
+				printf("wp%d is free now. Previous: wp%d\n",cur->NO,temp->NO);
 				free_wp(temp);
 			}
 		}
