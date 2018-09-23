@@ -99,6 +99,16 @@ static int cmd_info(char *args){
 		}
 		printf("eip : %08x\n",cpu.eip); 
 	} 
+	else if(arg1 && arg1[0] == 'w'){
+		char* arg2 = strtok(NULL," ");
+		if(arg2){
+			WP* wp = new_wp();
+			wp->exp = arg2;
+			bool success = true;
+			wp->value = expr(arg2,&success);
+			printf("wp%d is built. Next: wp%d. exp = %s, value = %d\n",wp->NO,wp->next->NO,wp->exp,wp->value);
+		}
+	} 
 	return 0;
 }
 

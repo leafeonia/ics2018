@@ -19,5 +19,19 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
+WP* new_wp(){
+	if(free_ == NULL){
+		panic("wp_pool is out of space.");
+	}
+	else{
+		WP* x = free_;
+		free_ = x->next;
+		return x;
+	}
+}
 
+void free_wp(WP *wp){
+	wp->next = free_;
+	free_ = wp;
+}
 
