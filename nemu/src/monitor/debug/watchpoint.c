@@ -79,7 +79,7 @@ void wp_info(){
 	printf("NO\texpression\tcurrent value\tnext watchpoint\n");
 	WP* cur = head;
 	while(cur){
-		printf("%d\t\t\t%s\t\t\t%d\n",cur->NO,cur->exp,cur->value);
+		printf("%d\t%s\t\t%d\n",cur->NO,cur->exp,cur->value);
 		cur = cur->next;
 	}
 }
