@@ -65,6 +65,7 @@ printf("num = %d\n",num);
 		bool found = false;
 		while(cur->next){
 			if(cur->next->NO == num){
+				printf("wp%d->next->NO == num\n",cur->NO);
 				found = true; 
 				WP* temp = cur->next;
 				cur->next = cur->next->next;
