@@ -191,14 +191,16 @@ bool checkparentheses(int p,int q){
 	//printf("check(%d,%d)",p,q);
 	if(tokens[p].type != LEFT_BRACKET || tokens[q].type != RIGHT_BRACKET) return false;
 	int cnt = 0;
+	bool not_complete = false; //(1+2)*(3+4)
 	for(int i = p;i <= q;i++){
 		if(tokens[i].type == LEFT_BRACKET) cnt++;
 		else if(tokens[i].type == RIGHT_BRACKET) cnt--;
-		if(cnt < 0) {
+		if(!cnt)not_complete = true;
+		else if(cnt < 0) {
 			panic("Invalid input (bracket unmatched)");
 		}
 	}
-	if(cnt > 0)return false;
+	if(cnt > 0 || not_complete)return false;
 	return true;
 }
 
