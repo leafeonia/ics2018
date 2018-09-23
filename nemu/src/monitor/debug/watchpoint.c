@@ -49,12 +49,17 @@ void new_wp(char* args){
 
 void free_wp(WP *wp){
 	printf("free wp%d\n",wp->NO);
-	wp->next = free_;
-	free_ = wp;
+	WP* cur = free_;
+	if(cur == NULL) free_ = wp;
+	else{
+		while(cur->next) cur = cur->next;
+		cur->next = wp; 
+	}
+	//wp->next = free_;
+	//free_ = wp;
 }
 
 void del(int num){
-printf("num = %d\n",num);
 	WP* cur = head;
 	if(cur->NO == num){
 		printf("head->NO = num\n");
@@ -74,7 +79,7 @@ printf("num = %d\n",num);
 			}
 			cur = cur->next;
 		}
-		if(!found) Log("NO watchpoint %d\n",num);
+		if(!found) Log("NO watchpoint %d",num);
 	}
 }
 
