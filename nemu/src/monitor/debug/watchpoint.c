@@ -41,10 +41,10 @@ void new_wp(char* args){
 		}
 	}
 	strcpy(x->exp,args);
-	printf("arg = %s,exp = %s\n",args,x->exp);
+	//printf("arg = %s,exp = %s\n",args,x->exp);
 	bool success = true;
 	x->value = expr(args,&success);
-	printf("wp%d is built. exp = %s, value = %u\n",x->NO,x->exp,x->value);
+	//printf("wp%d is built. exp = %s, value = %u\n",x->NO,x->exp,x->value);
 }
 
 void free_wp(WP *wp){
@@ -63,7 +63,7 @@ void free_wp(WP *wp){
 void del(int num){
 	WP* cur = head;
 	if(cur->NO == num){
-		printf("head->NO = num\n");
+		//printf("head->NO = num\n");
 		head = head->next;
 		free_wp(cur);
 	}
@@ -71,11 +71,11 @@ void del(int num){
 		bool found = false;
 		while(cur->next){
 			if(cur->next->NO == num){
-				printf("wp%d->next->NO == num\n",cur->NO);
+				//printf("wp%d->next->NO == num\n",cur->NO);
 				found = true; 
 				WP* temp = cur->next;
 				cur->next = temp->next;
-				printf("wp%d is free now. Previous: wp%d\n",temp->NO,cur->NO);
+				//printf("wp%d is free now. Previous: wp%d\n",temp->NO,cur->NO);
 				free_wp(temp);
 				break;
 			}
