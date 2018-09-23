@@ -79,7 +79,7 @@ printf("num = %d\n",num);
 }
 
 void wp_info(){
-	printf("NO\texpression\tcurrent value\tnext watchpoint\n");
+	printf("NO\texpression\tcurrent value\n");
 	WP* cur = head;
 	while(cur){
 		printf("%d\t%s\t\t%d\n",cur->NO,cur->exp,cur->value);
