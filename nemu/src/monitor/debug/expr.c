@@ -254,7 +254,7 @@ int eval(int p,int q){
 			return temp;
 		} 
 		else{
-			char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
+			char* list[] = {"eax","ecx","edx","ebx","esp","ebp","esi","edi"};
 	 		for(int i = 0;i < 8; ++i){
 				if(!strcmp(list[i],tokens[p].str)){
 					//printf("str = %s, return : %d\n",tokens[p].str,cpu.gpr[i]._32);

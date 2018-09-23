@@ -92,7 +92,7 @@ static int cmd_x(char *args){
 static int cmd_info(char *args){
 	char* arg1 = strtok(args," ");
  	if(arg1 && arg1[0] == 'r'){
-		char* list[] = {"eax","edx","ecx","ebx","ebp","esi","edi","esp"};
+		char* list[] = {"eax","ecx","edx","ebx","esp","ebp","esi","edi"};
 	 	for(int i = 0;i < 8; ++i){
 			printf("%s : %08x      ",list[i],cpu.gpr[i]._32);
 			if((i+1) % 4 == 0) printf("\n");
