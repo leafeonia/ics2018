@@ -37,6 +37,7 @@ WP* new_wp(){
 }
 
 void free_wp(WP *wp){
+	printf("free wp%d\n",wp->NO);
 	wp->next = free_;
 	free_ = wp;
 }
@@ -44,6 +45,7 @@ void free_wp(WP *wp){
 void del(int num){
 	WP* cur = head;
 	if(cur->NO == num){
+		printf("head->NO = num\n");
 		head = head->next;
 		free_wp(cur);
 	}
