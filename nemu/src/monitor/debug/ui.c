@@ -100,8 +100,7 @@ static int cmd_info(char *args){
 		printf("eip : %08x\n",cpu.eip); 
 	} 
 	else if(arg1 && arg1[0] == 'w'){
-		
-		
+		wp_info();
 	} 
 	return 0;
 }

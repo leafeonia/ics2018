@@ -64,3 +64,11 @@ void del(int num){
 	}
 }
 
+void wp_info(){
+	printf("NO\texpression\tcurrent value\tnext watchpoint\n");
+	WP* cur = head;
+	while(cur){
+		printf("%d\t%s\t%d\n",cur->NO,cur->exp,cur->value);
+	}
+}
+
