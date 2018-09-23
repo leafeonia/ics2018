@@ -53,8 +53,9 @@ void free_wp(WP *wp){
 	WP* cur = free_;
 	if(cur == NULL) free_ = wp;
 	else{
-	Log("enter");
+	
 		while(cur->next) cur = cur->next;
+		Log("enter");
 		cur->next = wp; 
 	}
 	//wp->next = free_;
