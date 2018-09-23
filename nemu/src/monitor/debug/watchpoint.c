@@ -40,7 +40,7 @@ void new_wp(char* args){
 			cur->next = x;
 		}
 	}
-	strcpy(args,x->exp);
+	strcpy(x->exp,args);
 	printf("arg = %s,exp = %s\n",args,x->exp);
 	//x->exp = args;
 	bool success = true;
