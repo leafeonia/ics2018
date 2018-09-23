@@ -3,8 +3,8 @@
 
 #define NR_WP 32
 
-static WP wp_pool[NR_WP];
-static WP *head, *free_;
+WP wp_pool[NR_WP];
+WP *head, *free_;
 
 void init_wp_pool() {
   int i;
