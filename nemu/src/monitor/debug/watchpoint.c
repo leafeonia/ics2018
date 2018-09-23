@@ -72,6 +72,7 @@ printf("num = %d\n",num);
 				printf("wp%d is free now. Previous: wp%d\n",cur->NO,temp->NO);
 				free_wp(temp);
 			}
+			cur = cur->next;
 		}
 		if(!found) Log("NO watchpoint %d\n",num);
 	}
