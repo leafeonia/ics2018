@@ -69,7 +69,7 @@ printf("num = %d\n",num);
 				found = true; 
 				WP* temp = cur->next;
 				cur->next = temp->next;
-				printf("wp%d is free now. Previous: wp%d\n",cur->NO,temp->NO);
+				printf("wp%d is free now. Previous: wp%d\n",temp->NO,cur->NO);
 				free_wp(temp);
 			}
 			cur = cur->next;
