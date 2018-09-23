@@ -42,7 +42,6 @@ void new_wp(char* args){
 	}
 	strcpy(x->exp,args);
 	printf("arg = %s,exp = %s\n",args,x->exp);
-	//x->exp = args;
 	bool success = true;
 	x->value = expr(args,&success);
 	printf("wp%d is built. exp = %s, value = %u\n",x->NO,x->exp,x->value);
@@ -80,7 +79,7 @@ void wp_info(){
 	printf("NO\texpression\tcurrent value\tnext watchpoint\n");
 	WP* cur = head;
 	while(cur){
-		printf("%d\t%s\t%d\n",cur->NO,cur->exp,cur->value);
+		printf("%d\t\t\t%s\t\t\t%d\n",cur->NO,cur->exp,cur->value);
 		cur = cur->next;
 	}
 }
