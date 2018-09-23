@@ -231,12 +231,12 @@ uint32_t main_op(int p,int q){
 			//printf(" ");
 		}
 	}
-	printf("main_op(%d,%d) = %d\n",p,q,ans);
+	//printf("main_op(%d,%d) = %d\n",p,q,ans);
 	return ans;
 }
 
 int eval(int p,int q){
-	printf("eval(%d,%d)\n",p,q);
+	//printf("eval(%d,%d)\n",p,q);
 	if(p > q){
 		panic("Something goes wrong here... in eval (%d,%d)",p,q);
 	}
