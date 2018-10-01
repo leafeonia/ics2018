@@ -181,6 +181,7 @@ make_DHelper(mov_I2r) {
 
 /* used by unary operations */
 make_DHelper(I) {
+	printf("Enter DHelper_I\n");
   decode_op_I(eip, id_dest, true);
 }
 
