@@ -18,6 +18,7 @@ void decoding_set_jmp(bool is_jmp) {
 static inline make_DopHelper(I) {
   /* eip here is pointing to the immediate */
   op->type = OP_TYPE_IMM;
+  printf("eip = %u\n",*eip);
   op->imm = instr_fetch(eip, op->width);
     printf("enter DopHelper(I), op->imm = %d\n",op->imm);
   rtl_li(&op->val, op->imm);
