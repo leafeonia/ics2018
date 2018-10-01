@@ -164,7 +164,7 @@ static inline void rtl_push(const rtlreg_t* src1) {
   printf("In rtl_push(), before sub, esp = %x\n",reg_l(R_ESP));
   rtl_subi(&reg_l(R_ESP),&reg_l(R_ESP),4);
   printf("In rtl_push(), after sub, esp = %x\n",reg_l(R_ESP));
-  rtl_mv(&reg_l(R_ESP),src1);
+  rtl_sm(&reg_l(R_ESP),src1,4);
   printf("In rtl_push(), after move, esp = %x\n",reg_l(R_ESP));
   return;
   
