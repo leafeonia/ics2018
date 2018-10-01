@@ -31,7 +31,6 @@ $(OBJ_DIR)/%.o: src/%.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(SO_CFLAGS) -c -o $@ $<
-	@$(CC) $(INCLUDES) -E $< | grep -ve '^#' | bcpp > $(basename $@).i
 
 
 # Depencies
