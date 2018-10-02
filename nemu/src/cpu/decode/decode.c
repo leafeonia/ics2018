@@ -18,7 +18,7 @@ void decoding_set_jmp(bool is_jmp) {
 static inline make_DopHelper(I) {
   /* eip here is pointing to the immediate */
   op->type = OP_TYPE_IMM;
-  printf("eip = %x\n",*eip);
+  //printf("eip = %x\n",*eip);
   op->imm = instr_fetch(eip, op->width);
     printf("enter DopHelper(I), op->imm = %d\n",op->imm);
   rtl_li(&op->val, op->imm);
@@ -45,7 +45,7 @@ static inline make_DopHelper(SI) {
    op->simm = ???
    */
   op->simm = (int)instr_fetch(eip,op->width);
-  printf("In make_DopHelper(SI),op->simm = %d\n",op->simm);
+  printf("In make_DopHelper(SI),op->width = %d,op->simm = %d\n",op->width,op->simm);
   rtl_li(&op->val, op->simm);
 
 #ifdef DEBUG
