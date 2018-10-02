@@ -43,7 +43,7 @@ static make_EHelper(name) { \
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
     EMPTY, EMPTY, EMPTY, EMPTY,
-    EMPTY, IDEX(mov_I2E,sub), EMPTY, EMPTY)
+    EMPTY, IDEX(empty,sub), EMPTY, EMPTY)
 /*
   static opcode_entry opcode_table_gp1[8] = { \
     	item0, item1, item2, item3, \
