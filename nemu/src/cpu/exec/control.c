@@ -31,7 +31,8 @@ make_EHelper(call) {
 
   //printf("id_dest->imm = %d\n",id_dest->imm);
   //printf("before call, eip = %x\n", decoding.seq_eip);
-  decoding.seq_eip = decoding.seq_eip + id_dest->imm;
+  rtl_j(decoding.seq_eip + id_dest->imm);
+  //decoding.seq_eip = decoding.seq_eip + id_dest->imm;
   //printf("after call, eip = %x\n", decoding.seq_eip);
   print_asm("call %x", decoding.jmp_eip);
 }
