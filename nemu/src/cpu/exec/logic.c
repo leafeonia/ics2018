@@ -14,8 +14,9 @@ make_EHelper(and) {
 }
 
 make_EHelper(xor) {
+  printf("eax1 = %x\n",cpu.eax);
   rtl_xor(&id_dest->val,&id_src->val,&id_src->val);
-
+  printf("eax2 = %x\n",cpu.eax);
   print_asm_template2(xor);
   printf("---%s---\n",decoding.assembly);
 }
