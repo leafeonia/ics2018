@@ -215,6 +215,7 @@ make_DHelper(SI2E) {
   id_src->width = 1;
    printf("eip2 = %x\n ",*eip);
   decode_op_SI(eip, id_src, true);
+     printf("eip3 = %x\n ",*eip);
   if (id_dest->width == 2) {
     id_src->val &= 0xffff;
   }
