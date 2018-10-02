@@ -32,7 +32,7 @@ typedef struct {
 	 };
   };
   vaddr_t eip;
-
+  vaddr_t eflags;
 } CPU_state;
 
 extern CPU_state cpu;
