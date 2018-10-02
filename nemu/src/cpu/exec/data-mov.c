@@ -21,12 +21,14 @@ make_EHelper(pusha) {
   rtl_push(&id_dest->addr);
 
   print_asm("pusha");
+    printf("%s\n",decoding.assembly);
 }
 
 make_EHelper(popa) {
   TODO();
 
   print_asm("popa");
+    printf("%s\n",decoding.assembly);
 }
 
 make_EHelper(leave) {
