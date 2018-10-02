@@ -43,7 +43,15 @@ static make_EHelper(name) { \
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
     EMPTY, EMPTY, EMPTY, EMPTY,
-    EMPTY, IDEX(SI,sub), EMPTY, EMPTY)
+    EMPTY, IDEX(I2E,sub), EMPTY, EMPTY)
+/*
+  static opcode_entry opcode_table_gp1[8] = { \
+    	item0, item1, item2, item3, \
+    	item4, item5, item6, item7  \
+  }; \
+static make_EHelper(gp1) { \
+  idex(eip, &opcode_table_gp1[decoding.ext_opcode]); \
+}*/
 
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 make_group(gp2,
