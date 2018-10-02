@@ -3,33 +3,32 @@
 make_EHelper(mov) {
   operand_write(id_dest, &id_src->val);
   print_asm_template2(mov);
-  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(push) {
-  TODO();
+  rtl_push(&id_dest->addr);
 
   print_asm_template1(push);
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(pop) {
-  TODO();
+  rtl_pop(&id_dest->addr);
 
   print_asm_template1(pop);
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(pusha) {
-  rtl_push(&id_dest->addr);
+
 
   print_asm("pusha");
-    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(popa) {
   TODO();
 
   print_asm("popa");
-    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(leave) {
