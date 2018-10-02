@@ -35,7 +35,7 @@ make_EHelper(call) {
   //decoding.seq_eip = decoding.seq_eip + id_dest->imm;
   //printf("after call, eip = %x\n", decoding.seq_eip);
   print_asm("call %x", decoding.jmp_eip);
-  printf("%s\n",decoding.assembly);
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(ret) {
