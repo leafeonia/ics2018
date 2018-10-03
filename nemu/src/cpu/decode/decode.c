@@ -20,7 +20,7 @@ static inline make_DopHelper(I) {
   op->type = OP_TYPE_IMM;
   //printf("eip = %x\n",*eip);
   op->imm = instr_fetch(eip, op->width);
-    printf("enter DopHelper(I), op->imm = %d\n",op->imm);
+    //printf("enter DopHelper(I), op->imm = %d\n",op->imm);
   rtl_li(&op->val, op->imm);
 
 #ifdef DEBUG
@@ -182,7 +182,7 @@ make_DHelper(mov_I2r) {
 
 /* used by unary operations */
 make_DHelper(I) {
-	printf("Enter DHelper_I\n");
+	//printf("Enter DHelper_I\n");
   decode_op_I(eip, id_dest, true);
 }
 
