@@ -29,7 +29,7 @@ make_EHelper(call) {
      printf("esp = %x\n",cpu.esp);
  // printf("rtl_push %d\n",*(&id_dest->addr));
   rtl_push(&id_dest->addr);
-
+     printf("esp = %x\n",cpu.esp);
   //printf("id_dest->imm = %d\n",id_dest->imm);
   //printf("before call, eip = %x\n", decoding.seq_eip);
   decoding.jmp_eip = decoding.seq_eip + id_dest->imm;
