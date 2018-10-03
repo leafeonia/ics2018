@@ -7,10 +7,10 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  printf("In exec_sub(dest,src),before sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
+  //printf("In exec_sub(dest,src),before sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
  printf("esp = %x\n",cpu.esp);
   rtl_subi(&id_dest->val,&id_dest->val,id_src->val);
-  printf("In exec_sub(dest,src),after sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
+  //printf("In exec_sub(dest,src),after sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
     operand_write(id_dest, &id_dest->val);
    printf("esp = %x\n",cpu.esp);
   print_asm_template2(sub);
