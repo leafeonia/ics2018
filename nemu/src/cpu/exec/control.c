@@ -30,7 +30,7 @@ make_EHelper(call) {
  // printf("rtl_push %d\n",*(&id_dest->addr));
   
   rtl_push(&id_dest->addr);
-  printf("&id_dest->addr = %p\n",&id_dest->addr);
+  printf("&id_dest->addr = %x\n",id_dest->addr);
   //printf("before call, eip = %x\n", decoding.seq_eip);
   decoding.jmp_eip = decoding.seq_eip + id_dest->imm;
   rtl_j(decoding.jmp_eip);
