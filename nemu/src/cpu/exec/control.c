@@ -41,6 +41,7 @@ make_EHelper(call) {
 
 make_EHelper(ret) {
   rtl_pop(&id_dest->addr);
+  printf("id_dest->addr = %x\n",id_dest->addr);
   operand_write(id_dest, &id_dest->addr);
 
   print_asm("ret");
