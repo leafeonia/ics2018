@@ -40,9 +40,11 @@ make_EHelper(call) {
 }
 
 make_EHelper(ret) {
-  TODO();
+  rtl_pop(&id_dest->addr);
+  operand_write(id_dest, &id_dest->addr);
 
   print_asm("ret");
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(call_rm) {
