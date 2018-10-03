@@ -45,4 +45,6 @@ extern FILE* log_fp;
 
 #define TODO() panic("please implement me")
 
+#define pr(name) printf("name\n")
+
 #endif
