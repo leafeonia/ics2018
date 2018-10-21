@@ -12,6 +12,7 @@ make_EHelper(lea);
 make_EHelper(and); //eflags
 make_EHelper(nop);
 make_EHelper(cmp);
+make_EHelper(setcc);
 
 make_EHelper(operand_size);
 
