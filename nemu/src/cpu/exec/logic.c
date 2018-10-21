@@ -2,9 +2,12 @@
 #include "cpu/cc.h"
 
 make_EHelper(test) {
-  TODO();
-
+    rtl_and(&id_dest->val,&id_src->val,&id_src2->val);
+	rtl_li(&t0,0);
+	rtl_set_CF(&t0);
+	rtl_set_OF(&t0);
   print_asm_template2(test);
+     printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(and) {
