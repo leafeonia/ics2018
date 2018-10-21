@@ -9,9 +9,13 @@ make_EHelper(test) {
 
 make_EHelper(and) {
   //TODO();
-  pr(&id_dest->val);
+  pr(&id_dest->val);pr(&id_src->val);pr(&id_src2->val);
+  
   rtl_and(&id_dest->val,&id_src->val,&id_src2->val);
+  
+  pr(&id_dest->val);
     operand_write(id_dest, &id_dest->val);
+    //pr(&id_dest);
   print_asm_template2(and);
     printf("---%s---\n",decoding.assembly);
 }
