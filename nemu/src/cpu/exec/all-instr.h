@@ -3,6 +3,7 @@
 make_EHelper(mov);
 make_EHelper(call);
 make_EHelper(push);
+make_EHelper(add); //eflags
 make_EHelper(sub); //eflags
 make_EHelper(xor); //eflags
 make_EHelper(pop);
