@@ -8,16 +8,18 @@ make_EHelper(test) {
 }
 
 make_EHelper(and) {
-  TODO();
-
+  //TODO();
+  rtl_and(&id_dest->val,&id_src->val,&id_src2->val);
+    operand_write(id_dest, &id_dest->val);
   print_asm_template2(and);
+    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(xor) {
-  printf("eax1 = %x\n",cpu.eax);
-  rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
+  //printf("eax1 = %x\n",cpu.eax);
+  rtl_xor(&id_dest->val,&id_src->val,&id_src2->val);
   operand_write(id_dest, &id_dest->val);
-  printf("eax2 = %x\n",cpu.eax);
+  //printf("eax2 = %x\n",cpu.eax);
   print_asm_template2(xor);
   printf("---%s---\n",decoding.assembly);
 }

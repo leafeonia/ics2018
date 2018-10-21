@@ -209,13 +209,13 @@ make_DHelper(test_I) {
 
 make_DHelper(SI2E) {
   assert(id_dest->width == 2 || id_dest->width == 4);
-    printf("eip1 = %x ",*eip);
+   // printf("eip1 = %x ",*eip);
   decode_op_rm(eip, id_dest, true, NULL, false);
 
   id_src->width = 1;
-   printf("eip2 = %x\n ",*eip);
+   //printf("eip2 = %x\n ",*eip);
   decode_op_SI(eip, id_src, true);
-     printf("eip3 = %x\n ",*eip);
+    //: printf("eip3 = %x\n ",*eip);
   if (id_dest->width == 2) {
     id_src->val &= 0xffff;
   }
