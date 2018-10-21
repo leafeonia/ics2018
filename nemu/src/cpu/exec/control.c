@@ -11,9 +11,13 @@ make_EHelper(jmp) {
 make_EHelper(jcc) {
   // the target address is calculated at the decode stage
   uint32_t cc = decoding.opcode & 0xf;
+  pr(&cc);
   rtl_setcc(&t0, cc);
+  pr(&t0);
   rtl_li(&t1, 0);
+  pr(&t1);
   rtl_jrelop(RELOP_NE, &t0, &t1, decoding.jmp_eip);
+  pr(&decoding.jmp_eip);
 
   print_asm("j%s %x", get_cc_name(cc), decoding.jmp_eip);
     printf("---%s---\n",decoding.assembly);
