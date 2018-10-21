@@ -24,6 +24,7 @@ make_EHelper(cmp) {
   rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
 
   print_asm_template2(cmp);
+    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(inc) {
