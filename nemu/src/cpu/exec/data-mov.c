@@ -8,7 +8,7 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   rtl_push(&id_dest->val);
-
+   operand_write(id_dest, &id_dest->val);
   print_asm_template1(push);
   printf("---%s---\n",decoding.assembly);
 }
@@ -16,7 +16,7 @@ make_EHelper(push) {
 make_EHelper(pop) {
 	pr(&id_dest->val);
   rtl_pop(&id_dest->val);
-
+   operand_write(id_dest, &id_dest->val);
   print_asm_template1(pop);
   printf("---%s---\n",decoding.assembly);
 }
