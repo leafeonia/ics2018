@@ -28,7 +28,7 @@ make_EHelper(call) {
   // the target address is calculated at the decode stage
   //printf("esp = %x\n",cpu.esp);
  // printf("rtl_push %d\n",*(&id_dest->addr));
-  printf("decoding.seq_eip = %x\n",decoding.seq_eip);
+  //printf("decoding.seq_eip = %x\n",decoding.seq_eip);
   rtl_push(&decoding.seq_eip);
 
  // printf("&id_dest->addr = %x\n",id_dest->addr);
