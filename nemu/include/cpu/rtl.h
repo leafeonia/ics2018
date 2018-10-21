@@ -177,6 +177,7 @@ static inline void rtl_pop(rtlreg_t* dest) {
   // esp <- esp + 4
   pr(&reg_l(R_ESP));
   rtl_lm(dest,&reg_l(R_ESP),4);
+  pr(dest);
   rtl_addi(&reg_l(R_ESP),&reg_l(R_ESP),4);
   return;
 }

@@ -14,6 +14,7 @@ make_EHelper(push) {
 }
 
 make_EHelper(pop) {
+	pr(&id_dest->val);
   rtl_pop(&id_dest->val);
 
   print_asm_template1(pop);
