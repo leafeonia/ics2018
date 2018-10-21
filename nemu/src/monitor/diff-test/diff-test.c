@@ -76,7 +76,7 @@ void difftest_step(uint32_t eip) {
   
   for(int i = 0;i < 8;++i){
 	if(ref_r.gpr[i]._32 != cpu.gpr[i]._32) {
-		printf("%s is incorrect.Correct = %d, current value is %d\n",list[i],ref_r.gpr[i]._32,cpu.gpr[i]._32);
+		printf("%s is incorrect.Correct = %x, current value is %x\n",list[i],ref_r.gpr[i]._32,cpu.gpr[i]._32);
 		nemu_state = NEMU_ABORT;
 	}
   }
