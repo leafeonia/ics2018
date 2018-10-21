@@ -63,6 +63,7 @@ make_EHelper(setcc) {
   operand_write(id_dest, &t2);
 
   print_asm("set%s %s", get_cc_name(cc), id_dest->str);
+    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(not) {
