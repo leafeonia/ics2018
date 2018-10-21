@@ -72,6 +72,7 @@ make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
   operand_write(id_dest, &id_src->val);
   print_asm_template2(movzx);
+      printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(lea) {
