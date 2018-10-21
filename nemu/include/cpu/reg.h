@@ -32,7 +32,13 @@ typedef struct {
 	 };
   };
   vaddr_t eip;
-  vaddr_t eflags;
+  struct bs{
+  	unsigned CF:1;
+  	unsigned ZF:1;
+  	unsigned OF:1;
+  	unsigned SF:1;
+  	unsigned IF:1;
+  } eflags;
 } CPU_state;
 
 extern CPU_state cpu;
