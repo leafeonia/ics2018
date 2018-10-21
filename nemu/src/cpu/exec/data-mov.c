@@ -7,14 +7,14 @@ make_EHelper(mov) {
 }
 
 make_EHelper(push) {
-  rtl_push(&id_dest->addr);
+  rtl_push(&id_dest->val);
 
   print_asm_template1(push);
   printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(pop) {
-  rtl_pop(&id_dest->addr);
+  rtl_pop(&id_dest->val);
 
   print_asm_template1(pop);
   printf("---%s---\n",decoding.assembly);
