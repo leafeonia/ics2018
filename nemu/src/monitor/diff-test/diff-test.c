@@ -72,10 +72,18 @@ void difftest_step(uint32_t eip) {
   // TODO: Check the registers state with the reference design.
   // Set `nemu_state` to `NEMU_ABORT` if they are not the same.
   //TODO();
+  char* list[8] = {"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"};
+  
   for(int i = 0;i < 8;++i){
-	if(ref_r.gpr[i]._32 != cpu.gpr[i]._32) nemu_state = NEMU_ABORT;
+	if(ref_r.gpr[i]._32 != cpu.gpr[i]._32) {
+		printf("%s is incorrect.Correct = %d, current value is %d\n",list[i],ref_r.gpr[i]._32,cpu.gpr[i]._32);
+		nemu_state = NEMU_ABORT;
+	}
   }
-  if(ref_r.eip != cpu.eip) nemu_state = NEMU_ABORT;
+  if(ref_r.eip != cpu.eip) {
+  	printf("eip is incorrect.Correct = %d, current value is %d\n",ref_r.eip,cpu.eip);
+  	nemu_state = NEMU_ABORT;
+  }
 
 
 
