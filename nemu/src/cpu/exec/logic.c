@@ -11,7 +11,7 @@ make_EHelper(and) {
   //TODO();
   pr(&id_dest->val);pr(&id_src->val);pr(&id_src2->val);
   
-  rtl_and(&id_dest->val,&id_src->val,&id_src2->val);
+  rtl_and(&id_dest->val,&id_dest->val,&id_src->val);
   
   pr(&id_dest->val);
     operand_write(id_dest, &id_dest->val);
@@ -22,7 +22,7 @@ make_EHelper(and) {
 
 make_EHelper(xor) {
   //printf("eax1 = %x\n",cpu.eax);
-  rtl_xor(&id_dest->val,&id_src->val,&id_src2->val);
+  rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest, &id_dest->val);
   //printf("eax2 = %x\n",cpu.eax);
   print_asm_template2(xor);
