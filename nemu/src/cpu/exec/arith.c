@@ -14,7 +14,7 @@ make_EHelper(sub) {
 
   rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
   //printf("In exec_sub(dest,src),after sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
-  pr(&id_dest->type);
+  //pr(&id_dest->type);
   operand_write(id_dest, &id_dest->val);
   rtl_update_ZFSF(&id_dest->val,id_dest->width);
   //printf("esp = %x\n",cpu.esp);
