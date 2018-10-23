@@ -80,6 +80,10 @@ void difftest_step(uint32_t eip) {
 		nemu_state = NEMU_ABORT;
 	}
   }
+  if(ref_r.eax != cpu.eax) {
+  	printf("eax is incorrect.Correct = %x, current value is %x\n",ref_r.eax,cpu.eax);
+  	nemu_state = NEMU_ABORT;
+  }
   if(ref_r.eip != cpu.eip) {
   	printf("eip is incorrect.Correct = %x, current value is %x\n",ref_r.eip,cpu.eip);
   	nemu_state = NEMU_ABORT;
