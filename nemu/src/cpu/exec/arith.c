@@ -21,8 +21,8 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-  exec_sub(&cpu.eip);
-
+  rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
+  rtl_update_ZFSF(&id_dest->val,id_dest->width);
   print_asm_template2(cmp);
     printf("---%s---\n",decoding.assembly);
 }

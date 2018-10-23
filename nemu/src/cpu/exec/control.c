@@ -45,7 +45,7 @@ make_EHelper(call) {
 
 make_EHelper(ret) {
   rtl_pop(&id_dest->addr);
-  printf("id_dest->addr = %x\n",id_dest->addr);
+  //printf("id_dest->addr = %x\n",id_dest->addr);
   decoding.seq_eip = id_dest->addr;
 
   print_asm("ret");
