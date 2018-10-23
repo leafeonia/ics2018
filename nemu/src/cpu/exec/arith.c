@@ -5,6 +5,8 @@ make_EHelper(add) {
   rtl_setrelop(RELOP_LTU, &t3, &t2, &id_dest->val);
     operand_write(id_dest, &t2);
     
+    rtl_update_ZFSF(&t2,id_dest->width);
+    
   rtl_setrelop(RELOP_LTU, &t0, &t2, &id_dest->val);
   rtl_or(&t0, &t3, &t0);
   rtl_set_CF(&t0);
@@ -24,12 +26,13 @@ make_EHelper(sub) {
   //printf("In exec_sub(dest,src),before sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
   //printf("esp = %x\n",cpu.esp);
 
-  rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
+  rtl_sub(&t2, &id_dest->val, &id_src->val);
+  rtl_setrelop(RELOP_LTU, &t3, &id_dest->val, &t2);
   //printf("In exec_sub(dest,src),after sub, dest->addr = %u,dest->val = %u,src->addr = %u,src->val = %u\n",id_dest->addr,id_dest->val,id_src->addr,id_src->val);
   //pr(&id_dest->type);
-  operand_write(id_dest, &id_dest->val);
+  operand_write(id_dest, &t2);
   
-  rtl_update_ZFSF(&id_dest->val,id_dest->width);
+  rtl_update_ZFSF(&t2,id_dest->width);
   
   rtl_setrelop(RELOP_LTU, &t0, &id_dest->val, &t2);
   rtl_or(&t0, &t3, &t0);
