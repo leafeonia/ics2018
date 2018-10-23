@@ -8,7 +8,7 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   rtl_push(&id_dest->val);
-   operand_write(id_dest, &id_dest->val);
+   if(id_dest->type != OP_TYPE_IMM)operand_write(id_dest, &id_dest->val);
   print_asm_template1(push);
   printf("---%s---\n",decoding.assembly);
 }
