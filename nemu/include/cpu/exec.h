@@ -3,7 +3,7 @@
 
 #include "nemu.h"
 
-#define pr(name) printf(" "#name" = %x\n",(int32_t)*(name));
+
 
 #define make_EHelper(name) void concat(exec_, name) (vaddr_t *eip)
 typedef void (*EHelper) (vaddr_t *);
