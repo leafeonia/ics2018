@@ -341,6 +341,7 @@ make_DHelper(empty){
 }
 
 void operand_write(Operand *op, rtlreg_t* src) {
+  pr(&op->type);
   if (op->type == OP_TYPE_REG) { rtl_sr(op->reg, src, op->width); }
   else if (op->type == OP_TYPE_MEM) { rtl_sm(&op->addr, src, op->width); }
   else { assert(0); }
