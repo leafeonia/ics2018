@@ -4,6 +4,9 @@
 make_EHelper(test) {
     rtl_and(&id_dest->val,&id_src->val,&id_src2->val);
     rtl_update_ZFSF(&id_dest->val,id_dest->width);
+    pr(&id_src->val);
+    pr(&id_src2->val);
+    printf("zf = %d\n",cpu.eflags.ZF);
 	rtl_li(&t0,0);
 	rtl_set_CF(&t0);
 	rtl_set_OF(&t0);
