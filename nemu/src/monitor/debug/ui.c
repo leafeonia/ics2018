@@ -98,6 +98,7 @@ static int cmd_info(char *args){
 			if((i+1) % 4 == 0) printf("\n");
 		}
 		printf("eip : %08x\n",cpu.eip); 
+		printf("CF : %d\tOF : %d\tZF : %d\tSF : %d\n",cpu.eflags.CF,cpu.eflags.OF,cpu.eflags.ZF,cpu.eflags.SF);
 	} 
 	else if(arg1 && arg1[0] == 'w'){
 		wp_info();
