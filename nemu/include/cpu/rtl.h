@@ -213,12 +213,11 @@ make_rtl_setget_eflags(ZF)
 make_rtl_setget_eflags(SF)
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
-	pr(result);
-	printf("ZF = %d\n",cpu.eflags.ZF);
+	//printf("ZF = %d\n",cpu.eflags.ZF);
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
   if(width == 4) cpu.eflags.ZF = (*result == 0);
   else cpu.eflags.ZF = ( (*result & ((1 << width*8) - 1)) == 0);
-	printf("ZF = %d\n",cpu.eflags.ZF);
+	//printf("ZF = %d\n",cpu.eflags.ZF);
 }
 
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
