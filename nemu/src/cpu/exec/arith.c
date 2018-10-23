@@ -68,6 +68,7 @@ make_EHelper(adc) {
   rtl_set_OF(&t0);
 
   print_asm_template2(adc);
+    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(sbb) {
@@ -90,6 +91,7 @@ make_EHelper(sbb) {
   rtl_set_OF(&t0);
 
   print_asm_template2(sbb);
+    printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(mul) {
