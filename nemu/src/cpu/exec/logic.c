@@ -34,9 +34,11 @@ make_EHelper(xor) {
 }
 
 make_EHelper(or) {
-  TODO();
+  rtl_or(&id_dest->val,&id_dest->val,&id_src->val);
+  operand_write(id_dest, &id_dest->val);
 
   print_asm_template2(or);
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(sar) {
