@@ -34,9 +34,10 @@ make_EHelper(popa) {
 }
 
 make_EHelper(leave) {
-  TODO();
-
+  rtl_mv(&reg_l(R_ESP),&reg_l(R_EBP));
+  rtl_pop(&reg_l(R_EBP));
   print_asm("leave");
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(cltd) {
