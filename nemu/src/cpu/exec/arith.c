@@ -1,7 +1,8 @@
 #include "cpu/exec.h"
 
 make_EHelper(add) {
-  rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
+  rtl_add(&t2, &id_dest->val, &id_src->val);
+  rtl_setrelop(RELOP_LTU, &t3, &t2, &id_dest->val);
     operand_write(id_dest, &id_dest->val);
     
   rtl_setrelop(RELOP_LTU, &t0, &t2, &id_dest->val);
@@ -73,7 +74,6 @@ make_EHelper(adc) {
   rtl_add(&t2, &id_dest->val, &id_src->val);
   rtl_setrelop(RELOP_LTU, &t3, &t2, &id_dest->val);
   rtl_get_CF(&t1);
-  printf("cf = %d\n",cpu.eflags.CF);
   rtl_add(&t2, &t2, &t1);
   operand_write(id_dest, &t2);
 
