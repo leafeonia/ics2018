@@ -19,7 +19,7 @@ make_EHelper(and) {
   
   //pr(&id_dest->val);
     operand_write(id_dest, &id_dest->val);
-    rtl_update_ZFSF(&id_dest->val,id_dest->width);
+    //rtl_update_ZFSF(&id_dest->val,id_dest->width);
     //pr(&id_dest);
   print_asm_template2(and);
     printf("---%s---\n",decoding.assembly);
@@ -29,7 +29,7 @@ make_EHelper(xor) {
   //printf("eax1 = %x\n",cpu.eax);
   rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest, &id_dest->val);
-    rtl_update_ZFSF(&id_dest->val,id_dest->width);
+    //rtl_update_ZFSF(&id_dest->val,id_dest->width);
   //printf("eax2 = %x\n",cpu.eax);
   print_asm_template2(xor);
   printf("---%s---\n",decoding.assembly);
@@ -38,7 +38,7 @@ make_EHelper(xor) {
 make_EHelper(or) {
   rtl_or(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest, &id_dest->val);
-    rtl_update_ZFSF(&id_dest->val,id_dest->width);
+  //rtl_update_ZFSF(&id_dest->val,id_dest->width);
 
   print_asm_template2(or);
   printf("---%s---\n",decoding.assembly);
