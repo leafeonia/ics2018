@@ -57,6 +57,7 @@ make_EHelper(cltd) {
     if(msb) rtl_li(&reg_l(R_EDX),0xffffffff);
     else rtl_li(&reg_l(R_EDX),0);
     pr(&reg_l(R_EDX));
+      printf("---%s---\n",decoding.assembly);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");
