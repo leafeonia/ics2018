@@ -63,9 +63,12 @@ make_EHelper(call_rm) {
 
 	pr(&cpu.eip);
   rtl_push(&cpu.eip);
-  rtl_mv(&cpu.eip,&id_dest->val);
-  operand_write(id_dest,&cpu.eip);
-  	pr(&cpu.eip);
+  /*rtl_mv(&cpu.eip,&id_dest->val);
+  operand_write(&cpu.eip,&id_dest->val);*/
+  decoding.jmp_eip = id_dest->val;
+  
+  rtl_j(decoding.jmp_eip);
+
   
 
   print_asm("call *%s", id_dest->str);
