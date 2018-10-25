@@ -15,7 +15,7 @@ char* strncpy(char* dst, const char* src, size_t n) {
 }
 
 char* strcat(char* dst, const char* src) {
-  printf("TODO\n\n\n\n\n\n\n");
+  _putc('F');//("TODO\n\n\n\n\n\n\n");
   return NULL;
 }
 
