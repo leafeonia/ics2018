@@ -60,16 +60,12 @@ make_EHelper(ret) {
 }
 
 make_EHelper(call_rm) {
-	rtl_push(&decoding.seq_eip);
 
- 
- 
-  
-  decoding.jmp_eip = decoding.seq_eip + id_dest->val;
-  
-  rtl_j(decoding.jmp_eip);
-  //rtl_push(&cpu.eip);
-  //rtl_add(&cpu.eip,&cpu.eip,&id_dest->val);
+	pr(&cpu.eip);
+  rtl_push(&cpu.eip);
+  pr(&id_dest->val);
+  rtl_add(&cpu.eip,&cpu.eip,&id_dest->val);
+  	pr(&cpu.eip);
   
 
   print_asm("call *%s", id_dest->str);
