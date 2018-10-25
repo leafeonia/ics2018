@@ -30,6 +30,7 @@ make_EHelper(cltd);
 make_EHelper(idiv);
 make_EHelper(jmp);
 make_EHelper(sbb);
+make_EHelper(imul1);
 
 make_EHelper(operand_size);
 

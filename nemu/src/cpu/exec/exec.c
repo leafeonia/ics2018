@@ -60,8 +60,8 @@ make_group(gp2,
 
   /* 0xf6, 0xf7 */
 make_group(gp3,
-    IDEXW(test_I,test,1), EMPTY, EX(not), EMPTY,
-    EMPTY, EMPTY, EMPTY, EX(idiv))
+    IDEX(test_I,test), EMPTY, EX(not), EMPTY,
+    EMPTY, EX(imul1), EMPTY, EX(idiv))
 
   /* 0xfe */
 make_group(gp4,
