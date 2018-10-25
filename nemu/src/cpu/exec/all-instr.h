@@ -34,6 +34,7 @@ make_EHelper(imul1);
 make_EHelper(movsx);
 make_EHelper(call_rm);
 make_EHelper(jmp_rm);
+make_EHelper(neg);
 
 make_EHelper(operand_size);
 
