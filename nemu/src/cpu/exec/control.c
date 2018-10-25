@@ -62,7 +62,7 @@ make_EHelper(ret) {
 make_EHelper(call_rm) {
 
 	pr(&cpu.eip);
-  rtl_push(&cpu.eip);
+  rtl_push(&decoding.seq_eip);
   /*rtl_mv(&cpu.eip,&id_dest->val);
   operand_write(&cpu.eip,&id_dest->val);*/
   decoding.jmp_eip = id_dest->val;
