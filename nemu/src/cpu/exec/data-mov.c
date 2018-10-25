@@ -91,11 +91,14 @@ make_EHelper(movsx) {
 
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
-  if(id_src->width == 4) {
-  	rtl_li(&t1,id_src->val & 0x0000ffff);
-  	id_src->width = 2;
+  if(id_dest->width == 4) {
+  	if(id_src->width == 1) rtl_li(&id_dest->val,id_src->val & 0x000000ff);
+  	else rtl_li(&id_dest->val,id_src->val & 0x0000ffff);
   }
-  operand_write(id_dest, &id_src->val);
+  else{
+	rtl_li(&id_dest->val,id_src->val & 0xffff00ff);
+  }
+  operand_write(id_dest, &id_dest->val);
   print_asm_template2(movzx);
       printf("---%s---\n",decoding.assembly);
 }
