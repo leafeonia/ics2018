@@ -64,6 +64,7 @@ make_EHelper(call_rm) {
 	pr(&cpu.eip);
   rtl_push(&cpu.eip);
   rtl_mv(&cpu.eip,&id_dest->val);
+  operand_write(id_dest,&cpu.eip);
   	pr(&cpu.eip);
   
 
