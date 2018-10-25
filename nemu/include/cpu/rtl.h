@@ -169,7 +169,7 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   		default: assert(0);
   	}
   }
-  //pr(dest);
+  pr(dest);
 }
 
 static inline void rtl_push(const rtlreg_t* src1) {
