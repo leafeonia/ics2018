@@ -77,7 +77,10 @@ make_EHelper(cwtl) {
 make_EHelper(movsx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
   pr(&id_dest->width);
-  if(id_src->width == 4) rtl_li(&t1,id_src->val & 0x0000ffff);
+  if(id_src->width == 4) {
+  	rtl_li(&t1,id_src->val & 0x0000ffff);
+  	id_src->width = 2;
+  }
   rtl_sext(&t0, &t1,id_src->width);
   pr(&id_src->val);
   pr(&t0);
