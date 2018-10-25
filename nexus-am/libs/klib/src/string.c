@@ -1,5 +1,5 @@
 #include "klib.h"
-
+#include "assert.h"
 #ifndef __ISA_NATIVE__
 
 size_t strlen(const char *s) {
