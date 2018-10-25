@@ -162,6 +162,7 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   pr(&msb);
   if(!msb) *dest = *src1;
   else{
+    pr(&width);
   	switch(width){
   		case 4:*dest = *src1;break;
   		case 2:*dest = *src1 || 0xffff0000;break;
