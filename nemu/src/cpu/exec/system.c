@@ -42,20 +42,8 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-	pr(&id_src->width);
-	/*switch(id_src->width){
-		case 4:
-			rtl_li(&id_dest->val,pio_read_l(0x3f8));
-			break;
-		case 2:
-			rtl_li(&id_dest->val,pio_read_w(0x3f8));
-			break;
-		case 1:
-			
-			break;
-	}*/
-	rtl_li(&id_dest->val,pio_read_b(0x3f8));
-  	pr(&id_dest->val);
+  rtl_li(&id_dest->val,pio_read_l(0x3f8));
+  pr(&id_dest->val);
   operand_write(id_dest,&id_dest->val);
 
   print_asm_template2(in);
