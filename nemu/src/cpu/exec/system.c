@@ -42,7 +42,7 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-//pr(&id_src->val);
+pr(&id_src->val);
 //pr(&id_src->addr);
   switch(id_src->width){
 		case 4:
