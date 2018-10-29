@@ -81,6 +81,9 @@ make_EHelper(movsx) {
   	rtl_li(&t1,id_src->val & 0x0000ffff);
   	id_src->width = 2;
   }
+  else{
+  	rtl_li(&t1,id_src->val);
+  }
   pr(&t1);
   rtl_sext(&t0, &t1,id_src->width);
   pr(&id_src->val);
