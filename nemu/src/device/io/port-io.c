@@ -22,6 +22,7 @@ static void pio_callback(ioaddr_t addr, int len, bool is_write) {
     if (addr >= maps[i].low && addr + len - 1 <= maps[i].high) {
       if (maps[i].callback != NULL) {
         maps[i].callback(addr, len, is_write);
+        printf("enter\n");
       }
       return;
     }
