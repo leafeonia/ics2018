@@ -20,13 +20,12 @@ static void pio_callback(ioaddr_t addr, int len, bool is_write) {
   int i;
   //printf("nr_map = %d\n",nr_map);
   for (i = 0; i < nr_map; i ++) {
-    printf("addr in pio_callback = %x\n",addr);
-    printf("maps[0].low = %x,maps[0].high = %x\n",maps[0].low,maps[i].high);
+    //printf("addr in pio_callback = %x\n",addr);
     if (addr >= maps[i].low && addr + len - 1 <= maps[i].high) {
-      printf("enter. i = %d,maps[i].low = %d,maps[i].high = %d\n",i,maps[i].low,maps[i].high);
+     // printf("enter. i = %d,maps[i].low = %d,maps[i].high = %d\n",i,maps[i].low,maps[i].high);
       if (maps[i].callback != NULL) {
         maps[i].callback(addr, len, is_write);
-        printf("enter maps[i].callback\n");
+        //printf("enter maps[i].callback\n");
       }
       return;
     }
