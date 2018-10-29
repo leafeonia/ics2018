@@ -17,7 +17,7 @@ make_EHelper(jcc) {
   //pr(&decoding.jmp_eip);
 
   print_asm("j%s %x", get_cc_name(cc), decoding.jmp_eip);
-    printf("---%s---\n",decoding.assembly);
+   // printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(jmp_rm) {
@@ -47,7 +47,6 @@ make_EHelper(call) {
   //decoding.seq_eip = decoding.seq_eip + id_dest->imm;
   //printf("after call, eip = %x\n", decoding.seq_eip);
   print_asm("call %x", decoding.jmp_eip);
-  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(ret) {
@@ -56,7 +55,6 @@ make_EHelper(ret) {
   decoding.seq_eip = id_dest->addr;
 
   print_asm("ret");
-  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(call_rm) {
@@ -72,5 +70,4 @@ make_EHelper(call_rm) {
   
 
   print_asm("call *%s", id_dest->str);
-    printf("---%s---\n",decoding.assembly);
 }

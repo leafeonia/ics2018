@@ -8,7 +8,7 @@ make_EHelper(test) {
 	rtl_set_CF(&t0);
 	rtl_set_OF(&t0);
   print_asm_template2(test);
-     printf("---%s---\n",decoding.assembly);
+     //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(and) {
@@ -25,7 +25,7 @@ make_EHelper(and) {
     rtl_update_ZFSF(&id_dest->val,id_dest->width);
     //pr(&id_dest);
   print_asm_template2(and);
-    printf("---%s---\n",decoding.assembly);
+   // printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(xor) {
@@ -38,7 +38,7 @@ make_EHelper(xor) {
     rtl_update_ZFSF(&id_dest->val,id_dest->width);
   //printf("eax2 = %x\n",cpu.eax);
   print_asm_template2(xor);
-  printf("---%s---\n",decoding.assembly);
+  //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(or) {
@@ -50,7 +50,7 @@ make_EHelper(or) {
   rtl_update_ZFSF(&id_dest->val,id_dest->width);
 
   print_asm_template2(or);
-  printf("---%s---\n",decoding.assembly);
+  //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(sar) {
