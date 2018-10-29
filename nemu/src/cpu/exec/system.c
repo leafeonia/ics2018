@@ -52,7 +52,7 @@ pr(&id_src->val);
 			rtl_li(&id_dest->val,pio_read_w((ioaddr_t)id_src->val));
 			break;
 		case 1:
-		printf("ret = %d\n",pio_read_b((ioaddr_t)id_src->val));
+		//printf("ret = %d\n",pio_read_b((ioaddr_t)id_src->val));
 			rtl_li(&id_dest->val,pio_read_b((ioaddr_t)id_src->val));
 			break;
 	}
@@ -67,6 +67,7 @@ printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(out) {
+  printf("data = %x\n",id_src->val);
   pio_write_l((ioaddr_t)id_dest->val,id_src->val);
 	
   print_asm_template2(out);
