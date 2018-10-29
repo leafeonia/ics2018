@@ -1,6 +1,6 @@
 #include "common.h"
 #include "device/port-io.h"
-
+#include<stdio.h>
 #define PORT_IO_SPACE_MAX 65536
 #define NR_MAP 8
 
@@ -40,6 +40,7 @@ void* add_pio_map(ioaddr_t addr, int len, pio_callback_t callback) {
 }
 
 static inline uint32_t pio_read_common(ioaddr_t addr, int len) {
+printf("addr = %x\n",addr);
   assert(addr + len - 1 < PORT_IO_SPACE_MAX);
   pio_callback(addr, len, false);		// prepare data to read
   switch (len) {

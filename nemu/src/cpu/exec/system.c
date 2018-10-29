@@ -52,7 +52,7 @@ pr(&id_src->addr);
 			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
 			break;
 		case 1:
-			rtl_li(&id_dest->val,pio_read_w((ioaddr_t)id_src->val));
+			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
 			break;
 	}
 	pr(&id_dest->val);
