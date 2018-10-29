@@ -85,7 +85,7 @@ make_EHelper(setcc) {
   operand_write(id_dest, &t2);
 
   print_asm("set%s %s", get_cc_name(cc), id_dest->str);
-    printf("---%s---\n",decoding.assembly);
+    //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(not) {
@@ -93,5 +93,5 @@ make_EHelper(not) {
   operand_write(id_dest,&id_dest->val);
 
   print_asm_template1(not);
-      printf("---%s---\n",decoding.assembly);
+     // printf("---%s---\n",decoding.assembly);
 }
