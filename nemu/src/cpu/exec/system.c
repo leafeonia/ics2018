@@ -57,7 +57,7 @@ pr(&id_src->val);
 			rtl_li(&t0,temp);
 			break;
 	}
-	pr(&t0);
+	printf("t0 = %u\n",t0);
   operand_write(id_dest,&t0);
 
   print_asm_template2(in);
