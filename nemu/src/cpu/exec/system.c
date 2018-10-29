@@ -46,19 +46,19 @@ pr(&id_src->val);
 //pr(&id_src->addr);
   switch(id_src->width){
 		case 4:
-			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
+			rtl_li(&t0,pio_read_l((ioaddr_t)id_src->val));
 			break;
 		case 2:
-			rtl_li(&id_dest->val,pio_read_w((ioaddr_t)id_src->val));
+			rtl_li(&t0,pio_read_w((ioaddr_t)id_src->val));
 			break;
 		case 1:
 		printf("ret = %d\n",pio_read_b((ioaddr_t)id_src->val));
 			uint32_t temp = pio_read_b((ioaddr_t)id_src->val);
-			rtl_li(&id_dest->val,temp);
+			rtl_li(&t0,temp);
 			break;
 	}
-	pr(&id_dest->val);
-  operand_write(id_dest,&id_dest->val);
+	pr(&t0);
+  operand_write(id_dest,&t0);
 
   print_asm_template2(in);
 printf("---%s---\n",decoding.assembly);
