@@ -60,7 +60,7 @@ make_EHelper(in) {
   operand_write(id_dest,&id_dest->val);
 
   print_asm_template2(in);
-printf("---%s---\n",decoding.assembly);
+//printf("---%s---\n",decoding.assembly);
 #if defined(DIFF_TEST)
   difftest_skip_ref();
 #endif
@@ -71,7 +71,7 @@ make_EHelper(out) {
   pio_write_b((ioaddr_t)id_dest->val,id_src->val);
 	
   print_asm_template2(out);
-  printf("---%s---\n",decoding.assembly);
+  //printf("---%s---\n",decoding.assembly);
 
 #if defined(DIFF_TEST)
   difftest_skip_ref();
