@@ -50,7 +50,10 @@ static inline uint32_t pio_read_common(ioaddr_t addr, int len) {
   switch (len) {
     case 4: return *(uint32_t *)(pio_space + addr);
     case 2: return *(uint16_t *)(pio_space + addr);
-    case 1: return *(uint8_t *)(pio_space + addr);
+    case 1: {
+    printf("*(uint8_t *)(pio_space + addr) = %u\n",*(uint8_t *)(pio_space + addr));
+    	return *(uint8_t *)(pio_space + addr);
+    }
     default: assert(0);
   }
 }
