@@ -86,7 +86,7 @@ make_EHelper(movsx) {
   pr(&t0);
   operand_write(id_dest, &t0);
   print_asm_template2(movsx);
-        //printf("---%s---\n",decoding.assembly);
+  printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(movzx) {
