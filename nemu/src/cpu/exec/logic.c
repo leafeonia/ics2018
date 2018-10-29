@@ -59,7 +59,7 @@ make_EHelper(sar) {
   // unnecessary to update CF and OF in NEMU
 
   print_asm_template2(sar);
-  printf("---%s---\n",decoding.assembly);
+  //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(shl) {
