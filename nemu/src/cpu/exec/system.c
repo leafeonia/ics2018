@@ -53,7 +53,8 @@ pr(&id_src->val);
 			break;
 		case 1:
 		printf("ret = %d\n",pio_read_b((ioaddr_t)id_src->val));
-			rtl_li(&id_dest->val,pio_read_b((ioaddr_t)id_src->val));
+			uint32_t temp = pio_read_b((ioaddr_t)id_src->val);
+			rtl_li(&id_dest->val,temp);
 			break;
 	}
 	pr(&id_dest->val);
