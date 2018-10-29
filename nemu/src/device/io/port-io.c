@@ -37,7 +37,9 @@ void* add_pio_map(ioaddr_t addr, int len, pio_callback_t callback) {
   assert(nr_map < NR_MAP);
   assert(addr + len <= PORT_IO_SPACE_MAX);
   maps[nr_map].low = addr;
+  printf("low = %x\n",addr);
   maps[nr_map].high = addr + len - 1;
+   printf("high = %x\n",addr+len-1);
   maps[nr_map].callback = callback;
   nr_map ++;
   return pio_space + addr;
