@@ -26,7 +26,7 @@ static void pio_callback(ioaddr_t addr, int len, bool is_write) {
       
       if (maps[i].callback != NULL) {
         maps[i].callback(addr, len, is_write);
-        printf("enter\n");
+        //printf("enter\n");
       }
       return;
     }
@@ -45,7 +45,7 @@ void* add_pio_map(ioaddr_t addr, int len, pio_callback_t callback) {
 }
 
 static inline uint32_t pio_read_common(ioaddr_t addr, int len) {
-printf("addr = %x\n",addr);
+//printf("addr = %x\n",addr);
   assert(addr + len - 1 < PORT_IO_SPACE_MAX);
   pio_callback(addr, len, false);		// prepare data to read
   switch (len) {
