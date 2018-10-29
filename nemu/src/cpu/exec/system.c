@@ -42,8 +42,8 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-//pr(&id_src->val);
-//pr(&id_src->addr);
+pr(&id_src->val);
+pr(&id_src->addr);
   switch(id_src->width){
 		case 4:
 			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
@@ -55,7 +55,7 @@ make_EHelper(in) {
 			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
 			break;
 	}
-	//pr(&id_dest->val);
+	pr(&id_dest->val);
   operand_write(id_dest,&id_dest->val);
 
   print_asm_template2(in);
