@@ -50,7 +50,7 @@ make_EHelper(in) {
 			rtl_li(&id_dest->val,pio_read_l(0x3f8));
 			break;
 		case 1:
-			rtl_li(&id_dest->val,pio_read_l(0x3f8));
+			rtl_li(&id_dest->val,pio_read_w(0x3f8));
 			break;
 	}
   operand_write(id_dest,&id_dest->val);
