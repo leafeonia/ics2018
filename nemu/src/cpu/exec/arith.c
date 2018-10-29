@@ -19,7 +19,7 @@ make_EHelper(add) {
   rtl_set_OF(&t0);
 
   print_asm_template2(add);
-    printf("---%s---\n",decoding.assembly);
+    //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(sub) {
@@ -45,7 +45,7 @@ make_EHelper(sub) {
   rtl_set_OF(&t0);
   //printf("esp = %x\n",cpu.esp);
   print_asm_template2(sub);
-  printf("---%s---\n",decoding.assembly);
+  //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(cmp) {
@@ -64,7 +64,7 @@ make_EHelper(cmp) {
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
   print_asm_template2(cmp);
-    printf("---%s---\n",decoding.assembly);
+   // printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(inc) {
@@ -86,7 +86,7 @@ make_EHelper(inc) {
   rtl_set_OF(&t0);
 
   print_asm_template2(add);
-    printf("---%s---\n",decoding.assembly);
+   // printf("---%s---\n",decoding.assembly);
 
   print_asm_template1(inc);
 }
@@ -110,7 +110,7 @@ make_EHelper(dec) {
   rtl_set_OF(&t0);
 
   print_asm_template1(dec);
-  printf("---%s---\n",decoding.assembly);
+  //printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(neg) {
@@ -151,7 +151,7 @@ make_EHelper(adc) {
   rtl_set_OF(&t0);
 
   print_asm_template2(adc);
-    printf("---%s---\n",decoding.assembly);
+   // printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(sbb) {
@@ -174,7 +174,7 @@ make_EHelper(sbb) {
   rtl_set_OF(&t0);
 
   print_asm_template2(sbb);
-    printf("---%s---\n",decoding.assembly);
+   // printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(mul) {
