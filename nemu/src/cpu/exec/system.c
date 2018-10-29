@@ -1,5 +1,5 @@
 #include "cpu/exec.h"
-
+#include "device/port-io.h"
 void difftest_skip_ref();
 void difftest_skip_dut();
 
@@ -42,10 +42,11 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-  TODO();
+  rtl_li(&id_dest->val,pio_read_l(0x3f8));
+  operand_write(id_dest,&id_dest->val);
 
   print_asm_template2(in);
-
+printf("---%s---\n",decoding.assembly);
 #if defined(DIFF_TEST)
   difftest_skip_ref();
 #endif
