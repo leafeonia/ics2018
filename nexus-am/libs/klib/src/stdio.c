@@ -4,7 +4,12 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
-  return 0;
+  char* s = "";
+  int ret = sprintf(s,fmt);
+  for (; *s; s ++) {
+    _putc(*s);
+  }
+  return ret;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
