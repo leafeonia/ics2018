@@ -20,7 +20,7 @@ static void pio_callback(ioaddr_t addr, int len, bool is_write) {
   int i;
   //printf("nr_map = %d\n",nr_map);
   for (i = 0; i < nr_map; i ++) {
-    printf("addr in pio_callback = %d\n",addr);
+    printf("addr in pio_callback = %x\n",addr);
     if (addr >= maps[i].low && addr + len - 1 <= maps[i].high) {
       printf("enter. i = %d,maps[i].low = %d,maps[i].high = %d\n",i,maps[i].low,maps[i].high);
       if (maps[i].callback != NULL) {
@@ -44,7 +44,7 @@ void* add_pio_map(ioaddr_t addr, int len, pio_callback_t callback) {
 }
 
 static inline uint32_t pio_read_common(ioaddr_t addr, int len) {
-  printf("addr in pio_read_common = %x\n",addr);
+  printf("addr in pio_read_common = %x,len = %d\n",addr,len);
   assert(addr + len - 1 < PORT_IO_SPACE_MAX);
   pio_callback(addr, len, false);		// prepare data to read
   switch (len) {
