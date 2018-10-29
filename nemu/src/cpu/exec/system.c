@@ -42,8 +42,8 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-pr(&id_src->val);
-pr(&id_src->addr);
+//pr(&id_src->val);
+//pr(&id_src->addr);
   switch(id_src->width){
 		case 4:
 			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
@@ -55,7 +55,7 @@ pr(&id_src->addr);
 			rtl_li(&id_dest->val,pio_read_l((ioaddr_t)id_src->val));
 			break;
 	}
-	pr(&id_dest->val);
+	//pr(&id_dest->val);
   operand_write(id_dest,&id_dest->val);
 
   print_asm_template2(in);
@@ -66,9 +66,10 @@ printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(out) {
-  TODO();
-
+  pio_write_l((ioaddr_t)cpu.eax,id_src->val);
+	
   print_asm_template2(out);
+  printf("---%s---\n",decoding.assembly);
 
 #if defined(DIFF_TEST)
   difftest_skip_ref();
