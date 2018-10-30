@@ -8,7 +8,7 @@
 
 #include <klib.h>
 
-#define ITERATIONS 300
+#define ITERATIONS 600
 #define MEM_METHOD MEM_STATIC
 
 /************************/
