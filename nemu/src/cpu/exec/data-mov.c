@@ -51,12 +51,12 @@ make_EHelper(cltd) {
     //pr(&reg_w(R_DX));
   }
   else {
-  	pr(&reg_l(R_EAX));
+  	//pr(&reg_l(R_EAX));
     bool msb = (reg_l(R_EAX) >> 31) & 1;
-    pr(&msb);
+    //pr(&msb);
     if(msb) rtl_li(&reg_l(R_EDX),0xffffffff);
     else rtl_li(&reg_l(R_EDX),0);
-    pr(&reg_l(R_EDX));
+    //pr(&reg_l(R_EDX));
       //printf("---%s---\n",decoding.assembly);
   }
 
