@@ -26,11 +26,23 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                 case 'd':
                     num = va_arg(ap,int);
                     cnt = 0;
+                    if(!num) {
+                        *out++ = '0';
+                    }
+                    else
+                        {
+                        while(num)
+                            {
+                                a[++cnt] = num%10 + '0';
+                                num /= 10;
+                            }
+                        }
+
                     while(num){
                         a[++cnt] = num%10 + '0';
                         num /= 10;
                     }
-                    ;
+                    
                     while(cnt){
                         *out++ = a[cnt];
                         cnt--;
