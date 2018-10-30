@@ -1,6 +1,6 @@
 #include "common.h"
 #include "device/port-io.h"
-#include<stdio.h>
+
 #define PORT_IO_SPACE_MAX 65536
 #define NR_MAP 8
 
