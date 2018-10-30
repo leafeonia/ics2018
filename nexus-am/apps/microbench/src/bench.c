@@ -71,7 +71,7 @@ int main() {
     } else {
       unsigned long msec = ULONG_MAX;
       int succ = 1;
-      for (int i = 9; i < REPEAT; i ++) {
+      for (int i = 8; i < REPEAT; i ++) {
         Result res;
         run_once(bench, &res);
         printk(res.pass ? "*" : "X");
