@@ -10,7 +10,7 @@ int main() {
     print("Hello World!\n");
   }
   for(int i = 0;i < 10;i++){
-  	printf("FAQ\n");
+  	printf("FAQ%d\n",i);
   }
   return 0;
 }
