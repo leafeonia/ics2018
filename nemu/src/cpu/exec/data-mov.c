@@ -43,12 +43,12 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decoding.is_operand_size_16) {
-    pr(&reg_w(R_AX));
+    //pr(&reg_w(R_AX));
     bool msb = (reg_w(R_AX) >> 15) & 1;
-    pr(&msb);
+    //pr(&msb);
     if(msb) rtl_ori(&reg_l(R_EDX),&reg_l(R_EDX),0xffff);
     else rtl_andi(&reg_l(R_EDX),&reg_l(R_EDX),0xffff0000);
-    pr(&reg_w(R_DX));
+    //pr(&reg_w(R_DX));
   }
   else {
   	pr(&reg_l(R_EAX));
