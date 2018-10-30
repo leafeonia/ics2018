@@ -1,6 +1,6 @@
 #include <klib.h>
 #include <amdev.h>
-
+#include <stdio.h>
 static _Device *getdev(_Device **ptr, uint32_t id) {
   if (*ptr) return *ptr;
   for (int n = 1; ; n ++) {
@@ -23,6 +23,7 @@ uint32_t uptime() {
   _UptimeReg uptime;
   _Device *dev = getdev(&timer_dev, _DEV_TIMER);
   dev->read(_DEVREG_TIMER_UPTIME, &uptime, sizeof(uptime));
+  printf("uptime.lo = %d\n",uptime.lo);
   return uptime.lo;
 }
 
