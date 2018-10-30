@@ -70,7 +70,9 @@ make_EHelper(cwtl) {
     else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x00ff);
   }
   else {
-    rtl_sext(&id_dest->val,&id_src->val,2);
+    bool msb = (reg_l(R_EAX) >> 15) & 1;
+    if(msb) rtl_ori(&reg_l(R_EAX),&reg_l(R_EAX),0xffff0000);
+    else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x0000ffff);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
