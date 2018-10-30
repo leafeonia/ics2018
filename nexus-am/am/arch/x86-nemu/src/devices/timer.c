@@ -4,6 +4,7 @@
 //#include <stdio.h>
 size_t timer_read(uintptr_t reg, void *buf, size_t size) {
 //printf("enter timer_read.\n");
+  _putc('1');
   switch (reg) {
     case _DEVREG_TIMER_UPTIME: {
       _UptimeReg *uptime = (_UptimeReg *)buf;
