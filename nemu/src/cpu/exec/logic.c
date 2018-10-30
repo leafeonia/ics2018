@@ -95,3 +95,24 @@ make_EHelper(not) {
   print_asm_template1(not);
      // printf("---%s---\n",decoding.assembly);
 }
+
+make_EHelper(rol){
+	int count = id_src->val;
+	int tempcf = 0;
+	while(count){
+		count--;
+		if (decoding.is_operand_size_16) tempcf = (id_dest->val >> 15) & 1;
+		else  tempcf = (id_dest->val >> 31) & 1;
+		rtl_li(&id_dest->val,id_dest->val*2+tempcf);
+	}
+	if(id_src->val == 1){
+		if (decoding.is_operand_size_16) {
+			if(cpu.eflags.CF != ((id_dest->val >> 15) & 1)) cpu.eflags.OF = 1;
+			else cpu.eflags.OF = 0;
+		}
+		else{
+			if(cpu.eflags.CF != ((id_dest->val >> 31) & 1)) cpu.eflags.OF = 1;
+			else cpu.eflags.OF = 0;
+		}
+	}
+}

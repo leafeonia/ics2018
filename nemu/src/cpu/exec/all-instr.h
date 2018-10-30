@@ -41,6 +41,7 @@ make_EHelper(div);
 make_EHelper(mul);
 make_EHelper(cwtl);
 make_EHelper(imul3);
+make_EHelper(rol);
 
 make_EHelper(operand_size);
 
