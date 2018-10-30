@@ -1,8 +1,9 @@
 #include <am.h>
 #include <x86.h>
 #include <amdev.h>
-
+//#include <stdio.h>
 size_t timer_read(uintptr_t reg, void *buf, size_t size) {
+//printf("enter timer_read.\n");
   switch (reg) {
     case _DEVREG_TIMER_UPTIME: {
       _UptimeReg *uptime = (_UptimeReg *)buf;
