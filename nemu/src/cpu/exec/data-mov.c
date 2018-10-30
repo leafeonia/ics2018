@@ -65,10 +65,12 @@ make_EHelper(cltd) {
 
 make_EHelper(cwtl) {
   if (decoding.is_operand_size_16) {
-    TODO();
+    bool msb = (reg_l(R_EAX) >> 7) & 1;
+    if(msb) rtl_ori(&reg_l(R_EAX),&reg_l(R_EAX),0xff00);
+    else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x00ff);
   }
   else {
-    TODO();
+    rtl_sext(&id_dest->val,&id_src->val,2);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
