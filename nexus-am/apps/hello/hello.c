@@ -1,5 +1,5 @@
 #include <am.h>
-
+#include <klib.h>
 void print(const char *s) {
   for (; *s; s ++) {
     _putc(*s);
