@@ -26,6 +26,10 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                 case 'd':
                     num = va_arg(ap,int);
                     cnt = 0;
+                    if(num < 0){
+                        *out++ = '-';
+                        num = -num;
+                    }
                     if(!num) {
                         *out++ = '0';
                     }
