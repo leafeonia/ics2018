@@ -54,7 +54,7 @@ make_EHelper(or) {
 }
 
 make_EHelper(sar) {
-  rtl_sar(&id_dest->val,&id_dest->val,&id_dest->val);
+  rtl_sar(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest, &id_dest->val);
   // unnecessary to update CF and OF in NEMU
 
