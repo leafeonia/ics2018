@@ -6,7 +6,7 @@ size_t input_read(uintptr_t reg, void *buf, size_t size) {
   switch (reg) {
     case _DEVREG_INPUT_KBD: {
 
-      int code  = inb(0x60);
+      int code  = inw(0x60);
       if(code) _putc(code+'0');
       //else _putc('0');
       _KbdReg *kbd = (_KbdReg *)buf;
