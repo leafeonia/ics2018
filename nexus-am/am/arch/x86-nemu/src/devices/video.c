@@ -27,10 +27,9 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
       int i,j;
       /*int size = screen_width() * screen_height();
       for (i = 0; i < size; i ++) fb[i] = i;*/
-	 printf("width = %d,height = %d\n",screen_width(),screen_height());
 		
-	  for(i = ctl->x;i < ctl->x + ctl->w;++i){
-	  	for(j = ctl->y;j < ctl->y + ctl->h;++j){
+	  for(i = ctl->y;i < ctl->y + ctl->h;++i){
+	  	for(j = ctl->x;j < ctl->x + ctl->w;++j){
 	  		fb[i*screen_width()+j] = *(ctl->pixels+i*ctl->w+j);
 	  	}
 	  }
