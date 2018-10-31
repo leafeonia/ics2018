@@ -30,7 +30,7 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
 		
 	  for(i = ctl->x;i < ctl->x + ctl->w;++i){
 	  	for(j = ctl->y;j < ctl->y + ctl->h;++j){
-	  		fb[i*screen_width()+j] = *(ctl->pixels);
+	  		fb[i*screen_width()+j] = *(ctl->pixels+i*screen_width()+j);
 	  	}
 	  }
 
