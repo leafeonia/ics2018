@@ -24,14 +24,21 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
       _FBCtlReg *ctl = (_FBCtlReg *)buf;
       
       
-      int i;
+      int i,j;
       //int size = screen_width() ;* screen_height();
       //for (i = 0; i < size; i ++) fb[i] = i;
-      int s = ctl->w*ctl->h;
-      printf("%d\n",s);
+      
+      /*int s = ctl->w*ctl->h;
 	  for(i = 0;i < s;++i){
 	  	fb[i+ctl->x*screen_width()+ctl->y] = *(ctl->pixels+i);
 	  	
+	  }*/
+	  int cnt = 0;
+	  for(i = 0;i < ctl->h;i++){
+	  	for(j = 0;j < ctl->w;j++){
+	  		fb[ctl->x+j + (ctl->y+i)*screen_width()] = *(ctl->pixels+cnt);
+	  		cnt++;
+	  	}
 	  }
 		
 	  /*for(i = ctl->x;i < ctl->x + ctl->w;++i){
