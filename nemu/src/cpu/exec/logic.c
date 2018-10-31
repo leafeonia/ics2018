@@ -54,13 +54,13 @@ make_EHelper(or) {
 }
 
 make_EHelper(sar) {
-	pr(&id_dest->val);
-	pr(&id_src->val);
-	pr(&id_dest->width);
+	//pr(&id_dest->val);
+	//pr(&id_src->val);
+	//pr(&id_dest->width);
 	rtl_sext(&id_dest->val,&id_dest->val,id_dest->width);
-	pr(&id_dest->val);
+	//pr(&id_dest->val);
   rtl_sar(&id_dest->val,&id_dest->val,&id_src->val);
-  pr(&id_dest->val);
+  //pr(&id_dest->val);
   operand_write(id_dest, &id_dest->val);
   // unnecessary to update CF and OF in NEMU
 
