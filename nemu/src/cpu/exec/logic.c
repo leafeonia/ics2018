@@ -109,7 +109,12 @@ make_EHelper(not) {
 }
 
 make_EHelper(rol){
-	int count = id_src->val;
+  rtl_shl(&t0,&id_dest->val,&id_src->val);
+  rtl_shri(&t1,&id_dest->val,id_dest->width*8 - id_src->val);
+  rtl_or(&t0,&t0,&t1);
+  operand_write(id_dest,&t0);
+    print_asm_template2(tol);
+	/*int count = id_src->val;
 	int tempcf = 0;
 	while(count){
 		count--;
@@ -126,5 +131,5 @@ make_EHelper(rol){
 			if(cpu.eflags.CF != ((id_dest->val >> 31) & 1)) cpu.eflags.OF = 1;
 			else cpu.eflags.OF = 0;
 		}
-	}
+	}*/
 }
