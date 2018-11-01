@@ -57,8 +57,14 @@ make_EHelper(sar) {
 	//pr(&id_dest->val);
 	//pr(&id_src->val);
 	//pr(&id_dest->width);
-	rtl_sext(&id_dest->val,&id_dest->val,id_dest->width);
+	//rtl_sext(&id_dest->val,&id_dest->val,id_dest->width);
 	//pr(&id_dest->val);
+  if(id_dest->width == 1){
+  	id_dest->val = (int8_t)id_dest->val;
+  }
+  if(id_dest->width == 2){
+  	id_dest->val = (int16_t)id_dest->val;
+  }
   rtl_sar(&id_dest->val,&id_dest->val,&id_src->val);
   //pr(&id_dest->val);
   operand_write(id_dest, &id_dest->val);
