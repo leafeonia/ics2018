@@ -149,7 +149,7 @@ static inline void rtl_sr(int r, const rtlreg_t* src1, int width) {
   }
 }
 
-inline void rtl_not(rtlreg_t *dest, const rtlreg_t* src1) {
+static inline void rtl_not(rtlreg_t *dest, const rtlreg_t* src1) {
   // dest <- ~src1
   *dest = ~(*src1);
 }
