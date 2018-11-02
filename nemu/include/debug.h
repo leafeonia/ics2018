@@ -7,7 +7,6 @@
 
 #ifdef DEBUG
 extern FILE* log_fp;
-volatile static int dummy = 0 ;
 #	define Log_write(format, ...) \
   do { \
     if (log_fp != NULL) { \
