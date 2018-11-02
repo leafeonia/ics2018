@@ -77,7 +77,7 @@ make_EHelper(cwtl) {
     if(msb) rtl_ori(&reg_l(R_EAX),&reg_l(R_EAX),0xffff0000);
     else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x0000ffff);*/
     rtl_lr(&t0,R_AX,2);
-    t0 = (int32_t)(int16_t)t0;
+    t0 = (int32_t)(int8_t)t0;
     rtl_sr(R_EAX,&t0,4);
   }
 
