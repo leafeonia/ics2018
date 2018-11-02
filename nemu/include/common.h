@@ -1,7 +1,7 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#define DEBUG
+//#define DEBUG
 //#define DIFF_TEST
 
 #if _SHARE
@@ -17,7 +17,7 @@
 #include <assert.h>
 #include <string.h>
 
-//volatile static int dummy;
+volatile static int dummy = 0;
 
 typedef uint8_t bool;
 
