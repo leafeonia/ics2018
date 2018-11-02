@@ -65,20 +65,20 @@ make_EHelper(cltd) {
 
 make_EHelper(cwtl) {
   if (decoding.is_operand_size_16) {
-    bool msb = (reg_l(R_EAX) >> 7) & 1;
+    /*bool msb = (reg_l(R_EAX) >> 7) & 1;
     if(msb) rtl_ori(&reg_l(R_EAX),&reg_l(R_EAX),0xff00);
-    else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x00ff);
-    /*rtl_lr(&t0,R_AL,1);
+    else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x00ff);*/
+    rtl_lr(&t0,R_AL,1);
     t0 = (int16_t)(int8_t)t0;
-    rtl_sr(R_AX,&t0,2);*/
+    rtl_sr(R_AX,&t0,2);
   }
   else {
-    bool msb = (reg_l(R_EAX) >> 15) & 1;
+    /*bool msb = (reg_l(R_EAX) >> 15) & 1;
     if(msb) rtl_ori(&reg_l(R_EAX),&reg_l(R_EAX),0xffff0000);
-    else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x0000ffff);
-    /*rtl_lr(&t0,R_AX,2);
+    else rtl_andi(&reg_l(R_EAX),&reg_l(R_EAX),0x0000ffff);*/
+    rtl_lr(&t0,R_AX,2);
     t0 = (int16_t)(int8_t)t0;
-    rtl_sr(R_EAX,&t0,4);*/
+    rtl_sr(R_EAX,&t0,4);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
