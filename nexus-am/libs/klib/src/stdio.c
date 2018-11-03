@@ -80,7 +80,7 @@ int printf(const char *fmt, ...) {
     char* s = temp;
     va_list aptr;
     va_start(aptr, fmt);
-    int ret = my_vsprintf(s, fmt, aptr);
+    int ret = vsprintf(s, fmt, aptr);
     va_end(aptr);
     for (; *s; s ++) {
         _putc(*s);
