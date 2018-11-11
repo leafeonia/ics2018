@@ -6,7 +6,7 @@ void difftest_skip_dut();
 make_EHelper(lidt) {
   //TODO();
 	//cpu.idtr = id_dest->val;
-	pr("&id_dest->addr");
+	pr("&id_src->val");
   print_asm_template1(lidt);
 }
 
