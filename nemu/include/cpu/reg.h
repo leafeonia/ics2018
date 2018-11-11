@@ -39,6 +39,11 @@ typedef struct {
   	unsigned SF:1;
   	unsigned IF:1;
   } eflags;
+  
+  struct {
+  	unsigned limit:16;
+  	unsigned base:32;
+  } idtr;
 } CPU_state;
 
 extern CPU_state cpu;
