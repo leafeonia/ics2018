@@ -31,13 +31,18 @@ typedef struct {
 		 rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 	 };
   };
-  vaddr_t eip,CS;
-  struct bs{
+  rtlreg_t eip,CS;
+  struct {
   	unsigned CF:1;
+  	unsigned dummy:5;
   	unsigned ZF:1;
-  	unsigned OF:1;
   	unsigned SF:1;
+  	unsigned dummy2:1;
   	unsigned IF:1;
+  	unsigned dummy3:1;
+  	unsigned OF:1;
+  	unsigned dummy4:20;
+  	int val;
   } eflags;
   
   struct {
