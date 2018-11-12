@@ -6,6 +6,7 @@ void difftest_skip_dut();
 make_EHelper(lidt) {
   //TODO();
 	//cpu.idtr = id_dest->val;
+	printf("%x\n",cpu.eip);
 	pr("&id_src->val");
 	pr("&id_src->addr");
 	pr("&id_dest->val");
