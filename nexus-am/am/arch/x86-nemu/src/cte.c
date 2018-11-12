@@ -8,6 +8,11 @@ void vecnull();
 
 _Context* irq_handle(_Context *tf) {
   _Context *next = tf;
+  printf("tf.eflags = %d\n",tf->eflags);
+  printf("tf.cs = %d\n",tf->cs);
+  printf("tf.eip = %d\n",tf->eip);
+  printf("tf.err = %d\n",tf->err);
+  printf("tf.irq = %d\n",tf->irq);
   printf("tf.eax = %d\n",tf->eax); 
   printf("tf.ecx = %d\n",tf->ecx);
   printf("tf.edx = %d\n",tf->edx);
