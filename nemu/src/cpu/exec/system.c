@@ -10,6 +10,7 @@ make_EHelper(lidt) {
 	pr("&id_src->addr");
 	pr("&id_dest->val");
 	pr("&id_dest->addr");
+	pr("&cpu.eip");
   print_asm_template1(lidt);
 }
 
