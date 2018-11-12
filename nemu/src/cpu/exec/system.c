@@ -7,6 +7,9 @@ make_EHelper(lidt) {
   //TODO();
 	//cpu.idtr = id_dest->val;
 	pr("&id_src->val");
+	pr("&id_src->addr");
+	pr("&id_dest->val");
+	pr("&id_dest->addr");
   print_asm_template1(lidt);
 }
 
