@@ -8,6 +8,7 @@ void vecnull();
 
 _Context* irq_handle(_Context *tf) {
   _Context *next = tf;
+  printf("tf.eax = %d\n",tf->eax);
   if (user_handler) {
     _Event ev;
     switch (tf->irq) {
@@ -34,7 +35,6 @@ int _cte_init(_Context*(*handler)(_Event, _Context*)) {
   // -------------------- system call --------------------------
   idt[0x81] = GATE(STS_TG32, KSEL(SEG_KCODE), vectrap, DPL_KERN);
   set_idt(idt, sizeof(idt));
-  printf("address of vectrap = %d\n",vectrap);
   // register event handler
   user_handler = handler;
 
