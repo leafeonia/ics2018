@@ -5,8 +5,11 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * That is, use ``NO'' to index the IDT.
    */
-
-  TODO();
+  uint32_t addr = cpu.idtr.base + NO*8;
+  uint32_t low = vaddr_read(addr,4);
+  uint32_t high = vaddr_read(addr+12,4);
+  cpu.eip = (high << 16) & low;
+  cpu.eip = ret_addr;
 }
 
 void dev_raise_intr() {
