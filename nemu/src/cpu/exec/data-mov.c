@@ -9,8 +9,9 @@ make_EHelper(mov) {
 make_EHelper(push) {
 //pr(&id_dest->val);
   rtl_push(&id_dest->val);
+     printf("cpu.esp1 = %x\n",cpu.esp);
    if(id_dest->type != OP_TYPE_IMM)operand_write(id_dest, &id_dest->val);
-   printf("cpu.esp = %x\n",cpu.esp);
+   printf("cpu.esp2 = %x\n",cpu.esp);
   print_asm_template1(push);
   //printf("---%s---\n",decoding.assembly);
 }
