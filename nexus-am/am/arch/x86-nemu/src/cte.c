@@ -1,6 +1,6 @@
 #include <am.h>
 #include <x86.h>
-
+#include <stdio.h>
 static _Context* (*user_handler)(_Event, _Context*) = NULL;
 
 void vectrap();
@@ -33,8 +33,9 @@ int _cte_init(_Context*(*handler)(_Event, _Context*)) {
 
   // -------------------- system call --------------------------
   idt[0x81] = GATE(STS_TG32, KSEL(SEG_KCODE), vectrap, DPL_KERN);
+  printf("enter cte.c\n");
   set_idt(idt, sizeof(idt));
-
+  printf("address of vectrap = %d\n",vectrap);
   // register event handler
   user_handler = handler;
 
