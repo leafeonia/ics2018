@@ -11,7 +11,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   printf("low = %d\n",low);
   uint32_t high = vaddr_read(addr+12,4);
   printf("high = %d\n",high);
-  uint32_t jp = (high << 16) & low;
+  uint32_t jp = (high << 16) | low;
   printf("jp = %d\n",jp);
   cpu.eip = jp;
   cpu.eip = ret_addr;
