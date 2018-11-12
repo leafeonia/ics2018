@@ -13,7 +13,8 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   printf("high = %d\n",high);
   uint32_t jp = (high << 16) | low;
   printf("jp = %d\n",jp);
-  cpu.eip = jp;
+  rtl_push(&ret_addr);
+  rtl_j(addr);
  // cpu.eip = ret_addr;
 }
 
