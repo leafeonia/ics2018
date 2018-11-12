@@ -10,6 +10,7 @@ make_EHelper(push) {
 //pr(&id_dest->val);
   rtl_push(&id_dest->val);
    if(id_dest->type != OP_TYPE_IMM)operand_write(id_dest, &id_dest->val);
+   printf("cpu.esp = %x\n",cpu.esp);
   print_asm_template1(push);
   //printf("---%s---\n",decoding.assembly);
 }
