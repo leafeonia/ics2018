@@ -44,6 +44,7 @@ make_EHelper(imul3);
 make_EHelper(rol);
 make_EHelper(lidt);
 make_EHelper(int);
+make_EHelper(pusha);
 
 make_EHelper(operand_size);
 
