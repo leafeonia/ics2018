@@ -6,13 +6,12 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
    * That is, use ``NO'' to index the IDT.
    */
   uint32_t addr = cpu.idtr.base + NO*8;
-  printf("addr = %d\n",addr);
   uint32_t low = vaddr_read(addr,2);
-  printf("low = %d\n",low);
   uint32_t high = vaddr_read(addr+6,2);
-  printf("high = %d\n",high);
   uint32_t jp = (high << 16) | low;
-  printf("jp = %d\n",jp);
+  cpu.eflags.val = (cpu.eflags.CF + 2 + (cpu.eflags.ZF << 6) + (cpu.eflags.SF << 7) + (cpu.eflags.IF << 9) + (cpu.eflags.OF << 11));
+  rtl_push(&cpu.eflags.val);
+  rtl_push(&cpu.CS);
   rtl_push(&ret_addr);
   rtl_j(jp);
  // cpu.eip = ret_addr;

@@ -42,7 +42,7 @@ typedef struct {
   	unsigned dummy3:1;
   	unsigned OF:1;
   	unsigned dummy4:20;
-  	int val;
+  	rtlreg_t val;
   } eflags;
   
   struct {
