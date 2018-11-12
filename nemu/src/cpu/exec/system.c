@@ -6,12 +6,10 @@ void difftest_skip_dut();
 make_EHelper(lidt) {
   //TODO();
 	//cpu.idtr = id_dest->val;
-	printf("%u\n",id_dest->addr);
-	pr("&id_src->val");
-	pr("&id_src->addr");
-	pr("&id_dest->val");
-	pr("&id_dest->addr");
-	pr("&cpu.eip");
+	cpu.idtr.base = vaddr_read(id_dest->addr + 2,2);
+	cpu.idtr.limit = vaddr_read(id_dest->addr - 2,2);
+	printf("%u\n",cpu.idtr.base);
+	printf("%u\n",cpu.idtr.limit);
   print_asm_template1(lidt);
 }
 
