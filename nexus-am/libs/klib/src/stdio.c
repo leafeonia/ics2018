@@ -65,11 +65,11 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
      					 step++;
    					 }while(num);
    					 result[step] = '\0';
-             		char* temp = result;
-             		while(*temp){
-             			*out++ = *temp++;
-             			ret++;
-             		}
+             		while(step){
+                        *out++ = result[step-1];
+                        step--;
+                        ret++;
+                    }
              		break;
                 default:break;
             }
