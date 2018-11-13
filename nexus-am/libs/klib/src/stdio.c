@@ -66,7 +66,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
      					 step++;
    					 }while(num);
              		char* temp = result;
-             		while(*temp++){
+             		while(*temp){
              			*out++ = *temp++;
              			ret++;
              		}
