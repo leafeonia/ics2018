@@ -99,6 +99,8 @@ static int cmd_info(char *args){
 		}
 		printf("eip : %08x\n",cpu.eip); 
 		printf("CF : %d\tOF : %d\tZF : %d\tSF : %d\n",cpu.eflags.CF,cpu.eflags.OF,cpu.eflags.ZF,cpu.eflags.SF);
+		printf("CS : %08x\n",cpu.CS); 
+		printf("eflags : %08x\n",cpu.eflags.val); 
 	} 
 	else if(arg1 && arg1[0] == 'w'){
 		wp_info();
