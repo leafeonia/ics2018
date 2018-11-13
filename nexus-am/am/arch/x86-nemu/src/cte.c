@@ -9,8 +9,11 @@ void vecnull();
 _Context* irq_handle(_Context *tf) {
   _Context *next = tf;
   printf("tf.eflags = %x\n",tf->eflags);
+    printf("tf.eflags = %d\n",tf->eflags);
   printf("tf.cs = %x\n",tf->cs);
+    printf("tf.cs = %d\n",tf->cs);
   printf("tf.eip = %x\n",tf->eip);
+    printf("tf.eip = %d\n",tf->eip);
   printf("tf.err = %x\n",tf->err);
   printf("tf.irq = %x\n",tf->irq);
   printf("tf.eax = %x\n",tf->eax); 
