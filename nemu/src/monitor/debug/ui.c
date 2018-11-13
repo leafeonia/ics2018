@@ -99,8 +99,8 @@ static int cmd_info(char *args){
 		}
 		printf("eip : %08x\n",cpu.eip); 
 		printf("CF : %d\tOF : %d\tZF : %d\tSF : %d\n",cpu.eflags.CF,cpu.eflags.OF,cpu.eflags.ZF,cpu.eflags.SF);
-		printf("CS : %08x\n",cpu.CS); 
-		printf("eflags : %08x\n",cpu.eflags.val); 
+		//printf("CS : %08x\n",cpu.CS); 
+		//printf("eflags : %08x\n",cpu.eflags.val); 
 	} 
 	else if(arg1 && arg1[0] == 'w'){
 		wp_info();
@@ -184,10 +184,10 @@ static int cmd_help(char *args) {
 }
 
 void ui_mainloop(int is_batch_mode) {
-  /*if (is_batch_mode) {
+  if (is_batch_mode) {
     cmd_c(NULL);
     return;
-  }*/
+  }
 
   while (1) {
     char *str = rl_gets();
