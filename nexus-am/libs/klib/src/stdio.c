@@ -60,11 +60,11 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                 	int step = 0; 
 					 do
    					 {
-   					 	
-      					 result[step]="0123456789ABCDEF"[num%16];
+      					 result[step]="0123456789abcdef"[num%16];
      					 num/=16;
      					 step++;
    					 }while(num);
+   					 result[step] = '\0';
              		char* temp = result;
              		while(*temp){
              			*out++ = *temp++;
