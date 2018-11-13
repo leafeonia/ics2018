@@ -8,7 +8,7 @@ void vecnull();
 
 _Context* irq_handle(_Context *tf) {
   _Context *next = tf;
-  printf("tf.eflags = %x\n",tf->eflags);
+  /*printf("tf.eflags = %x\n",tf->eflags);
   printf("tf.cs = %x\n",tf->cs);
   printf("tf.eip = %x\n",tf->eip);
   printf("tf.err = %x\n",tf->err);
@@ -20,10 +20,12 @@ _Context* irq_handle(_Context *tf) {
   printf("tf.esp = %x\n",tf->esp);
   printf("tf.ebp = %x\n",tf->ebp);
   printf("tf.esi = %x\n",tf->esi);
-  printf("tf.edi = %x\n",tf->edi);
+  printf("tf.edi = %x\n",tf->edi);*/
   if (user_handler) {
     _Event ev;
     switch (tf->irq) {
+      case 0x81:
+      	ev.event = _EVENT_YIELD;break;
       default: ev.event = _EVENT_ERROR; break;
     }
 
