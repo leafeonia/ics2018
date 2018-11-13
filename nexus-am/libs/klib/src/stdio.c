@@ -6,6 +6,30 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+static char buffer_hex[100];
+void inttohex(int aa)
+{
+    static int i = 0;
+    if (aa < 16)            //递归结束条件 
+    {
+        if (aa < 10)        //当前数转换成字符放入字符串 
+            buffer_hex[i] = aa + '0';
+        else
+            buffer_hex[i] = aa - 10 + 'A';
+        buffer_hex[i+1] = '\0'; //字符串结束标志 
+    }
+    else
+    {
+        inttohex(aa / 16);  //递归调用 
+        i++;                //字符串索引+1 
+        aa %= 16;           //计算当前值
+        if (aa < 10)        //当前数转换成字符放入字符串 
+            buffer_hex[i] = aa + '0';
+        else
+            buffer_hex[i] = aa - 10 + 'A';
+    }
+}
+
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
     int ret = 0;
@@ -54,6 +78,15 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                         ret++;
                     }
                     break;
+                case 'x':
+                	num = va_arg(ap,int);
+                	inttohex(num);
+             		char* temp = buffer_hex;
+             		while(*temp++){
+             			*out++ = *temp++;
+             			ret++;
+             		}
+             		break;
                 default:break;
             }
             fmt++;
