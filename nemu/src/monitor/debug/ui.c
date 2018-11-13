@@ -98,6 +98,11 @@ static int cmd_info(char *args){
 			if((i+1) % 4 == 0) printf("\n");
 		}
 		printf("eip : %08x\n",cpu.eip); 
+		for(int i = 0;i < 8; ++i){
+			printf("%s : %08d      ",list[i],cpu.gpr[i]._32);
+			if((i+1) % 4 == 0) printf("\n");
+		}
+		printf("eip : %08d\n",cpu.eip); 
 		printf("CF : %d\tOF : %d\tZF : %d\tSF : %d\n",cpu.eflags.CF,cpu.eflags.OF,cpu.eflags.ZF,cpu.eflags.SF);
 	} 
 	else if(arg1 && arg1[0] == 'w'){
@@ -182,10 +187,10 @@ static int cmd_help(char *args) {
 }
 
 void ui_mainloop(int is_batch_mode) {
-  if (is_batch_mode) {
+  /*if (is_batch_mode) {
     cmd_c(NULL);
     return;
-  }
+  }*/
 
   while (1) {
     char *str = rl_gets();
