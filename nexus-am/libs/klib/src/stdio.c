@@ -80,8 +80,15 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                     break;
                 case 'x':
                 	num = va_arg(ap,int);
-                	inttohex(num);
-             		char* temp = buffer_hex;
+                	char result[100];
+					 do
+   					 {
+   					 	int step = 0; 
+      					 result[step]="0123456789ABCDEF"[num%16];
+     					 num/=16;
+     					 step++;
+   					 }while(num);
+             		char* temp = result;
              		while(*temp++){
              			*out++ = *temp++;
              			ret++;
