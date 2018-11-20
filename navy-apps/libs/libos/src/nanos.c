@@ -33,7 +33,8 @@ int _open(const char *path, int flags, mode_t mode) {
 }
 
 int _write(int fd, void *buf, size_t count){
-  _syscall_(SYS_write,fd,buf,count);
+   while(1) _putc('c');
+   _syscall_(SYS_write,fd,buf,count);
   while(1) _putc('c');
   _exit(SYS_write);
   return count;
