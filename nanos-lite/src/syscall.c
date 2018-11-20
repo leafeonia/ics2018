@@ -1,7 +1,7 @@
 #include "common.h"
 #include "syscall.h"
 
-#define SYS_yield 1 //add
+//#define SYS_yield 1 //add
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
