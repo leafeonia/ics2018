@@ -13,10 +13,8 @@ _Context* do_syscall(_Context *c) {
     case(SYS_exit):_halt(0);break;
     case(SYS_write):
     	if(a[1] == 1 || a[1] == 2){
-    		while(a[3]--) {
-    			char ch = *((uintptr_t*)a[2]);
-    			_putc(ch);
-    		}
+    		uintptr_t* addr = (uintptr_t*)a[2];
+    		while(a[3]--) _putc(*addr++);
     	}
     	break;
     	//panic("Unhandled syscall ID = %d %d %d %d", a[0],a[1],a[2],a[3]);
