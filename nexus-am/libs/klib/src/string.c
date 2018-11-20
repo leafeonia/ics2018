@@ -53,7 +53,11 @@ void* memset(void* v,int c,size_t n) {
 }
 
 void* memcpy(void* out, const void* in, size_t n) {
-  return NULL;
+  void* origin = out;
+  char* outc = (char*) out;
+  char* inc = (char*) in;
+  while(n--) *outc++ = *inc++;
+  return origin;
 }
 
 int memcmp(const void* s1, const void* s2, size_t n){
