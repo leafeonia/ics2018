@@ -23,6 +23,7 @@ _Context* irq_handle(_Context *tf) {
   printf("tf.edi = %x\n",tf->edi);*/
   if (user_handler) {
     _Event ev;
+    printf("cte.c. tf->irq = %d\n",tf->irq);
     switch (tf->irq) {
       case 0x81:
       	ev.event = _EVENT_YIELD;break;
