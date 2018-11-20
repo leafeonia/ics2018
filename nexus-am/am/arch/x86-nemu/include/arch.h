@@ -20,10 +20,10 @@ struct _Context {
   uintptr_t eax, ecx, edx, ebx, esp, ebp, esi, edi;*/
 };
 
-#define GPR1 err
-#define GPR2 irq
-#define GPR3 ebp
-#define GPR4 esi
+#define GPR1 eax
+#define GPR2 ebx
+#define GPR3 ecx
+#define GPR4 edx
 #define GPRx eip
 
 #ifdef __cplusplus
