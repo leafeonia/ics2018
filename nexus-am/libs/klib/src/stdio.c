@@ -55,6 +55,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                     }
                     break;
                 case 'x':
+                case 'p':
                 	num = va_arg(ap,int);
                 	char result[100];
                 	int step = 0; 
