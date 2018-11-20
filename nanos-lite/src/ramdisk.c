@@ -15,7 +15,8 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len) {
   printf("*buf = 0x%p,len = 0x%x\n",buf,len);
   memcpy(buf, &ramdisk_start + offset, len);
   printf("finish\n");
-  return len;
+  //return len;
+  return ramdisk_start;
 }
 
 /* write `len' bytes starting from `buf' into the `offset' of ramdisk */
