@@ -15,7 +15,7 @@ _Context* do_syscall(_Context *c) {
     	if(a[1] == 1 || a[1] == 2){
     		char* addr = (char*)a[2];
     		while(a[3]--) {
-    			_putc(*addr);
+    			_putc(*addr++);
     		}
     	}
     	break;
