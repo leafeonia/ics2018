@@ -38,7 +38,7 @@ _Context* irq_handle(_Context *tf) {
       next = tf;
     }
   }
-  printf("return.\n");
+  //printf("return.\n");
   return next;
 }
 
