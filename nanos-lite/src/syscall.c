@@ -8,7 +8,7 @@ _Context* do_syscall(_Context *c) {
   a[2] = c->GPR3;
   a[3] = c->GPR4;
   switch (a[0]) {
-    default: panic("Unhandled syscall ID = %d %x %x %x %x", a[0],a[1],a[2],a[3]);
+    default: panic("Unhandled syscall ID = %d %x %x %x", a[0],a[1],a[2],a[3]);
   }
 
   return NULL;
