@@ -14,7 +14,7 @@ _Context* do_syscall(_Context *c) {
     case(SYS_write):
     	if(a[1] == 1 || a[1] == 2){
     		uintptr_t* addr = (uintptr_t*)a[2];
-    		while(a[3]--) _putc(*addr++);
+    		while(a[3]--) _putc((char)*addr++);
     	}
     	break;
     	//panic("Unhandled syscall ID = %d %d %d %d", a[0],a[1],a[2],a[3]);
