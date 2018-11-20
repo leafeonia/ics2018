@@ -14,7 +14,7 @@ _Context* do_syscall(_Context *c) {
     case(SYS_write):
     	if(a[1] == 1 || a[1] == 2){
     		while(a[3]--) {
-    			char ch = *((uintptr_t*)a[1]);
+    			char ch = *((uintptr_t*)a[2]);
     			_putc(ch);
     		}
     	}
