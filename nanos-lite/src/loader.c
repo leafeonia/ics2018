@@ -7,8 +7,8 @@ size_t get_ramdisk_size();
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   void* buf = (uintptr_t*)DEFAULT_ENTRY;
-  return ramdisk_read(buf,0,get_ramdisk_size());
-  //return DEFAULT_ENTRY;
+  ramdisk_read(buf,0,get_ramdisk_size()+1);
+  return DEFAULT_ENTRY;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
