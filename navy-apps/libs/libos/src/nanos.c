@@ -42,7 +42,7 @@ extern char  end;
 intptr_t program_break = &end;
 
 void *_sbrk(intptr_t increment){
-  if(_syscall_(SYS_brk,program_break+increment,0,0) == 1){
+  if(_syscall_(SYS_brk,program_break+increment,0,0) == 0){
 	intptr_t ret = program_break;
 	program_break = program_break + increment;
 	return (void*)ret;
