@@ -12,6 +12,7 @@ _Context* do_syscall(_Context *c) {
     case(SYS_yield):_yield();break;
     case(SYS_exit):_halt(0);break;
     case(SYS_write):
+    	Log("SYS_write");
     	if(a[1] == 1 || a[1] == 2){
     		char* addr = (char*)a[2];
     		while(a[3]--) _putc(*addr++);
