@@ -14,7 +14,6 @@ _Context* do_syscall(_Context *c) {
     case(SYS_write):
     	Log("SYS_write");
     	//Log("a[1] = %d,a[2] = %x,a[3] = %d",a[1],&a[2],a[3]);
-    	a[3]++;
     	if(a[1] == 1 || a[1] == 2){
     		char* addr = (char*)a[2];
     		while(a[3]--) _putc(*addr++);
