@@ -18,6 +18,7 @@ _Context* do_syscall(_Context *c) {
     		char* addr = (char*)a[2];
     		while(a[3]--) _putc(*addr++);
     	}
+    	Log("SYS_write finish.");
     	break;
     	//panic("Unhandled syscall ID = %d %d %d %d", a[0],a[1],a[2],a[3]);
     case(SYS_brk):
