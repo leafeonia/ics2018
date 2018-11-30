@@ -14,6 +14,7 @@ typedef struct {
 enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
 
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
+size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -56,6 +57,10 @@ size_t fs_filesz(int fd){
 
 size_t fs_read(int fd, void* buf, size_t len){
 	return ramdisk_read(buf,file_table[fd].disk_offset,len);
+}
+
+size_t fs_write(int fd, const void *buf, size_t len){
+	return ramdisk_write(buf,file_table[fd].disk_offset,len);
 }
 
 int fs_close(int fd){
