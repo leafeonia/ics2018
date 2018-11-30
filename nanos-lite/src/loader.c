@@ -10,7 +10,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd = fs_open(filename);
 
   fs_read(fd,buf,fs_filesz(fd));
-    printf("fd = %d,fs_filesz(fd) = %d,buf = %d\n",fd,fs_filesz(fd),(uintptr_t)buf);
+    printf("fd = %d,fs_filesz(fd) = %d,buf = %x\n",fd,fs_filesz(fd),(uintptr_t)buf);
   fs_close(fd);
   //ramdisk_read(buf,0,get_ramdisk_size());
   return (uintptr_t)buf;
