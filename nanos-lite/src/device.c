@@ -2,8 +2,9 @@
 #include <amdev.h>
 
 size_t serial_write(const void *buf, size_t offset, size_t len) {
+	int ret = len;
 	while(len--) _putc(*(char*)buf++);
-  	return len;
+  	return ret;
 }
 
 #define NAME(key) \
