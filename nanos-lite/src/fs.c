@@ -7,6 +7,7 @@ typedef struct {
   char *name;
   size_t size;
   size_t disk_offset;
+  size_t open_offset;
   ReadFn read;
   WriteFn write;
 } Finfo;
@@ -28,9 +29,9 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
-  {"stdin", 0, 0, invalid_read, invalid_write},
-  {"stdout", 0, 0, invalid_read, invalid_write},
-  {"stderr", 0, 0, invalid_read, invalid_write},
+  {"stdin", 0, 0, 0,invalid_read, invalid_write},
+  {"stdout", 0, 0, 0,invalid_read, invalid_write},
+  {"stderr", 0, 0, 0,invalid_read, invalid_write},
 #include "files.h"
 };
 
@@ -56,11 +57,29 @@ size_t fs_filesz(int fd){
 }
 
 size_t fs_read(int fd, void* buf, size_t len){
-	return ramdisk_read(buf,file_table[fd].disk_offset,len);
+	assert(file_table[fd].open_offset+len <= file_table[fd].size);
+	return ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
 }
 
 size_t fs_write(int fd, const void *buf, size_t len){
+	assert(file_table[fd].open_offset+len <= file_table[fd].size);
 	return ramdisk_write(buf,file_table[fd].disk_offset,len);
+}
+
+size_t fs_lseek(int fd, size_t offset, int whence){
+	switch(whence){
+		case SEEK_SET:
+			file_table[fd].open_offset = offset;
+			break;
+		case SEEK_CUR:
+			file_table[fd].open_offset += offset;
+			break;
+		case SEEK_END:
+			file_table[fd].open_offset = file_table[fd].size;
+	}
+	assert(file_table[fd].open_offset <= file_table[fd].size);
+	return file_table[fd].open_offset;
+	
 }
 
 int fs_close(int fd){
