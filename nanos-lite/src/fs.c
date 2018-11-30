@@ -17,6 +17,7 @@ enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t serial_write(const void *buf, size_t offset, size_t len);
+size_t fb_write(const void *buf, size_t offset, size_t len);
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -33,13 +34,14 @@ static Finfo file_table[] __attribute__((used)) = {
   {"stdin", 0, 0, 0,invalid_read, invalid_write},
   {"stdout", 0, 0, 0,invalid_read, serial_write},
   {"stderr", 0, 0, 0,invalid_read, serial_write},
+  {"/dev/fb", 0, 0, 0,invalid_read,fb_write},
 #include "files.h"
 };
 
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
 
 void init_fs() {
-  // TODO: initialize the size of /dev/fb
+  file_table[3].size = screen_width()*screen_height()*4;
 }
 
 int fs_open(const char* pathname){
