@@ -28,19 +28,19 @@ _Context* do_syscall(_Context *c) {
     	break;
     case(SYS_open):
     	c->GPRx = fs_open((const char*)a[1]);
-    	Log("SYS_open returns %d\n",c->GPRx);
+    	//Log("SYS_open returns %d\n",c->GPRx);
     	break;
     case(SYS_read):
     	c->GPRx = fs_read(a[1],(void*)a[2],a[3]);
-    	Log("SYS_read returns %d\n",c->GPRx);
+    	//Log("SYS_read returns %d\n",c->GPRx);
     	break;
     case(SYS_close):
     	c->GPRx = fs_close(a[1]);
-    	Log("SYS_close returns %d\n",c->GPRx);
+    	//Log("SYS_close returns %d\n",c->GPRx);
     	break;
     case(SYS_lseek):
     	c->GPRx = fs_lseek(a[1],a[2],a[3]);
-    	Log("SYS_lseek returns %d\n",c->GPRx);
+    	//Log("SYS_lseek returns %d\n",c->GPRx);
     	break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
