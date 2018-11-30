@@ -13,9 +13,7 @@ typedef struct {
 
 enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
 
-int exec_open(const char* pathname){
-	return 1;
-}
+size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -40,3 +38,27 @@ static Finfo file_table[] __attribute__((used)) = {
 void init_fs() {
   // TODO: initialize the size of /dev/fb
 }
+
+int fs_open(const char* pathname){
+	int i;
+	for(i = 0;i < NR_FILES;i++){
+		if(strcmp(pathname,file_table[i].name) == 0){
+			return i;
+		}	
+	}
+	panic("file not found.");
+	return -1;
+}
+
+size_t fs_filesz(int fd){
+	return file_table[fd].size;
+}
+
+size_t fs_read(int fd, void* buf, size_t len){
+	return ramdisk_read(buf,file_table[fd].disk_offset,len);
+}
+
+int fs_close(int fd){
+	return 0;
+}
+
