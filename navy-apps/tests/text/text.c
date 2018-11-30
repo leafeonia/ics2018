@@ -13,10 +13,11 @@ int main() {
   int i, n;
   for (i = 500; i < 1000; i ++) {
     fscanf(fp, "%d", &n);
-    if(n != i+1){
-    	printf("assert(n == i + i) fails because i = %d.n = %d\n",i,n);
+    printf("i = %d,n = %d\n",i,n);
+    //if(n != i+1){
+    	//printf("assert(n == i + 1) fails because i = %d.n = %d\n",i,n);
     	//assert(n == i + 1);
-    }
+    //}
   }
 
   fseek(fp, 0, SEEK_SET);
