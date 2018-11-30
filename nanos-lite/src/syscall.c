@@ -20,7 +20,7 @@ _Context* do_syscall(_Context *c) {
     		while(a[3]--) _putc(*addr++);
     		c->GPRx = a[3];
     	}
-    	c->GPRx = fs_write(a[1],(void*)a[2],a[3]);
+    	else c->GPRx = fs_write(a[1],(void*)a[2],a[3]);
     	break;
     	//panic("Unhandled syscall ID = %d %d %d %d", a[0],a[1],a[2],a[3]);
     case(SYS_brk):
