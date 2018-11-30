@@ -122,7 +122,12 @@ make_EHelper(neg) {
 		rtl_li(&t0,1);
 		rtl_set_CF(&t0);
 	}*/
-	rtl_li(&t0,0);
+  rtl_li(&t0,0);
+  if(&id_dest->val == 0){
+  	rtl_li(&t1,1);
+  	rtl_set_CF(&t1);
+  }
+  else rtl_set_CF(&t0);
   rtl_sub(&id_dest->val,&t0,&id_dest->val);
   operand_write(id_dest,&id_dest->val);
   
