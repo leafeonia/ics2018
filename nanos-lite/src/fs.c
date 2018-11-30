@@ -45,7 +45,7 @@ int fs_open(const char* pathname){
 	int i;
 	for(i = 0;i < NR_FILES;i++){
 		if(strcmp(pathname,file_table[i].name) == 0){
-			Log("fs_open returns %d\n",i);
+			printf("fs_open returns %d\n",i);
 			return i;
 		}	
 	}
@@ -54,16 +54,19 @@ int fs_open(const char* pathname){
 }
 
 size_t fs_filesz(int fd){
+	printf("fs_filesz returns %d\n",file_table[fd].size);
 	return file_table[fd].size;
 }
 
 size_t fs_read(int fd, void* buf, size_t len){
 	assert(file_table[fd].open_offset+len <= file_table[fd].size);
+	printf("fs_read returns %d\n",ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len));
 	return ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
 }
 
 size_t fs_write(int fd, const void *buf, size_t len){
 	assert(file_table[fd].open_offset+len <= file_table[fd].size);
+	printf("fs_write returns %d\n",ramdisk_write(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len));
 	return ramdisk_write(buf,file_table[fd].disk_offset,len);
 }
 
@@ -79,11 +82,13 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 			file_table[fd].open_offset = file_table[fd].size;
 	}
 	assert(file_table[fd].open_offset <= file_table[fd].size);
+	printf("fs_lseek returns %d\n",file_table[fd].open_offset);
 	return file_table[fd].open_offset;
 	
 }
 
 int fs_close(int fd){
+	printf("fs_close returns 0\n");
 	return 0;
 }
 
