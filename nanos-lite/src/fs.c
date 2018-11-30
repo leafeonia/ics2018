@@ -60,6 +60,7 @@ size_t fs_filesz(int fd){
 
 size_t fs_read(int fd, void* buf, size_t len){
 	assert(file_table[fd].open_offset+len <= file_table[fd].size);
+	printf("read:%d\n",file_table[fd].disk_offset+file_table[fd].open_offset);
 	printf("fs_read returns %d\n",ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len));
 	return ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
 }
