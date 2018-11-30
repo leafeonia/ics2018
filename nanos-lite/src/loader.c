@@ -8,12 +8,11 @@ size_t get_ramdisk_size();
 static uintptr_t loader(PCB *pcb, const char *filename) {
   void* buf = (uintptr_t*)DEFAULT_ENTRY;
   int fd = fs_open(filename);
-
+  printf("fd = %d,fs_filesz(fd) = %d\n",fd,fs_filesz(fd));
   fs_read(fd,buf,fs_filesz(fd));
-    printf("fd = %d,fs_filesz(fd) = %d,buf = %x\n",fd,fs_filesz(fd),(uintptr_t)buf);
   fs_close(fd);
   //ramdisk_read(buf,0,get_ramdisk_size());
-  return (uintptr_t)buf;
+  return DEFAULT_ENTRY;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
