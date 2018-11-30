@@ -12,7 +12,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   fs_read(fd,buf,fs_filesz(fd));
   fs_close(fd);
   //ramdisk_read(buf,0,get_ramdisk_size());
-  return DEFAULT_ENTRY;
+  return (uintptr_t)buf;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
