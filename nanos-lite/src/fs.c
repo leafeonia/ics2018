@@ -49,7 +49,7 @@ int fs_open(const char* pathname){
 			return i;
 		}	
 	}
-	panic("file not found.");
+	panic("file not found.\n");
 	return -1;
 }
 
