@@ -42,7 +42,6 @@ make_EHelper(nemu_trap) {
   difftest_skip_ref();
 #endif
 
-  //printf("exec_nemu_trap:cpu.eax:%d\n", cpu.eax);
   rtl_exit(NEMU_END);
 
   print_asm("nemu trap");
