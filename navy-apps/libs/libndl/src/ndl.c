@@ -12,15 +12,18 @@ static void get_display_info();
 static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;
 
 int NDL_OpenDisplay(int w, int h) {
+  printf("cp 1\n");
   if (!canvas) {
     NDL_CloseDisplay();
   }
-
+  printf("cp 2\n");
   canvas_w = w;
   canvas_h = h;
   canvas = malloc(sizeof(uint32_t) * w * h);
   assert(canvas);
-
+  
+  printf("cp 3\n");
+  
   if (getenv("NWM_APP")) {
     has_nwm = 1;
   } else {
