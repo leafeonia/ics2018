@@ -30,7 +30,10 @@ int NDL_OpenDisplay(int w, int h) {
     has_nwm = 0;
   }
 
+  printf("cp 4\n");
+
   if (has_nwm) {
+    printf("cp 5\n");
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
   } else {
@@ -39,6 +42,7 @@ int NDL_OpenDisplay(int w, int h) {
     assert(screen_h >= canvas_h);
     pad_x = (screen_w - canvas_w) / 2;
     pad_y = (screen_h - canvas_h) / 2;
+      printf("cp 6\n");
     fbdev = fopen("/dev/fb", "w"); assert(fbdev);
     evtdev = fopen("/dev/events", "r"); assert(evtdev);
   }
