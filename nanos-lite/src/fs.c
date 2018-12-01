@@ -72,7 +72,7 @@ size_t fs_filesz(int fd){
 	return file_table[fd].size;
 }
 
-/*
+
 size_t fs_read(int fd, void* buf, size_t len){
 	//assert(file_table[fd].open_offset+len <= file_table[fd].size);
 	//printf("read address:%d\n",file_table[fd].disk_offset+file_table[fd].open_offset);
@@ -83,8 +83,8 @@ size_t fs_read(int fd, void* buf, size_t len){
 	else ret = ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
 	file_table[fd].open_offset += ret;
 	return ret;
-}*/
-size_t fs_read(int fd, void *buf,  size_t len){
+}
+/*size_t fs_read(int fd, void *buf,  size_t len){
   //printf("fs_read: I enter the function.\n");
   if(file_table[fd].read != NULL){
     //printf("fs_read: name:%s\n", file_table[fd].name);
@@ -102,7 +102,7 @@ size_t fs_read(int fd, void *buf,  size_t len){
   //printf("fs_read: .oepn_offset:%d\n", file_table[fd].open_offset);
   //printf("HAHAHA\n");
   return len;
-}
+}*/
 
 /*
 size_t fs_write(int fd, const void *buf, size_t len){
