@@ -5,7 +5,6 @@
 #include <assert.h>
 #include <time.h>
 #include "syscall.h"
-#include <stdio.h>
 
 #if defined(__ISA_X86__)
 intptr_t _syscall_(int type, intptr_t a0, intptr_t a1, intptr_t a2){
@@ -23,88 +22,43 @@ intptr_t _syscall_(int type, intptr_t a0, intptr_t a1, intptr_t a2){
 #error _syscall_ is not implemented
 #endif
 
+
 void _exit(int status) {
   _syscall_(SYS_exit, status, 0, 0);
   while (1);
 }
 
 int _open(const char *path, int flags, mode_t mode) {
-  return _syscall_(SYS_open, (intptr_t)path, (intptr_t)flags, (intptr_t)mode);
+  return _syscall_(SYS_open,path,flags,mode);
   //_exit(SYS_open);
-  //return 0;
 }
 
 int _write(int fd, void *buf, size_t count){
-  /*
-  _syscall_(SYS_write, fd, (intptr_t)buf, count);
-  return count;
-  */
-  return _syscall_(SYS_write, fd, (intptr_t)buf, count);
-  //_exit(SYS_write);
-  //return 0;
+  return _syscall_(SYS_write,fd,(intptr_t)buf,count);
 }
 
-extern char end;
-intptr_t program_break = (intptr_t)&(end);
-//intptr_t program_break;
+extern char  end;
+intptr_t program_break = &end;
+
 void *_sbrk(intptr_t increment){
-  /*
-  if(increment == -1){
-    extern intptr_t end;
-    program_break = end;
+  if(_syscall_(SYS_brk,program_break+increment,0,0) == 0){
+	intptr_t ret = program_break;
+	program_break = program_break + increment;
+	return (void*)ret;
   }
-  */
-  //printf("_sbrk: program_break:%#x\n", program_break);
-  intptr_t original = program_break;
-  _syscall_(SYS_brk, program_break+increment, 0, 0);
-  program_break += increment;
-  return (void*)original;
-  /*
-  extern uintptr_t end;
-  intptr_t original = end;
-  _syscall_(SYS_brk, end+increment, 0, 0);
-  return original;
-  if(program_break == -1){
-    program_break = end;
-  }
-  
-  intptr_t now = program_break + increment;
-  int term = _syscall_(SYS_brk, now, 0, 0);
-  
-  if(term != 0)
-    assert(0);
-  
-  program_break = now;
-  return (void*)(now-increment);
-  if((int)_syscall_(SYS_brk, now, 0, 0) == 0){
-    program_break = now;
-    return (void*)(now-increment);
-  }
-  else{
-    //_putc('_'); _putc('s'); _putc('b'); _putc('r'); _putc('k'); _putc('\n');
-    assert(0);
-  }
-  */
-  //return (void *)-1;
+  return (void *)-1;
 }
 
 int _read(int fd, void *buf, size_t count) {
-  //printf("_read: count:%d\n", count);
-  return _syscall_(SYS_read, (intptr_t)fd, (intptr_t)buf, (intptr_t)count);
-  //_exit(SYS_read);
-  //return 0;
+  return _syscall_(SYS_read,fd,buf,count);
 }
 
 int _close(int fd) {
-  return _syscall_(SYS_close, (intptr_t)fd, 0, 0);
-  //_exit(SYS_close);
-  //return 0;
+  return _syscall_(SYS_close,fd,0,0);
 }
 
-off_t _lseek(int fd, off_t offset, int whence) {
-  return _syscall_(SYS_lseek, (intptr_t)fd, (intptr_t)offset, (intptr_t)whence);
-  //_exit(SYS_lseek);
-  //return 0;
+size_t _lseek(int fd, off_t offset, int whence) {
+  return _syscall_(SYS_lseek,fd,offset,whence);
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
