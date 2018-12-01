@@ -51,8 +51,8 @@ void init_fs() {
     file_table[i].open_offset = 0;
   }
   // TODO: initialize the size of /dev/fb
-  int fb = fs_open("/dev/fb", 0, 0);
-  file_table[fb].size = screen_width()*screen_height()*4;
+  //int fb = fs_open("/dev/fb", 0, 0);
+  file_table[3].size = screen_width()*screen_height()*4;
   /*
   uint32_t buf[2];
   video_read(1, buf, 8);
