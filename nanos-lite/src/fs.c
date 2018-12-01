@@ -44,7 +44,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 void init_fs() {
   file_table[3].size = screen_width()*screen_height()*4;
-  printf("init: size = %d",file_table[fs_open("/dev/fb")].size);
+  //printf("init: size = %d",file_table[fs_open("/dev/fb")].size);
 }
 
 int fs_open(const char* pathname){
