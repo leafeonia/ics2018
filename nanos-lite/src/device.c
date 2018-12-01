@@ -23,16 +23,16 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 
 static char dispinfo[128] __attribute__((used));
 
-/*size_t dispinfo_read(void *buf, size_t offset, size_t len) {
+size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   printf("enter dispinfo_read\n");
   for(int i = 0;i < len;i++){
     ((char*)buf)[i] = dispinfo[offset+i];
   }
   //memcpy(buf,dispinfo+offset,len);
   ((char*)buf)[len] = '\0';
-  return len;
-}*/
-
+  return strlen(buf);
+}
+/*
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 
   for(int i = 0;i < len;i++){
@@ -42,7 +42,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   //return len;
   //printf("dispinfo_read: len:%d\tstrlen:%d\n", len, strlen(buf));
   return strlen(buf);
-}
+}*/
 /*
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   printf("enter fb_write\n");
