@@ -52,6 +52,8 @@ static Finfo file_table[] __attribute__((used)) = {
   {"stderr", 0, 0, 0, invalid_read, serial_write},
   {"/dev/fb", 0, 0, 0, invalid_read, fb_write},
   {"/proc/dispinfo", 0, 0, 0, dispinfo_read, invalid_write},
+  {"/dev/events", 0, 0, 0, events_read, invalid_write},
+  {"/dev/tty", 0, 0, 0, invalid_read, serial_write},
 #include "files.h"
 };
 
@@ -91,7 +93,7 @@ int fs_open(const char* pathname,int flags,int mode){
 	return -1;
 }*/
 int fs_open(const char *pathname, int flags, int mode){
-  //printf("fs_open: name:%s\n", pathname);
+  printf("fs_open: name:%s\n", pathname);
   for(int i = 0;i < NR_FILES;i++){
     if(strcmp(pathname, file_table[i].name) == 0){
       return i;
