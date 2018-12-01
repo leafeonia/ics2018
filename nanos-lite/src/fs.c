@@ -66,7 +66,7 @@ void init_fs() {
 }
 
 
-/*
+
 int fs_open(const char* pathname,int flags,int mode){
 	int i;
 	for(i = 0;i < NR_FILES;i++){
@@ -77,7 +77,8 @@ int fs_open(const char* pathname,int flags,int mode){
 	}
 	panic("file not found.\n");
 	return -1;
-}*/
+}
+/*
 int fs_open(const char *pathname, int flags, int mode){
   printf("fs_open: name:%s\n", pathname);
   for(int i = 0;i < NR_FILES;i++){
@@ -86,7 +87,7 @@ int fs_open(const char *pathname, int flags, int mode){
     }
   }
   panic("fs_open: Cannot find the file.\n");
-}
+}*/
 
 size_t fs_filesz(int fd){
 	//printf("fs_filesz returns %d\n",file_table[fd].size);
