@@ -47,7 +47,7 @@ void init_fs() {
   //printf("init: size = %d",file_table[fs_open("/dev/fb")].size);
 }
 
-int fs_open(const char* pathname){
+int fs_open(const char* pathname,int flags,int mode){
 	int i;
 	for(i = 0;i < NR_FILES;i++){
 		if(strcmp(pathname,file_table[i].name) == 0){
