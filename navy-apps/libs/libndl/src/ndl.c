@@ -33,11 +33,11 @@ int NDL_OpenDisplay(int w, int h) {
   printf("cp 4\n");
 
   if (has_nwm) {
-    printf("cp 5\n");
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
   } else {
     get_display_info();
+        printf("cp 5\n");
     assert(screen_w >= canvas_w);
     assert(screen_h >= canvas_h);
     pad_x = (screen_w - canvas_w) / 2;
