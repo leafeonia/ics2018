@@ -77,22 +77,22 @@ size_t fs_read(int fd, void* buf, size_t len){
 	return ret;
 }*/
 size_t fs_read(int fd, void *buf,  size_t len){
-  //printf("fs_read: I enter the function.\n");
+  printf("fs_read: I enter the function.\n");
   if(file_table[fd].read != NULL){
-    //printf("fs_read: name:%s\n", file_table[fd].name);
+    printf("fs_read: name:%s\n", file_table[fd].name);
     file_table[fd].open_offset += len;
     return (*file_table[fd].read)(buf,file_table[fd].disk_offset+file_table[fd].open_offset-len, len);
   }
-  //printf("fs_read: I'm here.\n");
-  //printf("fs_read: len:%d\n", len);
+  printf("fs_read: I'm here.\n");
+  printf("fs_read: len:%d\n", len);
   if(file_table[fd].open_offset+len > fs_filesz(fd)){
     len = fs_filesz(fd)-file_table[fd].open_offset;
   }
-  //printf("fs_read: len:%d\n", len);
+  printf("fs_read: len:%d\n", len);
   ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, len);
   file_table[fd].open_offset += len;
-  //printf("fs_read: .oepn_offset:%d\n", file_table[fd].open_offset);
-  //printf("HAHAHA\n");
+  printf("fs_read: .oepn_offset:%d\n", file_table[fd].open_offset);
+  printf("HAHAHA\n");
   return len;
 }
 
