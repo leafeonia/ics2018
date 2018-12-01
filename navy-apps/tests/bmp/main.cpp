@@ -10,6 +10,7 @@ int main() {
   printf("load finished.\n");
   assert(bmp->pixels);
   NDL_OpenDisplay(bmp->w, bmp->h);
+  printf("OpenDisplay finished.\n");
   NDL_DrawRect(bmp->pixels, 0, 0, bmp->w, bmp->h);
   NDL_Render();
   NDL_CloseDisplay();
