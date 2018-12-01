@@ -47,12 +47,12 @@ void init_fs() {
   //printf("init: size = %d",file_table[fs_open("/dev/fb")].size);
 }*/
 void init_fs() {
-  for(int i = 0;i < NR_FILES;i++){
+  /*for(int i = 0;i < NR_FILES;i++){
     file_table[i].open_offset = 0;
-  }
+  }*/
   // TODO: initialize the size of /dev/fb
-  //int fb = fs_open("/dev/fb", 0, 0);
-  file_table[3].size = screen_width()*screen_height()*4;
+  int fb = fs_open("/dev/fb", 0, 0);
+  file_table[fb].size = screen_width()*screen_height()*4;
   /*
   uint32_t buf[2];
   video_read(1, buf, 8);
@@ -62,7 +62,7 @@ void init_fs() {
   //printf("init_fs: %d\n", file_table[fb].size);
 }
 
-/*
+
 int fs_open(const char* pathname,int flags,int mode){
 	int i;
 	for(i = 0;i < NR_FILES;i++){
@@ -73,16 +73,8 @@ int fs_open(const char* pathname,int flags,int mode){
 	}
 	panic("file not found.\n");
 	return -1;
-}*/
-int fs_open(const char *pathname, int flags, int mode){
-  printf("fs_open: name:%s\n", pathname);
-  for(int i = 0;i < NR_FILES;i++){
-    if(strcmp(pathname, file_table[i].name) == 0){
-      return i;
-    }
-  }
-  panic("fs_open: Cannot find the file.\n");
 }
+
 
 size_t fs_filesz(int fd){
 	//printf("fs_filesz returns %d\n",file_table[fd].size);
