@@ -36,6 +36,7 @@ int NDL_OpenDisplay(int w, int h) {
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
   } else {
+    printf("cp 4.5\n");
     get_display_info();
         printf("cp 5\n");
     assert(screen_w >= canvas_w);
