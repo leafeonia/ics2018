@@ -32,7 +32,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   //printf("enter fb_write\n");
-  draw_rect((uint32_t*)buf,offset%screen_width(),offset/4/screen_width(),len/4,1);	
+  draw_rect((uint32_t*)buf,offset/4%screen_width(),offset/4/screen_width(),len/4,1);	
   return len;
 }
 
