@@ -24,6 +24,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   if(key & 0x8000) down = 1;
   else down = 0;
   if(key != _KEY_NONE){
+    printf("keyname[key] = %s\n",keyname[key]);
   	if(down) sprintf(buf,"kd %s\n",keyname[key]);
   	else sprintf(buf,"ku %s\n",keyname[key]);
   }
