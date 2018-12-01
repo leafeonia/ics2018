@@ -41,10 +41,25 @@ static Finfo file_table[] __attribute__((used)) = {
 };
 
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
-
+/*
 void init_fs() {
   file_table[3].size = screen_width()*screen_height()*4;
   //printf("init: size = %d",file_table[fs_open("/dev/fb")].size);
+}*/
+void init_fs() {
+  for(int i = 0;i < NR_FILES;i++){
+    file_table[i].open_offset = 0;
+  }
+  // TODO: initialize the size of /dev/fb
+  int fb = fs_open("/dev/fb", 0, 0);
+  file_table[fb].size = screen_width()*screen_height()*4;
+  /*
+  uint32_t buf[2];
+  video_read(1, buf, 8);
+  file_table[fb].size = buf[0]*buf[1]*4;
+  */
+  //printf("init_fs: %d %d\n", buf[0], buf[1]);
+  //printf("init_fs: %d\n", file_table[fb].size);
 }
 
 int fs_open(const char* pathname,int flags,int mode){
@@ -96,7 +111,7 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 			file_table[fd].open_offset += offset;
 			break;
 		case SEEK_END:
-			file_table[fd].open_offset = file_table[fd].size;
+			file_table[fd].open_offset = file_table[fd].size+offset;
 	}
 	//assert(file_table[fd].open_offset <= file_table[fd].size);
 	//printf("fs_lseek returns %d\n",file_table[fd].open_offset);
