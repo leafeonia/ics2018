@@ -44,9 +44,9 @@ _Context* do_syscall(_Context *c) {
     	c->GPRx = fs_lseek(a[1],a[2],a[3]);
     	//Log("SYS_lseek returns %d\n",c->GPRx);
     	break;
-    case(SYS_execve):
+    /*case(SYS_execve):
     	naive_uload(NULL,(const char*)a[1]);
-    	break;
+    	break;*/
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
