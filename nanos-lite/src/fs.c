@@ -45,10 +45,25 @@ static Finfo file_table[] __attribute__((used)) = {
 
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
 
-
+/*
 void init_fs() {
   file_table[3].size = screen_width()*screen_height()*4;
   //printf("init: size = %d",file_table[fs_open("/dev/fb")].size);
+}*/
+void init_fs() {
+  for(int i = 0;i < NR_FILES;i++){
+    file_table[i].open_offset = 0;
+  }
+  // TODO: initialize the size of /dev/fb
+  int fb = fs_open("/dev/fb", 0, 0);
+  file_table[fb].size = screen_width()*screen_height()*4;
+  /*
+  uint32_t buf[2];
+  video_read(1, buf, 8);
+  file_table[fb].size = buf[0]*buf[1]*4;
+  */
+  //printf("init_fs: %d %d\n", buf[0], buf[1]);
+  //printf("init_fs: %d\n", file_table[fb].size);
 }
 
 
@@ -72,7 +87,7 @@ size_t fs_filesz(int fd){
 	return file_table[fd].size;
 }
 
-/*
+
 size_t fs_read(int fd, void* buf, size_t len){
 	//assert(file_table[fd].open_offset+len <= file_table[fd].size);
 	//printf("read address:%d\n",file_table[fd].disk_offset+file_table[fd].open_offset);
@@ -96,8 +111,8 @@ size_t fs_read(int fd, void* buf, size_t len){
 		//return len;
 	} 
 	
-}*/
-
+}
+/*
 size_t fs_read(int fd, void *buf,  size_t len){
   //printf("fs_read: I enter the function.\n");
   if(file_table[fd].read != NULL){
@@ -117,8 +132,8 @@ size_t fs_read(int fd, void *buf,  size_t len){
   //printf("HAHAHA\n");
   return len;
 }
+*/
 
-/*
 size_t fs_write(int fd, const void *buf, size_t len){
 	//assert(file_table[fd].open_offset+len <= file_table[fd].size);
 	//printf("fs_write returns %d\n",ramdisk_write(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len));
@@ -127,8 +142,8 @@ size_t fs_write(int fd, const void *buf, size_t len){
 	else ret = ramdisk_write(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
 	file_table[fd].open_offset += ret;
 	return ret;
-}*/
-
+}
+/*
 size_t fs_write(int fd, const void *buf, size_t len){
   //printf("fs_write: I'm here.\n");
   //printf("fs_write: buf:%p\n", buf);
@@ -149,8 +164,9 @@ size_t fs_write(int fd, const void *buf, size_t len){
   ramdisk_write(buf, file_table[fd].disk_offset+file_table[fd].open_offset, len);
   file_table[fd].open_offset += len;
   return len;
-}
+}*/
 
+/*
 size_t fs_lseek(int fd, size_t offset, int whence){
 	//printf("input offset = %d,whence = %d\n",offset,whence);
 	switch(whence){
@@ -167,11 +183,34 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 	//printf("fs_lseek returns %d\n",file_table[fd].open_offset);
 	return file_table[fd].open_offset;
 	
+}*/
+
+size_t fs_lseek(int fd, size_t offset, int whence){
+  //char* WHENCE[] = {"SEEK_SET", "SEEK_CUR", "SEEK_END"};
+  //printf("fs_lseek: whence:%s\toffset:%#x\tsize:%#x\n", WHENCE[whence], offset, fs_filesz(fd));
+  switch(whence){
+    case SEEK_SET:
+      file_table[fd].open_offset = offset;
+      break;
+    case SEEK_CUR:
+      file_table[fd].open_offset += offset;
+      break;
+    case SEEK_END:
+      file_table[fd].open_offset = file_table[fd].size + offset;
+      break;
+  }
+  //printf("fs_lseek: final offset:%#x\n", file_table[fd].open_offset);
+  return file_table[fd].open_offset;
 }
 
-
+/*
 int fs_close(int fd){
 	//printf("fs_close returns 0\n");
 	return 0;
+}*/
+
+int fs_close(int fd){
+  file_table[fd].open_offset = 0;
+  return 0;
 }
 
