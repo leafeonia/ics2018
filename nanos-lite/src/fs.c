@@ -203,14 +203,15 @@ size_t fs_lseek(int fd, size_t offset, int whence){
   return file_table[fd].open_offset;
 }
 
-/*
+
 int fs_close(int fd){
 	//printf("fs_close returns 0\n");
 	return 0;
-}*/
+}
 
+/*
 int fs_close(int fd){
   file_table[fd].open_offset = 0;
   return 0;
-}
+}*/
 
