@@ -57,6 +57,16 @@ int _close(int fd) {
   return _syscall_(SYS_close,fd,0,0);
 }
 
+int _wait(){
+	_exit(SYS_wait);
+	return 0;
+}
+
+int _fork(){
+	_exit(SYS_fork);
+	return 0;
+}
+
 size_t _lseek(int fd, off_t offset, int whence) {
   return _syscall_(SYS_lseek,fd,offset,whence);
 }
