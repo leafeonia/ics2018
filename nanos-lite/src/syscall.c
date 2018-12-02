@@ -14,7 +14,9 @@ _Context* do_syscall(_Context *c) {
   a[3] = c->GPR4;
   switch (a[0]) {
     case(SYS_yield):_yield();break;
-    case(SYS_exit):_halt(0);break;
+    case(SYS_exit):
+    	naive_uload(NULL,"/bin/init");
+    	break;
     case(SYS_write):
     	//Log("SYS_write");
     	/*if(a[1] == 1 || a[1] == 2){
