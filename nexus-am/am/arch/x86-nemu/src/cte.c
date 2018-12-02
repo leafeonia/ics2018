@@ -23,7 +23,7 @@ _Context* irq_handle(_Context *tf) {
   printf("tf.esi = %x\n",tf->esi);
   printf("tf.edi = %x\n",tf->edi);*/
   if (user_handler) {
-    _Event ev;
+    _Event ev = {0};
     //printf("cte.c. tf->irq = %x\n",tf->irq);
     switch (tf->irq) {
       case 0x81:
