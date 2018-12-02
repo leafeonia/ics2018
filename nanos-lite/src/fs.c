@@ -100,27 +100,7 @@ size_t fs_read(int fd, void* buf, size_t len){
 	} 
 	
 }
-/*
-size_t fs_read(int fd, void *buf,  size_t len){
-  //printf("fs_read: I enter the function.\n");
-  if(file_table[fd].read != NULL){
-    //printf("fs_read: name:%s\n", file_table[fd].name);
-    file_table[fd].open_offset += len;
-    return (*file_table[fd].read)(buf,file_table[fd].disk_offset+file_table[fd].open_offset-len, len);
-  }
-  //printf("fs_read: I'm here.\n");
-  //printf("fs_read: len:%d\n", len);
-  if(file_table[fd].open_offset+len > fs_filesz(fd)){
-    len = fs_filesz(fd)-file_table[fd].open_offset;
-  }
-  //printf("fs_read: len:%d\n", len);
-  ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, len);
-  file_table[fd].open_offset += len;
-  //printf("fs_read: .oepn_offset:%d\n", file_table[fd].open_offset);
-  //printf("HAHAHA\n");
-  return len;
-}
-*/
+
 
 size_t fs_write(int fd, const void *buf, size_t len){
 	//assert(file_table[fd].open_offset+len <= file_table[fd].size);
@@ -131,28 +111,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
 	file_table[fd].open_offset += ret;
 	return ret;
 }
-/*
-size_t fs_write(int fd, const void *buf, size_t len){
-  //printf("fs_write: I'm here.\n");
-  //printf("fs_write: buf:%p\n", buf);
-  if(file_table[fd].write != NULL){
-    //printf("fs_write: name:%s\n", file_table[fd].name);
-    //printf("fs_write: 1:%#x\t2:%#x\t3:%#x\n", file_table[fd].disk_offset, file_table[fd].open_offset, len);
-    //printf("fs_write: open_offset:%#x\n", file_table[fd].open_offset);
-    //printf("fs_write: total offset:%#x\n", file_table[fd].disk_offset+file_table[fd].open_offset);
-    size_t term = (*file_table[fd].write)(buf,file_table[fd].disk_offset+file_table[fd].open_offset, len);
-    file_table[fd].open_offset += len;
-    return term;
-  }
-  if(file_table[fd].open_offset+len > fs_filesz(fd)){
-    len = fs_filesz(fd)-file_table[fd].open_offset;
-    if(len < 0)
-      return 0;
-  }
-  ramdisk_write(buf, file_table[fd].disk_offset+file_table[fd].open_offset, len);
-  file_table[fd].open_offset += len;
-  return len;
-}*/
+
 
 size_t fs_lseek(int fd, size_t offset, int whence){
 	//printf("input offset = %d,whence = %d\n",offset,whence);

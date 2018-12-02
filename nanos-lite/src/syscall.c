@@ -1,8 +1,10 @@
 #include "common.h"
 #include "syscall.h"
 #include "fs.h"
+#include "proc.h"
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
+void naive_uload(PCB *pcb, const char *filename);
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
@@ -41,6 +43,9 @@ _Context* do_syscall(_Context *c) {
     case(SYS_lseek):
     	c->GPRx = fs_lseek(a[1],a[2],a[3]);
     	//Log("SYS_lseek returns %d\n",c->GPRx);
+    	break;
+    case(SYS_execve):
+    	naive_uload(NULL,(const char*)a[1]);
     	break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
