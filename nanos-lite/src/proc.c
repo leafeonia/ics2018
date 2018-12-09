@@ -6,8 +6,6 @@ static PCB pcb[MAX_NR_PROC] __attribute__((used));
 static PCB pcb_boot;
 PCB *current;
 
-void naive_uload(PCB *pcb, const char *filename);//add
-
 void switch_boot_pcb() {
   current = &pcb_boot;
 }
@@ -21,8 +19,10 @@ void hello_fun(void *arg) {
   }
 }
 
+void naive_uload(PCB *pcb, const char* filename);
 void init_proc() {
-	naive_uload(NULL,"/bin/init");
+  //printf("init_proc: I'm here.\n");
+  naive_uload(NULL, "/bin/bmptest");
 }
 
 _Context* schedule(_Context *prev) {
