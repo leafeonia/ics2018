@@ -42,6 +42,9 @@ _Context *_kcontext(_Area stack, void (*entry)(void *), void *arg) {
 
   get_example_uc(c);
   c->rip = (uintptr_t)entry;
+  c->cs = 8;
+  c->eflags = 2;
+  c->irq = 0x81;
   return c;
 }
 
