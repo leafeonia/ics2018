@@ -8,6 +8,7 @@ static _Context* do_event(_Event e, _Context* c) {
 	case _EVENT_YIELD:
 		printf("_EVENT_YIELD\n");
 	//	break;
+		printf("in irq.c,schedule(c) returns %x\n",schedule(c));
 		return schedule(c);
 	case _EVENT_SYSCALL:
 		do_syscall(c);
