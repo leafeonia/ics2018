@@ -63,6 +63,7 @@ int _cte_init(_Context*(*handler)(_Event, _Context*)) {
 _Context *_kcontext(_Area stack, void (*entry)(void *), void *arg) {
 	_Context *c = (_Context*)stack.end - 1;
 	c->eip = (uintptr_t)entry;
+	c->irq = 0x81;
 	c->cs = 8;
 	
   return c;

@@ -26,7 +26,7 @@ void context_kload(PCB *pcb, void *entry) {
   stack.end = stack.start + sizeof(pcb->stack);
 
   pcb->cp = _kcontext(stack, entry, NULL);
-  printf("loader.c: in context_kload(),pcb->cp->irq = %x\n",pcb->cp->irq);
+  //printf("loader.c: in context_kload(),pcb->cp->irq = %x\n",pcb->cp->irq);
 }
 
 void context_uload(PCB *pcb, const char *filename) {
