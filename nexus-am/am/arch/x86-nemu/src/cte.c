@@ -32,13 +32,13 @@ _Context* irq_handle(_Context *tf) {
       	ev.event = _EVENT_SYSCALL;break;
       default: ev.event = _EVENT_ERROR; break;
     }
-	printf("cte.c: tf->esp = %x\n",tf->esp);
+	//printf("cte.c: tf->esp = %x\n",tf->esp);
     next = user_handler(ev, tf);
     if (next == NULL) {
       next = tf;
     }
   }
-  printf("cte.c: return %x\n",(void*)next);
+  //printf("cte.c: return %x\n",(void*)next);
   return next;
 }
 
