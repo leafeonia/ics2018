@@ -66,6 +66,7 @@ void _unprotect(_Protect *p) {
 }
 
 static _Protect *cur_as = NULL;
+
 void get_cur_as(_Context *c) {
   c->prot = cur_as;
 }
@@ -76,9 +77,9 @@ void _switch(_Context *c) {
 }
 
 int _map(_Protect *p, void *va, void *pa, int mode) {
-  PDE* updir = (PDE*)(p->ptr);
   
-  return (int)updir;
+  
+  return (int)kpdirs;
 }
 
 _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *args) {
