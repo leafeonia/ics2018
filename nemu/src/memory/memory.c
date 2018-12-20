@@ -42,6 +42,7 @@ paddr_t page_translate(vaddr_t vaddr){
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if(cpu.CR0.PG == 1){
   	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
+  		printf("THE FUCKING ADDR = %x\n",addr);
   		assert(0);
   	}
   	else{
