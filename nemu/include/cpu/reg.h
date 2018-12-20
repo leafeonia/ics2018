@@ -52,9 +52,8 @@ typedef struct {
   
   union {
     struct {
-    unsigned base:20;
     	unsigned dummy:12;
-  		
+  		unsigned base:20;
     };
   	uint32_t val;
   } CR3;
