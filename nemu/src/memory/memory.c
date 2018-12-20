@@ -57,7 +57,7 @@ paddr_t page_translate(vaddr_t vaddr){
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if(cpu.CR0.PG == 1){
-  	uint32_t last = (addr & 0xFFF);
+  	/*uint32_t last = (addr & 0xFFF);
 
 		if (last + len - 1 > 0xfff) //cross page
 		{
@@ -73,8 +73,8 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 			left = paddr_read(page_translate(addr), distance + 1);
 			right <<= (distance + 1) * 8;
 			return right + left;
-		}
-  	/*if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
+		}*/
+  	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
   		uint32_t len2 = (addr+len) & 0xfff;
   		uint32_t len1 = len - len2;
   		uint32_t addr2=(addr+len)&0xfffff000;
@@ -87,7 +87,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 		return (res_1 | res_2);
   		//panic("THE FUCKING ADDR = %x\n",addr);
   		//assert(0);
-  	}*/
+  	}
   	else{
   		return paddr_read(page_translate(addr),len);
   	}
