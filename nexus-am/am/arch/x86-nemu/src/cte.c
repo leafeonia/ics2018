@@ -7,7 +7,11 @@ void vectrap();
 void vecnull();
 void vecsys();
 
+void get_cur_as(_Context *c);//add
+void _switch(_Context *c);//add
+
 _Context* irq_handle(_Context *tf) {
+  get_cur_as(tf);
   _Context *next = tf;
   /*printf("tf.eflags = %x\n",tf->eflags);
   printf("tf.cs = %x\n",tf->cs);
@@ -39,6 +43,7 @@ _Context* irq_handle(_Context *tf) {
     }
   }
   //printf("cte.c: return %x\n",(void*)next);
+  _switch(next);
   return next;
 }
 

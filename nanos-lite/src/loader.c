@@ -1,14 +1,23 @@
 #include "proc.h"
 #include "fs.h"
 #define DEFAULT_ENTRY 0x8048000
+#define PAGE_SIZE 4096
 
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 size_t get_ramdisk_size();
 int _protect(_Protect *p); //add
+void* new_page(size_t nr_page);//add
+int _map(_Protect *p, void *va, void *pa, int mode); //add 
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
-  void* buf = (uintptr_t*)DEFAULT_ENTRY;
   int fd = fs_open(filename,0,0);
+  size_t size = fs_filesz(fd);
+  int num_page = size / PAGE_SIZE;
+  printf("num_page = %d\n",num_page);
+  //void* page = new_page(1);
+  //_map(&(pcb->as),,page,1);
+  void* buf = (uintptr_t*)DEFAULT_ENTRY;
+  
   //printf("fd = %d,fs_filesz(fd) = %d\n",fd,fs_filesz(fd));
   fs_read(fd,buf,fs_filesz(fd));
   fs_close(fd);
