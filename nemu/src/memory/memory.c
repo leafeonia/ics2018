@@ -63,5 +63,21 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 }
 
 void vaddr_write(vaddr_t addr, uint32_t data, int len) {
-  paddr_write(addr, data, len);
+  if(cpu.CR0.PG == 1){
+  	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
+  		uint32_t len2=(addr+len)&0xfff;
+		uint32_t len1=len-len2;
+		uint32_t addr2=(addr+len)&0xfffff000;
+		paddr_t paddr1=page_translate(addr);
+		paddr_t paddr2=page_translate(addr2);
+		uint32_t res_1=((data<<(len2*8))>>(len2*8));
+		uint32_t res_2=(data>>(len1*8));
+		paddr_write(paddr1,len1,res_1);
+		paddr_write(paddr2,len2,res_2);	
+  	}
+  	else{
+  		return paddr_write(page_translate(addr),data,len);
+  	}
+  }
+  else paddr_write(addr, data, len);
 }
