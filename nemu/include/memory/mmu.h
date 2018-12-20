@@ -10,6 +10,13 @@
 #define PAGE_MASK					(4096 - 1)
 #define PT_SIZE						((NR_PTE) * (PAGE_SIZE))
 
+#define PGSHFT    12      // log2(PGSIZE)
+#define PTXSHFT   12      // Offset of PTX in a linear address
+#define PDXSHFT   22      // Offset of PDX in a linear address
+#define PDX(va)     (((uint32_t)(va) >> PDXSHFT) & 0x3ff)
+#define PTX(va)     (((uint32_t)(va) >> PTXSHFT) & 0x3ff)
+#define OFF(va)     ((uint32_t)(va) & 0xfff)
+
 /* the Control Register 0 */
 typedef union CR0 {
   struct {
