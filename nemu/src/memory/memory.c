@@ -57,7 +57,24 @@ paddr_t page_translate(vaddr_t vaddr){
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if(cpu.CR0.PG == 1){
-  	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
+  	uint32_t last = (addr & 0xFFF);
+
+		if (last + len - 1 > 0xfff) //cross page
+		{
+			uint32_t distance = 0xFFF - last; //last与末位置的距离: 0——2个字节
+			uint32_t differ = len - 1 - distance; //超出末位置的长度的大小
+			
+			paddr_t addrtemp = addr + distance + 1;
+			uint32_t right;
+			uint32_t left;
+			
+			uint32_t hwtemp = page_translate(addrtemp);
+			right = paddr_read(hwtemp,differ);
+			left = paddr_read(page_translate(addr), distance + 1);
+			right <<= (distance + 1) * 8;
+			return right + left;
+		}
+  	/*if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
   		uint32_t len2 = (addr+len) & 0xfff;
   		uint32_t len1 = len - len2;
   		uint32_t addr2=(addr+len)&0xfffff000;
@@ -70,7 +87,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 		return (res_1 | res_2);
   		//panic("THE FUCKING ADDR = %x\n",addr);
   		//assert(0);
-  	}
+  	}*/
   	else{
   		return paddr_read(page_translate(addr),len);
   	}
