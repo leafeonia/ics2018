@@ -17,8 +17,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int i;
   for(i = 0;i < num_page;i++){
       void* ppage = new_page(1);
-      printf("in _map, updir = %x, va = %x, pa = %x\n",pcb->as.ptr,(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage);
-      _map(&(pcb->as),(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage,1);
+      printf("in _map, va = %x, pa = %x",(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage);
+      int ret = _map(&(pcb->as),(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage,1);
+      printf("updir = %x",(void*)ret);
       fs_read(fd,ppage,PAGE_SIZE);
   }
   

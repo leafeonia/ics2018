@@ -76,9 +76,9 @@ void _switch(_Context *c) {
 }
 
 int _map(_Protect *p, void *va, void *pa, int mode) {
-  //PDE* updir = (PDE*)(p->ptr);
+  PDE* updir = (PDE*)(p->ptr);
   
-  return 0;
+  return (int)updir;
 }
 
 _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *args) {
