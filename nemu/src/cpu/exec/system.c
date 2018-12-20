@@ -14,8 +14,8 @@ make_EHelper(mov_r2cr) {
   assert(id_dest->reg == 0 || id_dest->reg == 3);
   printf("before mov_r2cr,cpu.eax = %x,cpu.CR0.val = %x,cpu.CR3.val = %x\n",cpu.eax,cpu.CR0.val,cpu.CR3.val);
   printf("reg_l(%d) = %x\n",id_dest->reg,reg_l(id_dest->reg));
-  if(id_dest->reg == 0) cpu.CR0.val = reg_l(id_dest->reg);
-  else cpu.CR3.val = reg_l(id_dest->reg);
+  if(id_dest->reg == 0) cpu.CR0.val = reg_l(id_src->reg);
+  else cpu.CR3.val = reg_l(id_src->reg);
   printf("after mov_r2cr,cpu.eax = %x,cpu.CR0.val = %x,cpu.CR3.val = %x\n",cpu.eax,cpu.CR0.val,cpu.CR3.val);
 //printf("id_dest->reg = %d\n",id_dest->reg);
   print_asm("movl %%%s,%%cr%d", reg_name(id_src->reg, 4), id_dest->reg);
