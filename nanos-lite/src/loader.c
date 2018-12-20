@@ -12,14 +12,19 @@ int _map(_Protect *p, void *va, void *pa, int mode); //add
 static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd = fs_open(filename,0,0);
   size_t size = fs_filesz(fd);
-  int num_page = size / PAGE_SIZE;
+  int num_page = size / PAGE_SIZE + 1;
   printf("num_page = %d\n",num_page);
-  //void* page = new_page(1);
-  //_map(&(pcb->as),,page,1);
-  void* buf = (uintptr_t*)DEFAULT_ENTRY;
+  int i;
+  for(i = 0;i < num_page;i++){
+      void* ppage = new_page(1);
+      _map(&(pcb->as),(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage,1);
+      fs_read(fd,ppage,PAGE_SIZE);
+  }
+  
+  //void* buf = (uintptr_t*)DEFAULT_ENTRY;
   
   //printf("fd = %d,fs_filesz(fd) = %d\n",fd,fs_filesz(fd));
-  fs_read(fd,buf,fs_filesz(fd));
+  //fs_read(fd,buf,fs_filesz(fd));
   fs_close(fd);
   //ramdisk_read(buf,0,get_ramdisk_size());
   return DEFAULT_ENTRY;

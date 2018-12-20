@@ -66,8 +66,8 @@ void vaddr_write(vaddr_t addr, uint32_t data, int len) {
   	uint32_t last = (addr & 0xfff);
   	if(last + len - 1 > 0xfff) 
 		{
-			uint32_t distance = 0xfff - last; //last与末位置的距离: 0——2个字节
-			uint32_t differ = len - 1 - distance; //超出末位置的长度的大小
+			uint32_t distance = 0xfff - last;
+			uint32_t differ = len - 1 - distance;
 			paddr_t addrtemp = addr + distance + 1;
 			paddr_write(addrtemp, differ, (data >> ((distance + 1) * 8)));
 			paddr_write(addr, distance + 1, data);
