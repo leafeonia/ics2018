@@ -42,7 +42,17 @@ paddr_t page_translate(vaddr_t vaddr){
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if(cpu.CR0.PG == 1){
   	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
-  		panic("THE FUCKING ADDR = %x\n",addr);
+  		uint32_t len2 = (addr+len) & 0xfff;
+  		uint32_t len1 = len - len2;
+  		uint32_t addr2=(addr+len)&0xfffff000;
+		paddr_t paddr1=page_translate(addr);
+		paddr_t paddr2=page_translate(addr2);
+		uint32_t res_1=paddr_read(paddr1,len1);
+		uint32_t res_2=paddr_read(paddr2,len2);
+		res_1=((res_1<<(len2*8))>>(len2*8));
+		res_2=(res_2<<(len1*8));
+		return (res_1 | res_2);
+  		//panic("THE FUCKING ADDR = %x\n",addr);
   		//assert(0);
   	}
   	else{
