@@ -49,6 +49,22 @@ typedef struct {
   	unsigned limit:16;
   	unsigned base:32;
   } idtr;
+  
+  union {
+    struct {
+    	unsigned dummy:12;
+  		unsigned base:20;
+    };
+  	uint32_t val;
+  } CR3;
+  
+  union {
+  	struct{
+  		unsigned dummy:31;
+  		unsigned PG:1;
+  	};
+  	uint32_t val;
+  } CR0;
 } CPU_state;
 
 extern CPU_state cpu;
