@@ -28,6 +28,7 @@ void paddr_write(paddr_t addr, uint32_t data, int len) {
 }
 
 paddr_t page_translate(vaddr_t vaddr){
+    printf("base = %x\n",cpu.CR3.base);
 	paddr_t dire_addr = (cpu.CR3.base<<12) | (4*PDX(vaddr));
 	PDE table_index;
 	table_index.val = paddr_read(dire_addr,4);
