@@ -41,6 +41,7 @@ paddr_t page_translate(vaddr_t vaddr){
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if(cpu.CR0.PG == 1){
+    Log("Warning");
   	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
   		uint32_t len2 = (addr+len) & 0xfff;
   		uint32_t len1 = len - len2;
