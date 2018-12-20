@@ -28,7 +28,7 @@ void paddr_write(paddr_t addr, uint32_t data, int len) {
 }
 
 paddr_t page_translate(vaddr_t vaddr){
-	/*paddr_t dire_addr = (cpu.CR3.base<<12) | (4*PDX(vaddr));
+	paddr_t dire_addr = (cpu.CR3.base<<12) | (4*PDX(vaddr));
 	PDE table_index;
 	table_index.val = paddr_read(dire_addr,4);
 	assert(table_index.present == 1);
@@ -36,9 +36,9 @@ paddr_t page_translate(vaddr_t vaddr){
 	PTE table;
 	table.val = paddr_read(addr2,4);
 	assert(table.present == 1);
-	return ((table.page_frame << 12) | OFF(vaddr));*/
+	return ((table.page_frame << 12) | OFF(vaddr));
 	
-	uint32_t addr1=(cpu.CR3.base<<12)+((vaddr>>22)*4);
+	/*uint32_t addr1=(cpu.CR3.base<<12)+((vaddr>>22)*4);
 	PDE desc1;
 	desc1.val = paddr_read(addr1,4);
 	//memcpy(&desc1,hw_mem+addr1,4);
@@ -52,7 +52,7 @@ paddr_t page_translate(vaddr_t vaddr){
 	res=res+(desc2.page_frame<<12);
 	//printf("dirbase=%x,desc2.page_frame=%x",cpu.cr3.base,desc2.page_frame);//	
 	//assert(0);//	
-	return res;
+	return res;*/
 }
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
