@@ -12,8 +12,10 @@ make_EHelper(lidt) {
 make_EHelper(mov_r2cr) {
   //operand_write(id_dest, &id_src->val);
   assert(id_dest->reg == 0 || id_dest->reg == 3);
+  printf("before mov_r2cr,cpu.eax = %x,cpu.CR0.val = %x,cpu.CR3.val = %x\n",cpu.eax,cpu.CR0.val,cpu.CR3.val);
   if(id_dest->reg == 0) cpu.CR0.val = reg_l(id_dest->reg);
   else cpu.CR3.val = reg_l(id_dest->reg);
+  printf("after mov_r2cr,cpu.eax = %x,cpu.CR0.val = %x,cpu.CR3.val = %x\n",cpu.eax,cpu.CR0.val,cpu.CR3.val);
 //printf("id_dest->reg = %d\n",id_dest->reg);
   print_asm("movl %%%s,%%cr%d", reg_name(id_src->reg, 4), id_dest->reg);
   printf("---%s---\n",decoding.assembly);
@@ -22,8 +24,10 @@ make_EHelper(mov_r2cr) {
 make_EHelper(mov_cr2r) {
   //operand_write(id_dest, &id_src->val);
   assert(id_src->reg == 0 || id_src->reg == 3);
+  printf("before mov_cr2r,cpu.eax = %x,cpu.CR0.val = %x,cpu.CR3.val = %x\n",cpu.eax,cpu.CR0.val,cpu.CR3.val);
   if(id_src->reg == 0) rtl_li(&reg_l(id_dest->reg),cpu.CR0.val);
   else rtl_li(&reg_l(id_dest->reg),cpu.CR3.val);
+  printf("after mov_cr2r,cpu.eax = %x,cpu.CR0.val = %x,cpu.CR3.val = %x\n",cpu.eax,cpu.CR0.val,cpu.CR3.val);
 //printf("id_src->reg = %d\n",id_src->reg);
   print_asm("movl %%cr%d,%%%s", id_src->reg, reg_name(id_dest->reg, 4));
   printf("---%s---\n",decoding.assembly);
