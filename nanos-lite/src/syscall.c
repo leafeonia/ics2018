@@ -15,7 +15,8 @@ _Context* do_syscall(_Context *c) {
   switch (a[0]) {
     case(SYS_yield):_yield();break;
     case(SYS_exit):
-    	naive_uload(NULL,"/bin/init");
+    	_halt(0);
+    	//naive_uload(NULL,"/bin/init");
     	break;
     case(SYS_write):
     	//Log("SYS_write");

@@ -1,9 +1,10 @@
 #include "proc.h"
 #include "fs.h"
-#define DEFAULT_ENTRY 0x4000000
+#define DEFAULT_ENTRY 0x8048000
 
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 size_t get_ramdisk_size();
+int _protect(_Protect *p); //add
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   void* buf = (uintptr_t*)DEFAULT_ENTRY;
@@ -21,6 +22,7 @@ void naive_uload(PCB *pcb, const char *filename) {
 }
 
 void context_kload(PCB *pcb, void *entry) {
+  _protect(&(pcb->as));
   _Area stack;
   stack.start = pcb->stack;
   stack.end = stack.start + sizeof(pcb->stack);
@@ -30,6 +32,7 @@ void context_kload(PCB *pcb, void *entry) {
 }
 
 void context_uload(PCB *pcb, const char *filename) {
+  
   uintptr_t entry = loader(pcb, filename);
 
   _Area stack;
