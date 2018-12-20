@@ -56,7 +56,7 @@ paddr_t page_translate(vaddr_t vaddr){
 }
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
-  /*if(cpu.CR0.PG == 1){
+  if(cpu.CR0.PG == 1){
   	uint32_t last = (addr & 0xFFF);
 
 		if (last + len - 1 > 0xfff) //cross page
@@ -74,7 +74,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 			right <<= (distance + 1) * 8;
 			return right + left;
 		}
-  	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
+  	/*if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
   		uint32_t len2 = (addr+len) & 0xfff;
   		uint32_t len1 = len - len2;
   		uint32_t addr2=(addr+len)&0xfffff000;
@@ -87,17 +87,27 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 		return (res_1 | res_2);
   		//panic("THE FUCKING ADDR = %x\n",addr);
   		//assert(0);
-  	}
+  	}*/
   	else{
   		return paddr_read(page_translate(addr),len);
   	}
   }
-  else */return paddr_read(addr, len);
+  else return paddr_read(addr, len);
 }
 
 void vaddr_write(vaddr_t addr, uint32_t data, int len) {
-  /*if(cpu.CR0.PG == 1){
-  	if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
+  if(cpu.CR0.PG == 1){
+  	uint32_t last = (addr & 0xFFF);
+  	if(last + len - 1 > 0xFFF) //cross page
+		{
+			uint32_t distance = 0xFFF - last; //last与末位置的距离: 0——2个字节
+			uint32_t differ = len - 1 - distance; //超出末位置的长度的大小
+			
+			paddr_t addrtemp = addr + distance + 1;
+			paddr_write(addrtemp, differ, (data >> ((distance + 1) * 8)));
+			paddr_write(addr, distance + 1, data);
+		}
+  	/*if(((addr+len)&0xfffff000) != (addr&0xfffff000)){
   		uint32_t len2=(addr+len)&0xfff;
 		uint32_t len1=len-len2;
 		uint32_t addr2=(addr+len)&0xfffff000;
@@ -107,10 +117,10 @@ void vaddr_write(vaddr_t addr, uint32_t data, int len) {
 		uint32_t res_2=(data>>(len1*8));
 		paddr_write(paddr1,len1,res_1);
 		paddr_write(paddr2,len2,res_2);	
-  	}
+  	}*/
   	else{
   		return paddr_write(page_translate(addr),data,len);
   	}
   }
-  else */paddr_write(addr, data, len);
+  else paddr_write(addr, data, len);
 }
