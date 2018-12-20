@@ -10,17 +10,21 @@ make_EHelper(lidt) {
 }
 
 make_EHelper(mov_r2cr) {
-  operand_write(id_dest, &id_src->val);
-
-printf("id_dest->reg = %d\n",id_dest->reg);
+  //operand_write(id_dest, &id_src->val);
+  assert(id_dest->reg == 0 || id_dest->reg == 3);
+  if(id_dest->reg == 0) cpu.CR0.val = reg_l(id_dest->reg);
+  else cpu.CR3.val = reg_l(id_dest->reg);
+//printf("id_dest->reg = %d\n",id_dest->reg);
   print_asm("movl %%%s,%%cr%d", reg_name(id_src->reg, 4), id_dest->reg);
   printf("---%s---\n",decoding.assembly);
 }
 
 make_EHelper(mov_cr2r) {
-  operand_write(id_dest, &id_src->val);
-
-printf("id_src->reg = %d\n",id_src->reg);
+  //operand_write(id_dest, &id_src->val);
+  assert(id_src->reg == 0 || id_src->reg == 3);
+  if(id_src->reg == 0) rtl_li(&reg_l(id_dest->reg),cpu.CR0.val);
+  else rtl_li(&reg_l(id_dest->reg),cpu.CR3.val);
+//printf("id_src->reg = %d\n",id_src->reg);
   print_asm("movl %%cr%d,%%%s", id_src->reg, reg_name(id_dest->reg, 4));
   printf("---%s---\n",decoding.assembly);
 
