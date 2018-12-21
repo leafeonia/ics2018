@@ -6,7 +6,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
    * That is, use ``NO'' to index the IDT.
    */
   uint32_t addr = cpu.idtr.base + NO*8;
-  printf("enter. addr = 0x%x\n",addr);
+  //printf("enter. addr = 0x%x\n",addr);
   uint32_t low = vaddr_read(addr,2);
   uint32_t high = vaddr_read(addr+6,2);
   uint32_t jp = (high << 16) | low;
