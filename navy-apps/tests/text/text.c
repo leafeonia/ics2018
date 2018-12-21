@@ -33,9 +33,7 @@ int main() {
   }
 
   fclose(fp);
-  int* addr = (int*)0x8020000;
   printf("PASS!!!\n");
-  printf("*addr = 0x%x",*addr);
 
   return 0;
 }
