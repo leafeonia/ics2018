@@ -24,5 +24,5 @@ void init_mm() {
   Log("free physical pages starting from %p", pf);
 
   int ret = _vme_init(new_page, free_page);
-  printf("ret of vme_init = %x\n",ret);
+  printf("ret of vme_init = 0x%x\n",ret);
 }
