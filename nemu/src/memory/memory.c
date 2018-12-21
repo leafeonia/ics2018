@@ -39,7 +39,7 @@ paddr_t page_translate(vaddr_t vaddr){
 	PTE table;
 	table.val = paddr_read(addr2,4);
 	if(table.present == 0){
-		printf("\033[31m\033[1mdir_idx = 0x%x, &pte = 0x%x, pte = 0x%x\n\033[0m",4*PTX(vaddr),addr2,table.val);
+		printf("\033[31m\033[1mvaddr = 0x%x, dir_idx = 0x%x, &pte = 0x%x, pte = 0x%x\n\033[0m",vaddr,4*PTX(vaddr),addr2,table.val);
 	}
 	assert(table.present == 1);
 	return ((table.page_frame << 12) | OFF(vaddr));
