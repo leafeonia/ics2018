@@ -26,7 +26,7 @@ void hello_fun(void *arg) {
 void init_proc() {
 	//naive_uload(NULL,"/bin/init");
 	
-	context_uload(&pcb[0], "/bin/hello");
+	context_uload(&pcb[0], "/bin/text");
 	context_uload(&pcb[1], "/bin/pal");
 	
 	//printf("proc.c:in init_proc(): &hello_fun = %x\n",(void*)hello_fun);
