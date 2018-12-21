@@ -99,7 +99,8 @@ int _map(_Protect *p, void *va, void *pa, int mode) {
   
   uint32_t tab_idx = PTX(va);
   //ret = (int)(&uptab[0x4a]);
-  uptab[tab_idx] = (((uintptr_t)pa & 0xfffff000) | PTE_P);
+  if((mode & 1) == 1)uptab[tab_idx] = (((uintptr_t)pa & 0xfffff000) | PTE_P);
+  else uptab[tab_idx] &= 0xfffffff0;
   //PTE pte = kpdirs[pdir_idx];
   
   //table_index.
