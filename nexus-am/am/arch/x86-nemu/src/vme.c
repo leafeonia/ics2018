@@ -43,10 +43,11 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
         *ptab = pte;
         ptab ++;
       }
+      ret = pte;
     }
     //ret = (int)pdir_idx_end;
   }
-  ret = (int)ptab;
+  
   set_cr3(kpdirs);
   set_cr0(get_cr0() | CR0_PG);
 
