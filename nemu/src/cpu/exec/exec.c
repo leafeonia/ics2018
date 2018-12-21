@@ -255,8 +255,9 @@ void exec_wrapper(bool print_flag) {
     puts(decoding.asm_buf);
   }
 #endif
-  //printf("cpu.INTR = %d, cpu.eflags.IF = %d\n",cpu.INTR,cpu.eflags.IF);
+  
   update_eip();
+  if(cpu.eflags.IF==1)printf("cpu.INTR = %d, cpu.eflags.IF = %d\n",cpu.INTR,cpu.eflags.IF);
   if (cpu.INTR & cpu.eflags.IF) {
     printf("\033[31m\033[1menter\n\033[0m");
     cpu.INTR = false;
