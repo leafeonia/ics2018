@@ -93,11 +93,12 @@ int _map(_Protect *p, void *va, void *pa, int mode) {
   	uptab = (PTE*)(pgalloc_usr(1));
   	updir[dir_idx] = (uintptr_t)uptab | PTE_P;
   	//pa += PGSIZE;
-  	ret = (int)(&updir[dir_idx]);
+  	//ret = (int)(&updir[dir_idx]);
   }
   else uptab = (PTE*)(uptab[dir_idx] & 0xfffff000);//&0xfffff => base
   
   uint32_t tab_idx = PTX(va);
+  if(tab_idx == 128) ret = 1;
   uptab[tab_idx] = (((uintptr_t)pa & 0xfffff000) | PTE_P);
   //PTE pte = kpdirs[pdir_idx];
   
