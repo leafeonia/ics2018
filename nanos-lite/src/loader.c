@@ -20,8 +20,8 @@ int _map(_Protect *p, void *va, void *pa, int mode); //add
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd = fs_open(filename,0,0);
-  size_t size = fs_filesz(fd);
-  int num_page = size / PAGE_SIZE;
+  //size_t size = fs_filesz(fd);
+  int num_page = 1;
  // printf("num_page = %d\n",num_page);
   int i;
   for(i = 0;i < num_page;i++){
