@@ -28,6 +28,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       void* ppage = new_page(1);
       printf("in _map, va = %x, pa = %x ",(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage);
       int ret = _map(&(pcb->as),(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage,1);
+      if(ret) ppage += PAGE_SIZE; //a physical page was allocated for page table
       printf("_map rets = 0x%x\n",(void*)ret);
       fs_read(fd,ppage,PAGE_SIZE);
   }
