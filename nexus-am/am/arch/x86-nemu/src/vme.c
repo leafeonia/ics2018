@@ -92,7 +92,7 @@ int _map(_Protect *p, void *va, void *pa, int mode) {
   if((updir[dir_idx] & 1) == 0){  //&1 => present bit
   	uptab = (PTE*)(pgalloc_usr(1));
   	updir[dir_idx] = (uintptr_t)uptab | PTE_P;
-  	pa += PGSIZE;
+  	//pa += PGSIZE;
   	ret = (int)(&updir[dir_idx]);
   }
   else uptab = (PTE*)(uptab[dir_idx] & 0xfffff000);//&0xfffff => base
