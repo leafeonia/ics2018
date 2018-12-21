@@ -33,7 +33,7 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
     for (; pdir_idx < pdir_idx_end; pdir_idx ++) {
       // fill PDE
       kpdirs[pdir_idx] = (uintptr_t)ptab | PTE_P;
-		if(pdir_idx == 0) ret = kpdirs[pdir_idx] ;
+		if(pdir_idx == 1) ret = kpdirs[pdir_idx] ;
       // fill PTE
       PTE pte = PGADDR(pdir_idx, 0, 0) | PTE_P;
       PTE pte_end = PGADDR(pdir_idx + 1, 0, 0) | PTE_P;
