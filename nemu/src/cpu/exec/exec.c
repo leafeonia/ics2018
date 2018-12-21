@@ -256,12 +256,12 @@ void exec_wrapper(bool print_flag) {
   }
 #endif
   //printf("cpu.INTR = %d, cpu.eflags.IF = %d\n",cpu.INTR,cpu.eflags.IF);
-  if (cpu.INTR) {
+ /* if (cpu.INTR) {
     cpu.INTR = false;
     raise_intr(IRQ_TIMER, cpu.eip);
     update_eip();
-  }
-  //update_eip();
+  }*/
+  update_eip();
 
 #if defined(DIFF_TEST)
   void difftest_step(uint32_t);
