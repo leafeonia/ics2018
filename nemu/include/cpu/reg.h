@@ -32,7 +32,9 @@ typedef struct {
 	 };
   };
   rtlreg_t eip,CS;
-  struct {
+  
+  union{
+  	struct {
   	unsigned CF:1;
   	unsigned dummy:5;
   	unsigned ZF:1;
@@ -42,8 +44,11 @@ typedef struct {
   	unsigned dummy3:1;
   	unsigned OF:1;
   	unsigned dummy4:20;
+  	
+  	}; 
   	rtlreg_t val;
-  } eflags;
+  }eflags;
+  
   
   struct {
   	unsigned limit:16;
