@@ -32,6 +32,9 @@ paddr_t page_translate(vaddr_t vaddr){
 	paddr_t dire_addr = (cpu.CR3.base<<12) | (4*PDX(vaddr));
 	PDE table_index;
 	table_index.val = paddr_read(dire_addr,4);
+	if(table_index.present == 0){
+		printf("\033[31m\033[1m*pde = 0x%x, pde = 0x%x\n\033[0m",dire_addr,table_index.val);
+	}
 	assert(table_index.present == 1);
 	paddr_t addr2 = (table_index.page_frame << 12) | (4*PTX(vaddr));
 	PTE table;
