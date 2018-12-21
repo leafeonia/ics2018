@@ -95,7 +95,7 @@ int _map(_Protect *p, void *va, void *pa, int mode) {
   	//pa += PGSIZE;
   	//ret = (int)(&updir[dir_idx]);
   }
-  else uptab = (PTE*)(uptab[dir_idx] & 0xfffff000);//&0xfffff => base
+  else uptab = (PTE*)(updir[dir_idx] & 0xfffff000);//&0xfffff => base
   
   uint32_t tab_idx = PTX(va);
   ret = (int)(&uptab[0x4a]);
