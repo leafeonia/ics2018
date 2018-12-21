@@ -25,7 +25,7 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
   for (i = 0; i < NR_PDE; i ++) {
     kpdirs[i] = 0;
   }
-
+  int ret;
   PTE *ptab = kptabs;
   for (i = 0; i < NR_KSEG_MAP; i ++) {
     uint32_t pdir_idx = (uintptr_t)segments[i].start / (PGSIZE * NR_PTE);
@@ -42,12 +42,13 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
         ptab ++;
       }
     }
+    ret = pdir_idx;
   }
 
   set_cr3(kpdirs);
   set_cr0(get_cr0() | CR0_PG);
 
-  return NR_KSEG_MAP;
+  return ret;
 }
 
 int _protect(_Protect *p) {
