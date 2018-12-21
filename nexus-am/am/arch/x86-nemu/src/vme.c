@@ -38,7 +38,7 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
       PTE pte = PGADDR(pdir_idx, 0, 0) | PTE_P;
       
       PTE pte_end = PGADDR(pdir_idx + 1, 0, 0) | PTE_P;
-      if(pdir_idx == 31) ret = pte;
+      //if(pdir_idx == 31) ret = pte;
       for (; pte < pte_end; pte += PGSIZE) {
         *ptab = pte;
         ptab ++;
@@ -56,6 +56,8 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
 
 int _protect(_Protect *p) {
   PDE *updir = (PDE*)(pgalloc_usr(1));
+  int ret = 0;
+  ret = (int)updir;
   p->pgsize = 4096;
   p->ptr = updir;
   // map kernel space
@@ -65,7 +67,7 @@ int _protect(_Protect *p) {
 
   p->area.start = (void*)0x8000000;
   p->area.end = (void*)0xc0000000;
-  return 0;
+  return ret;
 }
 
 void _unprotect(_Protect *p) {

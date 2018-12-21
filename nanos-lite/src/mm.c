@@ -23,6 +23,6 @@ void init_mm() {
   pf = (void *)PGROUNDUP((uintptr_t)_heap.start);
   Log("free physical pages starting from %p", pf);
 
-  int ret = _vme_init(new_page, free_page);
-  printf("ret of vme_init = 0x%x\n",ret);
+  _vme_init(new_page, free_page);
+  //printf("ret of vme_init = 0x%x\n",ret);
 }
