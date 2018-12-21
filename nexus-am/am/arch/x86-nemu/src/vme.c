@@ -42,7 +42,7 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
         ptab ++;
       }
     }
-    ret = (int)segments[i].start;
+    ret = (int)pdir_idx_end;
   }
 
   set_cr3(kpdirs);
