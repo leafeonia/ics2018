@@ -98,7 +98,7 @@ int _map(_Protect *p, void *va, void *pa, int mode) {
   else uptab = (PTE*)(uptab[dir_idx] & 0xfffff000);//&0xfffff => base
   
   uint32_t tab_idx = PTX(va);
-  if(tab_idx == 128) ret = 1;
+  ret = tab_idx;
   uptab[tab_idx] = (((uintptr_t)pa & 0xfffff000) | PTE_P);
   //PTE pte = kpdirs[pdir_idx];
   
