@@ -15,7 +15,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   rtl_push(&cpu.CS);
   rtl_push(&ret_addr);
   rtl_j(jp);
-  cpu.eflags.IF = 0;
+  //cpu.eflags.IF = 0;
  // cpu.eip = ret_addr;
 }
 
