@@ -28,7 +28,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       void* ppage = new_page(1);
       printf("in _map, va = %x, pa = %x ",(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage);
       int ret = _map(&(pcb->as),(void*)DEFAULT_ENTRY+i*PAGE_SIZE,ppage,1);
-      printf("updir = %x\n",(void*)ret);
+      printf("_map rets = %x\n",(void*)ret);
       fs_read(fd,ppage,PAGE_SIZE);
   }
   
@@ -57,8 +57,8 @@ void context_kload(PCB *pcb, void *entry) {
 }
 
 void context_uload(PCB *pcb, const char *filename) {
-  int ret = _protect(&(pcb->as));
-  printf("ret = %x\n",ret);
+  _protect(&(pcb->as));
+  //printf("ret = %x\n",ret);
   uintptr_t entry = loader(pcb, filename);
 
   _Area stack;

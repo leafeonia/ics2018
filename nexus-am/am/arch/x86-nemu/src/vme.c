@@ -85,12 +85,24 @@ void _switch(_Context *c) {
 }
 
 int _map(_Protect *p, void *va, void *pa, int mode) {
-  //uint32_t pdir_idx = (uint32_t)pa / (PGSIZE * NR_PTE);
+  PDE* updir = p->ptr;
+  uint32_t dir_idx = PDX(va)*4;
+  PTE* uptab = NULL;
+  int ret = 0;
+  if((updir[dir_idx] & 1) == 0){  //&1 => present bit
+  	uptab = (PTE*)(pgalloc_usr(1));
+  	updir[dir_idx] = (uintptr_t)uptab | PTE_P;
+  	ret++;
+  }
+  else uptab = (PTE*)(uptab[dir_idx] & 0xfffff000);//&0xfffff => base
+  
+  uint32_t tab_idx = PTX(va)*4;
+  uptab[tab_idx] = ((uintptr_t)pa & 0xfffff000) | PTE_P;
   //PTE pte = kpdirs[pdir_idx];
   
   //table_index.
   
-  return (int)kpdirs;
+  return ret;
 }
 
 _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *args) {
