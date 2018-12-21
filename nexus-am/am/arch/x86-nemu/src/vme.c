@@ -7,6 +7,8 @@ static PTE kptabs[PMEM_SIZE / PGSIZE] PG_ALIGN;
 static void* (*pgalloc_usr)(size_t);
 static void (*pgfree_usr)(void*);
 
+extern uint32_t paddr_read(uint32_t addr, int len);//add
+
 _Area segments[] = {      // Kernel memory mappings
   {.start = (void*)0,          .end = (void*)PMEM_SIZE}
 };
@@ -77,9 +79,12 @@ void _switch(_Context *c) {
 }
 
 int _map(_Protect *p, void *va, void *pa, int mode) {
+  uint32_t pdir_idx = (uint32_t)va / (PGSIZE * NR_PTE);
+  PTE pte = kpdirs[pdir_idx];
   
+  //table_index.
   
-  return (int)kpdirs;
+  return pte;//(int)kpdirs;
 }
 
 _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *args) {
