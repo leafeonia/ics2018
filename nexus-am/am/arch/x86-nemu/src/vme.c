@@ -79,12 +79,12 @@ void _switch(_Context *c) {
 }
 
 int _map(_Protect *p, void *va, void *pa, int mode) {
-  uint32_t pdir_idx = (uint32_t)va / (PGSIZE * NR_PTE);
-  //PTE pte = kpdirs[pdir_idx];
+  uint32_t pdir_idx = (uint32_t)pa / (PGSIZE * NR_PTE);
+  PTE pte = kpdirs[pdir_idx];
   
   //table_index.
   
-  return pdir_idx;//(int)kpdirs;
+  return pte;//(int)kpdirs;
 }
 
 _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *args) {
