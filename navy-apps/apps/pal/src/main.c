@@ -143,7 +143,7 @@ PAL_Init(
    }
    Log("PAL_InitText success");
    int* addr = NULL;
-   Log("address = 0x%x\n",addr);
+   Log("*addr = 0x%x\n",*addr);
    PAL_InitInput();
    Log("PAL_InitInput success");
    PAL_InitResources();
