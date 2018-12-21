@@ -41,7 +41,7 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
      
       for (; pte < pte_end; pte += PGSIZE) {
         *ptab = pte;
-         if(pte == 1+PGSIZE) ret = (int)ptab;
+         if(pte == 1+PGSIZE) ret = 1+PGSIZE;
         ptab ++;
       }
     }
