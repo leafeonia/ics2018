@@ -38,13 +38,11 @@ int _vme_init(void* (*pgalloc_f)(size_t), void (*pgfree_f)(void*)) {
       PTE pte = PGADDR(pdir_idx, 0, 0) | PTE_P;
       
       PTE pte_end = PGADDR(pdir_idx + 1, 0, 0) | PTE_P;
-     
+      if(pdir_idx == 1) ret = pte;
       for (; pte < pte_end; pte += PGSIZE) {
         *ptab = pte;
         ptab ++;
-        //if(pte + PGSIZE ==  pte_end) ret = (int)pte;
       }
-      
     }
     //ret = (int)pdir_idx_end;
   }
