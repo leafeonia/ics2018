@@ -33,9 +33,9 @@ int main() {
   }
 
   fclose(fp);
-  //int* addr = (int*)1;
+  int* addr = (int*)0;
   printf("PASS!!!\n");
- // printf("*addr = 0x%x",*addr);
+  printf("*addr = 0x%x",*addr);
 
   return 0;
 }
