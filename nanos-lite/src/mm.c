@@ -22,10 +22,15 @@ void free_page(void *p) {
 int mm_brk(uintptr_t new_brk) {
   current->cur_brk = new_brk;
   if(new_brk > current->max_brk){
-  	void* ppage = new_page(1);
-  	_map(&(current->as),(void*)current->max_brk,ppage,1);
-  	printf("in _map, va = %x, pa = %x ",(void*)current->max_brk,ppage);
-  	current->max_brk += PGSIZE;
+    int cnt = (new_brk - current->max_brk) / PGSIZE + 1;
+    int i;
+    for(i = 0;i < cnt;i++){
+    	void* ppage = new_page(1);
+  		_map(&(current->as),(void*)current->max_brk,ppage,1);
+  		printf("in _map, va = %x, pa = %x ",(void*)current->max_brk,ppage);
+  		current->max_brk += PGSIZE;
+    }
+  	
   }
   return 0;
 }
