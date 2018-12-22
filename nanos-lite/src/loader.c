@@ -17,13 +17,13 @@ size_t get_ramdisk_size();
 int _protect(_Protect *p); //add
 void* new_page(size_t nr_page);//add
 int _map(_Protect *p, void *va, void *pa, int mode); //add 
+extern uintptr_t program_break;
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd = fs_open(filename,0,0);
   size_t size = fs_filesz(fd);
   int num_page = size / PAGE_SIZE + 1;
  // printf("num_page = %d\n",num_page);
-  printf("pcb->cur_brk = 0x%x\n",pcb->cur_brk);
   int i;
   for(i = 0;i < num_page;i++){
       void* ppage = new_page(1);
