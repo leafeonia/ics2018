@@ -5,6 +5,7 @@
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 void naive_uload(PCB *pcb, const char *filename);
+int mm_brk(uintptr_t new_brk); //add
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
@@ -30,6 +31,7 @@ _Context* do_syscall(_Context *c) {
     	//panic("Unhandled syscall ID = %d %d %d %d", a[0],a[1],a[2],a[3]);
     case(SYS_brk):
     	Log("New program break = 0x%x\n",(uintptr_t)a[1]);
+    	mm_brk((uintptr_t)a[1]);
     	c->GPRx = 0;
     	break;
     case(SYS_open):
