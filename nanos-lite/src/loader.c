@@ -35,7 +35,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       fs_read(fd,ppage,PAGE_SIZE);
   }
   pcb->cur_brk = pcb->max_brk = DEFAULT_ENTRY+i*PAGE_SIZE;
-  printf("cur_brk = 0x%x\n",pcb->cur_brk);
+ // printf("cur_brk = 0x%x\n",pcb->cur_brk);
   
   //void* buf = (uintptr_t*)DEFAULT_ENTRY;
   

@@ -1,6 +1,10 @@
 #include "memory.h"
+#include "proc.h"
 
 static void *pf = NULL;
+extern PCB *current;//add
+int _map(_Protect *p, void *va, void *pa, int mode); //add 
+#define PGSIZE 4096
 
 void* new_page(size_t nr_page) {
   void *p = pf;
@@ -16,6 +20,12 @@ void free_page(void *p) {
 
 /* The brk() system call handler. */
 int mm_brk(uintptr_t new_brk) {
+  current->cur_brk = new_brk;
+  if(new_brk > current->max_brk){
+  	void* ppage = new_page(1);
+  	_map(&(current->as),(void*)current->max_brk,ppage,1);
+  	new_brk += PGSIZE;
+  }
   return 0;
 }
 
