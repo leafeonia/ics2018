@@ -1,5 +1,8 @@
 #include "common.h"
 #include <amdev.h>
+#include "proc.h"
+
+extern PCB* fg_pcb;
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
@@ -25,6 +28,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   if(key & 0x8000) down = 1;
   else down = 0;
   key &= 0x7fff;
+  if(key == _KEY_F1) Log("F1\n");
   if(key != _KEY_NONE){
     //printf("keyname[%d] = %s\n",key,keyname[key]);
   	if(down) sprintf(buf,"kd %s\n",keyname[key]);
