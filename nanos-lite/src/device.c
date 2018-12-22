@@ -4,7 +4,7 @@
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t serial_write(const void *buf, size_t offset, size_t len) {
-	_yield();
+//	_yield();
 	int ret = len;
 	while(len--) _putc(*(char*)buf++);
   	return ret;
@@ -19,7 +19,7 @@ static const char *keyname[256] __attribute__((used)) = {
 };
 
 size_t events_read(void *buf, size_t offset, size_t len) {
-	_yield();
+//	_yield();
   int key = read_key();
   int down = 0;
   if(key & 0x8000) down = 1;
@@ -48,7 +48,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
-	_yield();
+//	_yield();
   //printf("enter fb_write\n");
   draw_rect((uint32_t*)buf,offset/4%screen_width(),offset/4/screen_width(),len/4,1);	
   return len;
