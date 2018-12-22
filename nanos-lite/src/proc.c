@@ -5,6 +5,7 @@
 static PCB pcb[MAX_NR_PROC] __attribute__((used));
 static PCB pcb_boot;
 PCB *current;
+static int num = 0;
 
 void naive_uload(PCB *pcb, const char *filename);//add
 void context_kload(PCB *pcb, void *entry);//add
@@ -36,6 +37,7 @@ void init_proc() {
 _Context* schedule(_Context *prev) {
     current->cp = prev;
 	//current = &pcb[0];
-	current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+	num = (num + 1) % 10;
+	current = (num > 0 ? &pcb[1] : &pcb[0]);
 	return current->cp;
 }
