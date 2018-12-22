@@ -37,7 +37,7 @@ void init_proc() {
 _Context* schedule(_Context *prev) {
     current->cp = prev;
 	//current = &pcb[0];
-	num = (num + 1) % 10;
+	num = (num + 1) % 1000;
 	current = (num > 0 ? &pcb[1] : &pcb[0]);
 	return current->cp;
 }
