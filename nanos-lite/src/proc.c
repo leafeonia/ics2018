@@ -2,7 +2,7 @@
 
 #define MAX_NR_PROC 4
 
-static PCB pcb[MAX_NR_PROC] __attribute__((used));
+PCB pcb[MAX_NR_PROC] __attribute__((used));
 static PCB pcb_boot;
 PCB *current;
 PCB *fg_pcb;
