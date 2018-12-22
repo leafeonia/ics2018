@@ -29,9 +29,18 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   if(key & 0x8000) down = 1;
   else down = 0;
   key &= 0x7fff;
-  if(key == _KEY_F1) fg_pcb = &pcb[1];
-  if(key == _KEY_F2) fg_pcb = &pcb[2];
-  if(key == _KEY_F3) fg_pcb = &pcb[3];
+  if(key == _KEY_F1) {
+  	Log("F1");
+  	fg_pcb = &pcb[1];
+  }
+  if(key == _KEY_F2) {
+    Log("F2");
+  	fg_pcb = &pcb[2];
+  }
+  if(key == _KEY_F3) {
+    Log("F3");
+  	fg_pcb = &pcb[3];
+  }
   if(key != _KEY_NONE){
     //printf("keyname[%d] = %s\n",key,keyname[key]);
   	if(down) sprintf(buf,"kd %s\n",keyname[key]);
