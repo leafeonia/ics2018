@@ -27,7 +27,7 @@ int mm_brk(uintptr_t new_brk) {
     for(i = 0;i < cnt;i++){
     	void* ppage = new_page(1);
   		_map(&(current->as),(void*)current->max_brk,ppage,1);
-  		printf("in _map, va = %x, pa = %x ",(void*)current->max_brk,ppage);
+  		//printf("in _map, va = %x, pa = %x ",(void*)current->max_brk,ppage);
   		current->max_brk += PGSIZE;
     }
   	
