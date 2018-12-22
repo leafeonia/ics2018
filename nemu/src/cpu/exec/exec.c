@@ -262,7 +262,6 @@ void exec_wrapper(bool print_flag) {
   if (cpu.INTR & cpu.eflags.IF) {
     printf("\033[31m\033[1menter exec_wrapper\n\033[0m");
     cpu.INTR = false;
-    cpu.eflags.IF = 1;
     flag = 1;
     raise_intr(IRQ_TIMER, cpu.eip);
     update_eip();
