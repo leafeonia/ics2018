@@ -23,6 +23,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   size_t size = fs_filesz(fd);
   int num_page = size / PAGE_SIZE + 1;
  // printf("num_page = %d\n",num_page);
+  printf("pcb->cur_brk = 0x%x\n",pcb->cur_brk);
   int i;
   for(i = 0;i < num_page;i++){
       void* ppage = new_page(1);
